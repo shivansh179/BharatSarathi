@@ -40,7 +40,7 @@ export default function Home() {
         toast.success("You are already registered !!")
       }else{
         toast.success("Welcome !")
-        window.location.href = "/driver/login";
+        window.location.href = "/register";
       }
   }
 

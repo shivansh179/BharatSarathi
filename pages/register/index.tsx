@@ -31,6 +31,20 @@ const stepsInfo = [
   { number: 4, title: 'Selfie', icon: CameraIcon },
 ];
 
+
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+// Optional: Add a check and warning if the env var is missing during development
+if (!apiBaseUrl && process.env.NODE_ENV === 'development') {
+    console.warn(
+        "Warning: NEXT_PUBLIC_API_BASE_URL environment variable is not set in .env.local. API calls might fail locally."
+    );
+    // You could uncomment the line below to default to localhost for local dev if needed,
+    // but setting it in .env.local is the recommended practice.
+    // apiBaseUrl = 'http://localhost:8080'; // Example fallback ONLY for local dev convenience
+}
+
+
 // Helper function (keep as is)
 function dataURLtoFile(dataurl: string, filename: string): File | null {
     try {
@@ -225,6 +239,9 @@ export default function Register() {
                 localStorage.setItem('authToken', token);
             }
       
+            const qrData = generateQrData();
+            localStorage.setItem('driverRegistrationQR', qrData);
+                    
             updateFormData({ serverResponse: response.data });
             toast.success("Registration successful! You're now one step closer.");
             setStep(stepsInfo.length + 1);

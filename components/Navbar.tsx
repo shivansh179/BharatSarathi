@@ -88,6 +88,11 @@ const Navbar = () => {
                     <div className="px-4 py-3 border-b text-sm text-gray-700 overflow-hidden w-auto">
                       {userEmail}
                     </div>
+                    <Link href="/driver">
+                      <div className="px-4 py-3 border-b text-sm text-gray-700 overflow-hidden w-auto">
+                      My Profile
+                      </div>
+                    </Link>
                     <button
                       onClick={handleLogout}
                       className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
