@@ -3,283 +3,211 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Keep if needed for QR upload, otherwise remove
+import { useRouter } from 'next/navigation'; // Import for redirection
+import axios, { isAxiosError } from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 import {
-  DevicePhoneMobileIcon,
-  QrCodeIcon,
   EnvelopeIcon,
   LockClosedIcon,
   ArrowRightOnRectangleIcon,
-  PaperAirplaneIcon
+  TruckIcon, // Added for visual element
+  ExclamationTriangleIcon,
 } from '@heroicons/react/24/outline';
 
-type LoginMethod = 'phone' | 'email' | 'qr';
-
 export default function DriverLogin() {
-  const [loginMethod, setLoginMethod] = useState<LoginMethod>('phone');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [otp, setOtp] = useState('');
-  const [showOtpInput, setShowOtpInput] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Optional: for loading states
-  const [error, setError] = useState<string | null>(null); // Optional: for error messages
-
-  // --- Form Handlers ---
-
-  const handlePhoneSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    console.log('Sending OTP to:', phoneNumber);
-    // --- TODO: API Call to send OTP ---
-    // try {
-    //   await api.sendOtp(phoneNumber);
-       setShowOtpInput(true);
-    // } catch (err) {
-    //   setError('Failed to send OTP. Please try again.');
-    // } finally {
-    //   setIsLoading(false);
-    // }
-     // --- Mock Success ---
-    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
-    setShowOtpInput(true);
-    setIsLoading(false);
-    // --- End Mock ---
-  };
-
-  const handleOtpSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError(null);
-    console.log('Verifying OTP:', otp, 'for phone:', phoneNumber);
-    // --- TODO: API Call to verify OTP and log in ---
-    // try {
-    //   const user = await api.verifyOtpAndLogin(phoneNumber, otp);
-    //   // Handle successful login (e.g., redirect, set auth state)
-    //   console.log('Login successful:', user);
-    // } catch (err) {
-    //   setError('Invalid OTP or login failed.');
-    // } finally {
-    //   setIsLoading(false);
-    // }
-     // --- Mock Success ---
-     await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
-     console.log("Mock Login Successful with OTP");
-     // Redirect or update auth state here
-     setIsLoading(false);
-     // --- End Mock ---
-  };
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter(); // Initialize router
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
-    console.log('Logging in with Email:', email);
-    // --- TODO: API Call for email/password login ---
-    // try {
-    //   const user = await api.loginWithEmail(email, password);
-    //   // Handle successful login
-    //   console.log('Login successful:', user);
-    // } catch (err) {
-    //   setError('Invalid email/password or login failed.');
-    // } finally {
-    //   setIsLoading(false);
-    // }
-     // --- Mock Success ---
-     await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
-     console.log("Mock Login Successful with Email");
-     // Redirect or update auth state here
-     setIsLoading(false);
-     // --- End Mock ---
+
+    // Basic validation
+    if (!email || !password) {
+        setError("Please enter both email and password.");
+        setIsLoading(false);
+        toast.error("Please enter both email and password.");
+        return;
+    }
+
+    const loadingToastId = toast.loading('Logging in...');
+    console.log('Attempting login with Email:', email);
+
+    try {
+      // --- Axios Login API Call ---
+      const response = await axios.post(
+        'http://52.66.5.17:8080/auth/login', // Use the correct API endpoint
+        {
+          // Send data as JSON object
+          email: email,
+          password: password,
+        },
+        {
+          // Explicitly set Content-Type header (though Axios often infers it for objects)
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      toast.dismiss(loadingToastId); // Dismiss loading toast
+
+      // --- Handle Success ---
+      console.log('Login API Response:', response.data);
+      const token = response.data?.token; // Extract token based on Postman screenshot
+
+      if (token && typeof token === 'string') {
+        localStorage.setItem('authToken', token); // Store token
+        toast.success('Login Successful!');
+        console.log("Auth token stored.");
+
+        // --- TODO: Redirect to the driver dashboard ---
+        // Replace '/driver/dashboard' with your actual dashboard route
+        router.push('/driver/dashboard');
+
+      } else {
+        console.warn("Login successful, but token not found in response:", response.data);
+        setError("Login succeeded but failed to retrieve session token.");
+        toast.error("Login succeeded but failed to retrieve session token.");
+      }
+      // --- End Success Handling ---
+
+    } catch (err) { // Handle Axios and other errors
+      toast.dismiss(loadingToastId);
+      console.error("Login error:", err);
+
+      let errorMsg = "An unexpected error occurred during login.";
+
+      if (isAxiosError(err)) {
+        if (err.response) {
+          // Server responded with an error status (4xx, 5xx)
+          console.error("Error response data:", err.response.data);
+          console.error("Error response status:", err.response.status);
+           // Try to get specific message from backend
+          errorMsg = err.response.data?.message ||
+                     (typeof err.response.data === 'string' ? err.response.data : null) ||
+                     `Login failed (Status: ${err.response.status})`;
+        } else if (err.request) {
+          // Request made, but no response received (Network Error)
+          console.error("Error request:", err.request);
+          errorMsg = "Could not connect to the server. Please check your connection.";
+        } else {
+          // Error setting up the request
+          errorMsg = err.message || "Error setting up the login request.";
+        }
+      } else if (err instanceof Error) {
+        errorMsg = err.message;
+      }
+
+      setError(errorMsg);
+      toast.error(`Login Failed: ${errorMsg}`); // Show specific error
+
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleMethodChange = (method: LoginMethod) => {
-    setLoginMethod(method);
-    setShowOtpInput(false); // Reset OTP view when switching methods
-    setError(null); // Clear errors on method switch
-    // Clear form fields if desired
-    // setPhoneNumber('');
-    // setEmail('');
-    // setPassword('');
-    // setOtp('');
-  }
-
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-white to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        {/* Header */}
-        <div className="text-center">
-           {/* Optional Logo */}
-           {/* <Image src="/logo.png" alt="Logo" width={150} height={40} className="mx-auto h-12 w-auto mb-4" /> */}
-          <h1 className="text-3xl font-bold text-indigo-700 mb-2">
-            Driver Portal Login
-          </h1>
-          <p className="text-gray-600">
-            Access your dashboard using your preferred method.
-          </p>
-        </div>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-100 via-white to-sky-100 p-4 sm:p-6 lg:p-8">
+       <Toaster position="top-center" reverseOrder={false} />
+      <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl overflow-hidden"> {/* Slightly wider card */}
+        <div className="px-6 py-8 sm:px-10 sm:py-12"> {/* Increased padding */}
 
-        {/* Login Card */}
-        <div className="bg-white shadow-xl rounded-xl p-8 space-y-6">
-          {/* Method Switcher */}
-          <div className="grid grid-cols-3 gap-2 rounded-lg bg-gray-100 p-1">
-            <LoginMethodButton
-              label="Phone"
-              icon={DevicePhoneMobileIcon}
-              isActive={loginMethod === 'phone'}
-              onClick={() => handleMethodChange('phone')}
-            />
-             <LoginMethodButton
-              label="Email"
-              icon={EnvelopeIcon}
-              isActive={loginMethod === 'email'}
-              onClick={() => handleMethodChange('email')}
-            />
-            <LoginMethodButton
-              label="QR Code"
-              icon={QrCodeIcon}
-              isActive={loginMethod === 'qr'}
-              onClick={() => handleMethodChange('qr')}
-            />
+          {/* Header */}
+          <div className="text-center mb-8">
+             <TruckIcon className="mx-auto h-12 w-auto text-indigo-600 mb-4" /> {/* Added Icon */}
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Driver Portal
+            </h1>
+            <p className="mt-2 text-lg leading-8 text-gray-600">
+              Sign in to access your dashboard.
+            </p>
           </div>
 
-           {/* Error Display */}
-           {error && (
-             <div className="bg-red-100 border border-red-300 text-red-700 px-4 py-2 rounded-md text-sm">
-               {error}
-             </div>
-           )}
-
-          {/* Phone Login */}
-          {loginMethod === 'phone' && (
-            <div>
-              {!showOtpInput ? (
-                <form onSubmit={handlePhoneSubmit} className="space-y-6">
-                  <InputField
-                    id="phone"
-                    label="Phone Number"
-                    type="tel"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, '').slice(0, 10))} // Keep only digits, max 10
-                    placeholder="Enter your 10-digit number"
-                    icon={DevicePhoneMobileIcon}
-                    prefix="+91"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    disabled={isLoading || phoneNumber.length !== 10}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150 ease-in-out"
-                  >
-                    {isLoading ? 'Sending...' : 'Send OTP'}
-                     <PaperAirplaneIcon className="w-5 h-5 ml-2 -rotate-45" />
-                  </button>
-                </form>
-              ) : (
-                <form onSubmit={handleOtpSubmit} className="space-y-6">
-                   <div className="flex justify-between items-baseline mb-1">
-                      <label htmlFor="otp" className="block text-sm font-medium text-gray-700">Enter OTP</label>
-                      <button
-                        type="button"
-                        onClick={() => { setShowOtpInput(false); setError(null); setOtp(''); }}
-                        className="text-indigo-600 hover:text-indigo-500 text-sm font-medium"
-                      >
-                        Change Number?
-                      </button>
+          {/* Login Form */}
+          <form onSubmit={handleEmailSubmit} className="space-y-6">
+            {/* Error Display */}
+            {error && (
+                <div className="bg-red-50 border-l-4 border-red-400 p-4">
+                  <div className="flex">
+                    <div className="flex-shrink-0">
+                       <ExclamationTriangleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
                     </div>
-                  <InputField
-                    id="otp"
-                    label="" // Label provided above
-                    type="text" // Use text to allow easier input on some devices
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))} // Keep only digits, max 6
-                    placeholder="------"
-                    inputMode="numeric" // Hint for mobile keyboards
-                    maxLength={6}
-                    required
-                    className="text-center tracking-[0.5em] text-lg font-medium" // OTP styling
-                  />
-                   <p className="text-xs text-center text-gray-500 -mt-3">
-                     Enter the 6-digit code sent to +91 {phoneNumber}
-                   </p>
-                  <button
-                    type="submit"
-                    disabled={isLoading || otp.length !== 6}
-                    className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition duration-150 ease-in-out"
-                  >
-                     {isLoading ? 'Verifying...' : 'Verify & Login'}
+                    <div className="ml-3">
+                       <p className="text-sm text-red-700">{error}</p>
+                    </div>
+                  </div>
+                </div>
+            )}
+
+            {/* Email Input */}
+            <InputField
+              id="email"
+              label="Email Address"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              icon={EnvelopeIcon} // Keep icon for visual cue
+              required
+              autoComplete="email"
+            />
+
+            {/* Password Input */}
+            <InputField
+              id="password"
+              label="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter your password"
+              icon={LockClosedIcon} // Keep icon for visual cue
+              required
+              autoComplete="current-password"
+            />
+
+            {/* Forgot Password Link */}
+            <div className="text-right text-sm">
+              <Link href="/forgot-password" // TODO: Implement this page if needed
+                className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">
+                Forgot password?
+              </Link>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed transition duration-150 ease-in-out"
+            >
+              {isLoading ? (
+                 <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Signing In...
+                 </>
+              ) : (
+                 <>
+                    Sign In
                     <ArrowRightOnRectangleIcon className="w-5 h-5 ml-2" />
-                  </button>
-                </form>
+                 </>
               )}
-            </div>
-          )}
+            </button>
+          </form>
 
-          {/* Email Login */}
-          {loginMethod === 'email' && (
-            <form onSubmit={handleEmailSubmit} className="space-y-6">
-              <InputField
-                id="email"
-                label="Email Address"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                icon={EnvelopeIcon}
-                required
-              />
-              <InputField
-                id="password"
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
-                icon={LockClosedIcon}
-                required
-              />
-               <div className="text-right text-sm">
-                  <Link href="/forgot-password" // TODO: Create this page
-                     className="font-medium text-indigo-600 hover:text-indigo-500">
-                     Forgot your password?
-                  </Link>
-               </div>
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 transition duration-150 ease-in-out"
-              >
-                 {isLoading ? 'Logging in...' : 'Login with Email'}
-                 <ArrowRightOnRectangleIcon className="w-5 h-5 ml-2" />
-              </button>
-            </form>
-          )}
-
-          {/* QR Code Login */}
-          {loginMethod === 'qr' && (
-            <div className="text-center space-y-4 pt-4">
-              <div className="flex justify-center items-center bg-gray-100 rounded-lg p-6 border border-gray-200 max-w-xs mx-auto">
-                 <QrCodeIcon className="h-20 w-20 text-indigo-400" />
-              </div>
-              <p className="text-gray-600 text-sm">
-                Open the Bharat Sarthi Driver App on your phone and scan this screen, or use the QR code provided during registration.
-              </p>
-               {/* QR Upload is less common for web login, but kept as placeholder if needed */}
-              {/* <button className="text-indigo-600 text-sm hover:underline font-medium">
-                Upload QR image (Optional)
-              </button> */}
-               <p className="text-xs text-gray-400">QR login might require the mobile app.</p>
-            </div>
-          )}
-        </div>
-
-        {/* Sign Up Link */}
-        <div className="text-center text-sm text-gray-600">
-          Don't have a driver account yet?{' '}
-          <Link href="/register" className="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">
-            Register Now
-          </Link>
+          {/* Sign Up Link */}
+          <div className="mt-8 text-center text-sm text-gray-500">
+            Don't have a driver account?{' '}
+            <Link href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 hover:underline">
+              Register Here
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -287,34 +215,28 @@ export default function DriverLogin() {
 }
 
 
-// --- Reusable Components ---
-
-// Input Field Component
-function InputField({ id, label, type = 'text', value, onChange, placeholder, icon: Icon, required = false, prefix, className = '', ...props }: {
+// --- Reusable InputField Component (Slightly simplified styling) ---
+function InputField({ id, label, type = 'text', value, onChange, placeholder, icon: Icon, required = false, className = '', ...props }: {
   id: string;
   label: string;
   type?: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
-  icon?: React.ElementType;
+  icon?: React.ElementType; // Keep icon prop
   required?: boolean;
-  prefix?: string;
   className?: string;
-  [key: string]: any; // Allow other input props like maxLength, inputMode
+  [key: string]: any; // Allow other input props like autoComplete
 }) {
   return (
     <div>
-      {label && (
-         <label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">
-           {label}
-         </label>
-      )}
-      <div className="relative rounded-md shadow-sm">
-        {(Icon || prefix) && (
-          <div className="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center border-r border-gray-300 bg-gray-50 rounded-l-md px-3">
-            {Icon && <Icon className="h-5 w-5 text-gray-400" aria-hidden="true" />}
-            {prefix && <span className="text-gray-500 sm:text-sm">{prefix}</span>}
+      <label htmlFor={id} className="block text-sm font-medium leading-6 text-gray-900">
+        {label}
+      </label>
+      <div className="relative mt-2 rounded-md shadow-sm">
+        {Icon && ( // Conditionally render icon container
+          <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <Icon className="h-5 w-5 text-gray-400" aria-hidden="true" />
           </div>
         )}
         <input
@@ -325,34 +247,11 @@ function InputField({ id, label, type = 'text', value, onChange, placeholder, ic
           onChange={onChange}
           placeholder={placeholder}
           required={required}
-          className={`block w-full border border-gray-300 rounded-md py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out ${Icon || prefix ? 'pl-16' : 'px-4'} ${className}`}
+          // Adjust padding based on icon presence
+          className={`block w-full rounded-md border-0 py-2.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 transition duration-150 ease-in-out ${Icon ? 'pl-10' : 'px-3'} ${className}`} // Updated classes for better focus/border
           {...props}
         />
       </div>
     </div>
-  );
-}
-
-
-// Login Method Button Component
-function LoginMethodButton({ label, icon: Icon, isActive, onClick }: {
-  label: string;
-  icon: React.ElementType;
-  isActive: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`
-        flex items-center justify-center space-x-2 w-full px-3 py-2 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out
-        focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-indigo-500
-        ${isActive ? 'bg-white text-indigo-700 shadow' : 'text-gray-500 hover:bg-gray-200 hover:text-gray-700'}
-      `}
-    >
-      <Icon className={`w-5 h-5 ${isActive ? 'text-indigo-600' : 'text-gray-400'}`} />
-      <span>{label}</span>
-    </button>
   );
 }

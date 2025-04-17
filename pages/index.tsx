@@ -33,12 +33,7 @@ export default function Home() {
                   Become a Driver Partner
                   <ArrowRightIcon className="w-5 h-5 ml-2" />
                 </Link>
-                <Link
-                  href="/fleet/login" // Fleet owner registration
-                  className="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-indigo-600 border border-indigo-200 px-8 py-3 rounded-lg text-center font-medium shadow-sm hover:shadow-md transition duration-300 ease-in-out"
-                >
-                  Register Your Fleet
-                </Link>
+             
               </div>
             </div>
             {/* Image */}
