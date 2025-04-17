@@ -84,7 +84,7 @@ const Navbar = () => {
 
                 {/* Dropdown */}
                 {isDropdownOpen && (
-                  <div className="absolute top-14 right-0 w-48 bg-white rounded-md shadow-lg ring-1 ring-black w-auto ring-opacity-5 z-10">
+                  <div className="absolute top-14 right-0 bg-white rounded-md shadow-lg ring-1 ring-black w-auto ring-opacity-5 z-10">
                     <div className="px-4 py-3 border-b text-sm text-gray-700 overflow-hidden w-auto">
                       {userEmail}
                     </div>
