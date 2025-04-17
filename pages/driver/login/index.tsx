@@ -61,13 +61,16 @@ export default function DriverLogin() {
       const token = response.data?.token; // Extract token based on Postman screenshot
 
       if (token && typeof token === 'string') {
-        localStorage.setItem('authToken', token); // Store token
+        localStorage.setItem('authToken', token);
+        window.dispatchEvent(new Event('loginSuccess')); // 🚀 trigger the custom event
         toast.success('Login Successful!');
-        console.log("Auth token stored.");
+        window.location.href = '/';
+        
 
         // --- TODO: Redirect to the driver dashboard ---
         // Replace '/driver/dashboard' with your actual dashboard route
-        router.push('/driver/dashboard');
+        router.push('/');
+
 
       } else {
         console.warn("Login successful, but token not found in response:", response.data);

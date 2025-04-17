@@ -1,15 +1,54 @@
+'use client';
+
+
 // src/app/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon, CurrencyDollarIcon, ClockIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'; // Using Heroicons for consistency
 import Navbar from '@/components/Navbar';
 import ContactFooter from '@/components/Conact-Footer';
+import { useEffect, useState } from 'react';
+import { JwtPayload } from 'jwt-decode';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
 export default function Home() {
+
+  const[existingDriver, setExistingDriver] = useState(false);
+
+  useEffect(()=> {
+         const checkToken = () => {
+              const token = localStorage.getItem('authToken');
+              if (token) {
+                setExistingDriver(true); // or decoded.sub
+                }
+               else {
+                setExistingDriver(false);
+              }
+            };
+
+            checkToken();
+  },[])
+
+
+
+  const checkExistingDriver = () => {
+    console.log(existingDriver);
+    
+      if(existingDriver){
+        toast.success("You are already registered !!")
+      }else{
+        toast.success("Welcome !")
+        window.location.href = "/driver/login";
+      }
+  }
+
+
+
   return (
     <>
+    <Toaster/>
     <Navbar/>
     <div className="bg-white"> {/* Overall background */}
 
@@ -26,13 +65,13 @@ export default function Home() {
                 Become a driving partner with Bharat Sarthi. Enjoy competitive pay, flexible schedules, and the freedom to be your own boss. Sign up is quick and easy!
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/register" // Main driver registration
+                <div
+                  onClick={checkExistingDriver} // Main driver registration
                   className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg text-center font-medium shadow-md hover:shadow-lg transition duration-300 ease-in-out"
                 >
                   Become a Driver Partner
                   <ArrowRightIcon className="w-5 h-5 ml-2" />
-                </Link>
+                </div>
              
               </div>
             </div>
@@ -251,6 +290,10 @@ export default function Home() {
   );
 }
 
+
+function jwtDecode(token: string): JwtPayload {
+  throw new Error('Function not implemented.');
+}
 // Optional: Add simple fade-in animations in globals.css or a separate CSS file
 /*
 @tailwind base;
