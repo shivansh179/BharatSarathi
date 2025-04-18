@@ -230,7 +230,7 @@ export default function Register() {
         }
       
         try {
-            const response = await axios.post('http://52.66.5.17:8080/auth/register', apiFormData);
+            const response = await axios.post('https://ritiktest.site/auth/register', apiFormData);
       
             toast.dismiss(loadingToastId);
       
