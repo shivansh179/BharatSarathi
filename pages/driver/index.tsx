@@ -37,10 +37,12 @@ export default function RegistrationSummaryPage() {
     setIsLoading(true);
     setError(null);
     try {
-      const storedData = localStorage.getItem('driverRegistrationQR');
+      const storedData = localStorage.getItem('userDetail');
+      
       if (storedData) {
         const parsed: QRData = JSON.parse(storedData);
-        if (parsed && parsed.name && parsed.email && parsed.registrationTimestamp) {
+        console.log("user Data is ", parsed);
+        if (parsed && parsed.name && parsed.email ) {
            setQrData(parsed);
         } else {
            throw new Error("Stored data is incomplete or invalid.");

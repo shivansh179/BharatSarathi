@@ -83,9 +83,21 @@ export default function DriverLogin() {
             toast.dismiss(loadingToastId);
 
             // --- Handle Success ---
-            console.log('Login API Response:', response.data);
+            // console.log('Login API Response:', JSON.stringify(response.data.user));
             // Adjust '.token' based on your actual API response structure
-            const token = response.data?.token;
+            const token = response.data?.user.token;
+            const userData = {
+                "type":"Bharat Sarathi Registration",
+                "name":response.data?.user.name,
+                "email":response.data?.user.email,
+                "aadhaarLast4": (response.data?.user.aadhaarNumber).slice(8,12),
+                "registrationTimestamp":null
+            }
+            
+
+            if(userData && userData != null){
+                localStorage.setItem('userDetail', JSON.stringify(userData));
+            }
 
             if (token && typeof token === 'string') {
                 localStorage.setItem('authToken', token);
