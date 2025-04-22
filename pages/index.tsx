@@ -1,335 +1,363 @@
 'use client';
 
-
-// src/app/page.tsx
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRightIcon, CurrencyDollarIcon, ClockIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'; // Using Heroicons for consistency
+import { useState, useEffect } from 'react';
+import { toast, Toaster } from 'react-hot-toast';
+import { 
+  ArrowRightIcon, 
+  CurrencyDollarIcon, 
+  ClockIcon, 
+  ShieldCheckIcon,
+  UserPlusIcon,
+  DocumentCheckIcon,
+  QrCodeIcon,
+  TruckIcon
+} from '@heroicons/react/24/outline';
 import Navbar from '@/components/Navbar';
 import ContactFooter from '@/components/Conact-Footer';
-import { useEffect, useState } from 'react';
-import { JwtPayload } from 'jwt-decode';
-import toast, { Toaster } from 'react-hot-toast';
+ 
+export default function DriverRecruitment() {
+  const [isRegistered, setIsRegistered] = useState(false);
 
+  const p1 = 'p1.jpeg';
+  const p2 = 'p2.jpeg';
+  const p3 = 'p3.jpeg';
+  const p4 = 'p4.jpeg';
+   
 
-
-export default function Home() {
-
-  const[existingDriver, setExistingDriver] = useState(false);
-
-  useEffect(()=> {
-         const checkToken = () => {
-              const token = localStorage.getItem('authToken');
-              if (token) {
-                setExistingDriver(true); // or decoded.sub
-                }
-               else {
-                setExistingDriver(false);
-              }
-            };
-
-            checkToken();
-  },[])
-
-
-
-  const checkExistingDriver = () => {
-    console.log(existingDriver);
+  useEffect(() => {
+    const checkAuthStatus = () => {
+      const token = localStorage.getItem('authToken');
+      setIsRegistered(!!token);
+    };
     
-      if(existingDriver){
-        toast.success("You are already registered !!")
-      }else{
-        toast.success("Welcome !")
-        window.location.href = "/register";
-      }
-  }
+    checkAuthStatus();
+  }, []);
 
-
+  const handleRegistrationClick = () => {
+    if (isRegistered) {
+      toast.success("You're already registered! Redirecting to dashboard...");
+      setTimeout(() => {
+        window.location.href = "/driver/dashboard";
+      }, 1500);
+    } else {
+      window.location.href = "/register";
+    }
+  };
 
   return (
     <>
-    <Toaster/>
-    <Navbar/>
-    <div className="bg-white"> {/* Overall background */}
-
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-indigo-50 via-white to-indigo-50 py-20 md:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
-            <div className="animate-fade-in-left"> {/* Simple animation */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
-                Your Drive, Your Earnings. <span className="text-indigo-600">Join Us Today.</span>
-              </h1>
-              <p className="text-lg text-gray-600 mb-8 max-w-xl">
-                Become a driving partner with Bharat Sarthi. Enjoy competitive pay, flexible schedules, and the freedom to be your own boss. Sign up is quick and easy!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div
-                  onClick={checkExistingDriver} // Main driver registration
-                  className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg text-center font-medium shadow-md hover:shadow-lg transition duration-300 ease-in-out"
-                >
-                  Become a Driver Partner
-                  <ArrowRightIcon className="w-5 h-5 ml-2" />
+      <Toaster position="top-center" />
+      <Navbar />
+      
+      <main className="bg-gradient-to-b from-gray-50 to-white">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden py-20 md:py-28">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-50 to-blue-50 opacity-80"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-8">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                    Drive With <span className="text-indigo-600">Bharat Sarthi</span>
+                  </h1>
+                  <p className="mt-4 text-xl text-gray-600">
+                    Turn your vehicle into a steady income source. Flexible hours, competitive pay, and full control.
+                  </p>
                 </div>
-             
+                
+                <div className="flex flex-wrap gap-4">
+                  <button
+                    onClick={handleRegistrationClick}
+                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-medium flex items-center shadow-md transition-all duration-300 hover:shadow-lg"
+                  >
+                    {isRegistered ? "Go to Dashboard" : "Become a Driver Partner"}
+                    <ArrowRightIcon className="w-5 h-5 ml-2" />
+                  </button>
+                  
+                  <Link href="/driver/benefits" className="bg-white hover:bg-gray-50 text-indigo-600 border border-indigo-200 px-8 py-4 rounded-lg font-medium flex items-center shadow-sm transition-all duration-300">
+                    Learn More
+                  </Link>
+                </div>
+                
+                <div className="flex items-center gap-6">
+                  <div className="flex -space-x-2">
+                    {[p1, p2, p3, p4].map(i => (
+                      <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-indigo-100 flex items-center justify-center overflow-hidden">
+                        <Image 
+                          src={`/${i}`} 
+                          alt="Driver" 
+                          width={40} 
+                          height={40}
+                          className="object-cover"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-gray-600">Join 10,000+ drivers across India</p>
+                </div>
               </div>
-            </div>
-            {/* Image */}
-            <div className="flex justify-center animate-fade-in-right"> {/* Simple animation */}
-              <Image
-                src="/cab2.jpg" // Suggest a more specific image name
-                alt="Driver partner using the Bharat Sarthi app"
-                width={550}
-                height={450}
-                priority // Load hero image faster
-                className="rounded-lg shadow-2xl object-cover"
-              />
+              
+              <div className="lg:px-6">
+                <div className="relative">
+                  <Image
+                    src="/cab2.jpg" 
+                    alt="Happy Bharat Sarthi driver with passenger"
+                    width={600}
+                    height={400}
+                    priority
+                    className="rounded-xl shadow-2xl object-cover"
+                  />
+                  <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-green-100 rounded-full">
+                        <CurrencyDollarIcon className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500">Average weekly earnings</p>
+                        <p className="text-lg font-bold text-gray-900">₹15,000+</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Features Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">
-            Why Partner with Bharat Sarthi?
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {/* Feature Card 1 */}
-            <div className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-5">
-                <CurrencyDollarIcon className="h-7 w-7 text-indigo-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Maximize Your Earnings</h3>
-              <p className="text-gray-600">
-                Benefit from our competitive commission rates, surge pricing during peak hours, and frequent bonus opportunities. Get paid reliably every week.
+        {/* Benefits Section */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900">Why Drive With Bharat Sarthi?</h2>
+              <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                We offer the best platform for drivers looking to maximize their earnings while maintaining flexibility.
               </p>
             </div>
-
-            {/* Feature Card 2 */}
-            <div className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-5">
-                <ClockIcon className="h-7 w-7 text-indigo-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Drive on Your Schedule</h3>
-              <p className="text-gray-600">
-                You're in control. Drive full-time, part-time, or just a few hours when it suits you. Log in and out of the app whenever you choose.
-              </p>
-            </div>
-
-            {/* Feature Card 3 */}
-            <div className="bg-gray-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1">
-              <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-5">
-                <ShieldCheckIcon className="h-7 w-7 text-indigo-600" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">Safety & Support</h3>
-              <p className="text-gray-600">
-                Your safety is paramount. Access in-app safety features, 24/7 support, and insurance coverage for every trip. Drive with confidence.
-              </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+              {[
+                {
+                  icon: <CurrencyDollarIcon className="h-8 w-8 text-indigo-600" />,
+                  title: "Competitive Earnings",
+                  description: "Earn up to ₹2,500 daily with competitive base rates, surge pricing, and regular bonuses.",
+                  highlight: "Earn 15-30% more than other platforms"
+                },
+                {
+                  icon: <ClockIcon className="h-8 w-8 text-indigo-600" />,
+                  title: "Complete Flexibility",
+                  description: "Drive whenever you want. No minimum hours or schedules. You control your workday.",
+                  highlight: "Work on your terms"
+                },
+                {
+                  icon: <ShieldCheckIcon className="h-8 w-8 text-indigo-600" />,
+                  title: "Safety & Support",
+                  description: "24/7 assistance, emergency response, and comprehensive insurance coverage on every trip.",
+                  highlight: "Your safety is our priority"
+                },
+              ].map((benefit, index) => (
+                <div key={index} className="bg-gray-50 rounded-xl p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+                  <div className="bg-indigo-100 w-14 h-14 rounded-lg flex items-center justify-center mb-6">
+                    {benefit.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900">{benefit.title}</h3>
+                  <p className="mt-3 text-gray-600">{benefit.description}</p>
+                  <div className="mt-4 inline-block bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-sm font-medium">
+                    {benefit.highlight}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* How it Works */}
-      <section className="py-16 lg:py-24 bg-gradient-to-b from-indigo-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">
-            Get Started in 4 Simple Steps
-          </h2>
-
-          <div className="relative">
-             {/* Optional: Connecting line for desktop view */}
-             <div className="hidden md:block absolute top-8 left-0 w-full h-0.5 bg-indigo-200" style={{zIndex: 0}}></div>
-
-             <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6 relative" style={{zIndex: 1}}>
-                {/* Step 1 */}
-                <div className="text-center flex flex-col items-center">
-                  <div className="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md z-10">1</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Register Online</h3>
-                  <p className="text-gray-600 text-sm">
-                    Fill out the quick registration form with your basic details.
-                  </p>
-                </div>
-
-                {/* Step 2 */}
-                <div className="text-center flex flex-col items-center">
-                  <div className="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md z-10">2</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Upload Documents</h3>
-                  <p className="text-gray-600 text-sm">
-                    Submit your driving license, vehicle RC, PAN, and Aadhaar card securely via the app or portal.
-                  </p>
-                </div>
-
-                {/* Step 3 */}
-                <div className="text-center flex flex-col items-center">
-                  <div className="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md z-10">3</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Verification & QR</h3>
-                  <p className="text-gray-600 text-sm">
-                    We'll quickly verify your documents. Once approved, you'll get your unique Driver ID & QR code.
-                  </p>
-                </div>
-
-                {/* Step 4 */}
-                <div className="text-center flex flex-col items-center">
-                  <div className="w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4 shadow-md z-10">4</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Start Driving!</h3>
-                  <p className="text-gray-600 text-sm">
-                    Download the Bharat Sarthi Driver App, log in, go online, and start accepting rides!
-                  </p>
-                </div>
+        {/* How It Works */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900">Get Started in 4 Simple Steps</h2>
+              <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                Our streamlined onboarding process gets you on the road and earning quickly.
+              </p>
             </div>
-          </div>
-
-          <div className="mt-16 text-center">
-            <Link
-              href="/register"
-              className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg text-center font-medium shadow-md hover:shadow-lg transition duration-300 ease-in-out"
+            
+            <div className="relative">
+              <div className="hidden lg:block absolute top-24 left-0 w-full h-1 bg-indigo-100"></div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                {[
+                  {
+                    icon: <UserPlusIcon className="h-6 w-6 text-white" />,
+                    title: "Register Online",
+                    description: "Fill out our simple form with your basic information to get started."
+                  },
+                  {
+                    icon: <DocumentCheckIcon className="h-6 w-6 text-white" />,
+                    title: "Upload Documents",
+                    description: "Submit your license, vehicle registration, and identity documents securely."
+                  },
+                  {
+                    icon: <QrCodeIcon className="h-6 w-6 text-white" />,
+                    title: "Get Verified",
+                    description: "Our team will verify your documents and issue your unique driver ID and QR code."
+                  },
+                  {
+                    icon: <TruckIcon className="h-6 w-6 text-white" />,
+                    title: "Start Driving",
+                    description: "Download the Bharat Sarthi Driver App, go online, and start accepting rides."
+                  }
+                ].map((step, index) => (
+                  <div key={index} className="flex flex-col items-center text-center">
+                    <div className="bg-indigo-600 w-14 h-14 rounded-full flex items-center justify-center shadow-md mb-6 z-10">
+                      {step.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{step.title}</h3>
+                    <p className="text-gray-600">{step.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="mt-16 text-center">
+              <button 
+                onClick={handleRegistrationClick}
+                className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-medium inline-flex items-center shadow-md transition-all duration-300 hover:shadow-lg"
               >
-              Register Now & Start Earning
-              <ArrowRightIcon className="w-5 h-5 ml-2" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">
-            Hear From Our Driver Partners
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {/* Testimonial Card 1 */}
-            <div className="bg-gray-50 rounded-xl p-6 shadow-lg flex flex-col">
-              <p className="text-gray-600 italic mb-5 flex-grow">
-                "Switching to Bharat Sarthi was the best decision. The earnings are much better than my previous platform, and I love the flexibility. The Driver QR makes identity verification simple for passengers."
-              </p>
-              <div className="flex items-center mt-auto pt-4 border-t border-gray-200">
-                <Image
-                  src="/placeholder-driver1.png" // Use actual or placeholder images
-                  alt="Rajesh Kumar, Driver Partner"
-                  width={48}
-                  height={48}
-                  className="rounded-full mr-4 object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-gray-900">Rajesh Kumar</h4>
-                  <p className="text-indigo-600 text-sm">Driver Partner since 2023</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Testimonial Card 2 */}
-            <div className="bg-gray-50 rounded-xl p-6 shadow-lg flex flex-col">
-              <p className="text-gray-600 italic mb-5 flex-grow">
-                "As a woman driver, safety is my priority. Bharat Sarthi's safety features and prompt support give me peace of mind. The app is user-friendly, and payments are always on time."
-              </p>
-               <div className="flex items-center mt-auto pt-4 border-t border-gray-200">
-               <Image
-                  src="/placeholder-driver2.png"
-                  alt="Priya Sharma, Driver Partner"
-                  width={48}
-                  height={48}
-                  className="rounded-full mr-4 object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-gray-900">Priya Sharma</h4>
-                  <p className="text-indigo-600 text-sm">Driver Partner since 2022</p>
-                </div>
-              </div>
-            </div>
-
-             {/* Testimonial Card 3 */}
-            <div className="bg-gray-50 rounded-xl p-6 shadow-lg flex flex-col">
-              <p className="text-gray-600 italic mb-5 flex-grow">
-                "Managing my fleet is so much easier with the Bharat Sarthi platform. The dashboard provides clear insights, driver tracking is efficient, and the overall process helps maximize my fleet's earnings."
-              </p>
-               <div className="flex items-center mt-auto pt-4 border-t border-gray-200">
-               <Image
-                  src="/placeholder-fleet-owner.png"
-                  alt="Amit Patel, Fleet Owner"
-                  width={48}
-                  height={48}
-                  className="rounded-full mr-4 object-cover"
-                />
-                <div>
-                  <h4 className="font-semibold text-gray-900">Amit Patel</h4>
-                  <p className="text-indigo-600 text-sm">Fleet Partner since 2022</p>
-                </div>
-              </div>
+                Register Now
+                <ArrowRightIcon className="w-5 h-5 ml-2" />
+              </button>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Final CTA Section */}
-      <section className="py-16 lg:py-20 bg-indigo-700 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Boost Your Income?
-          </h2>
-          <p className="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
-            Join the growing community of Bharat Sarthi driver partners across India. Quick registration, great earnings, and full control over your work.
-          </p>
-          <Link
-            href="/driver/login"
-            className="inline-flex items-center justify-center bg-white text-indigo-600 hover:bg-gray-100 px-10 py-4 rounded-lg font-bold text-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105"
-          >
-            Sign Up and Start Driving!
-          </Link>
-        </div>
-      </section>
-    </div>
-    <ContactFooter/>
+        {/* Testimonials */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900">Hear From Our Drivers</h2>
+              <p className="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                Real stories from real partners who've grown their income with Bharat Sarthi.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  quote: "The flexible hours allow me to spend time with my family while still earning a great income. The app is easy to use, and I feel valued as a partner.",
+                  name: "Rajesh Kumar",
+                  city: "Mumbai",
+                  image: "/testimonial-1.jpg",
+                  rating: 5
+                },
+                {
+                  quote: "As a woman driver, safety is my top priority. Bharat Sarthi's security features give me confidence, and the earnings have helped me become financially independent.",
+                  name: "Priya Sharma",
+                  city: "Bangalore",
+                  image: "/testimonial-2.jpg",
+                  rating: 5
+                },
+                {
+                  quote: "I've tried multiple platforms, but Bharat Sarthi offers the best commission rates and customer support. The incentives during festivals really boost my earnings.",
+                  name: "Amit Patel",
+                  city: "Delhi",
+                  image: "/testimonial-3.jpg",
+                  rating: 5
+                }
+              ].map((testimonial, index) => (
+                <div key={index} className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 flex flex-col h-full">
+                  <div className="flex-grow">
+                    <div className="flex mb-6">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <svg key={i} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-gray-600 italic mb-6">{`"${testimonial.quote}"`}</p>
+                  </div>
+                  <div className="flex items-center mt-4 pt-4 border-t border-gray-200">
+                    <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
+                      <Image 
+                        src={testimonial.image} 
+                        alt={testimonial.name} 
+                        width={48} 
+                        height={48}
+                        className="object-cover" 
+                      />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                      <p className="text-indigo-600 text-sm">{testimonial.city}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-gray-900">Frequently Asked Questions</h2>
+              <p className="mt-4 text-xl text-gray-600">
+                Everything you need to know about driving with Bharat Sarthi.
+              </p>
+            </div>
+            
+            <div className="space-y-8">
+              {[
+                {
+                  question: "What are the requirements to become a driver?",
+                  answer: "You need to be at least 21 years old, have a valid driver's license with at least 1 year of driving experience, vehicle registration, insurance, and must pass our background check."
+                },
+                {
+                  question: "How much can I earn as a Bharat Sarthi driver?",
+                  answer: "Earnings vary based on your location, hours driven, and vehicle type. On average, our drivers earn ₹15,000-₹25,000 weekly working full-time. Part-time drivers typically earn ₹8,000-₹12,000 weekly."
+                },
+                {
+                  question: "When and how will I get paid?",
+                  answer: "We process payments weekly. You can choose direct deposit to your bank account or instant cashouts (up to 5 times per day) for a small fee."
+                },
+                {
+                  question: "Can I drive for multiple platforms simultaneously?",
+                  answer: "Yes, Bharat Sarthi allows you to drive for other platforms. However, many of our drivers choose to drive exclusively with us due to our competitive rates and incentives."
+                }
+              ].map((faq, index) => (
+                <div key={index} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100">
+                  <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                  <p className="mt-3 text-gray-600">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-16 bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl font-bold mb-6">Start Your Journey With Bharat Sarthi Today</h2>
+            <p className="text-xl text-indigo-100 mb-10 max-w-3xl mx-auto">
+              Join thousands of drivers who've found financial freedom and work-life balance with India's fastest-growing ride-hailing platform.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button
+                onClick={handleRegistrationClick}
+                className="bg-white text-indigo-600 hover:bg-indigo-50 px-8 py-4 rounded-lg font-bold shadow-lg transition-all duration-300 hover:shadow-xl"
+              >
+                Become a Driver Partner
+              </button>
+              <Link href="/contact-us" className="bg-transparent hover:bg-indigo-700 text-white border border-white px-8 py-4 rounded-lg font-medium transition-all duration-300">
+                Contact Support
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+      
+      <ContactFooter />
     </>
   );
 }
-
-
-function jwtDecode(token: string): JwtPayload {
-  throw new Error('Function not implemented.');
-}
-// Optional: Add simple fade-in animations in globals.css or a separate CSS file
-/*
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer utilities {
-  .animate-fade-in-left {
-    animation: fadeInLeft 1s ease-out forwards;
-    opacity: 0;
-  }
-  .animate-fade-in-right {
-    animation: fadeInRight 1s ease-out forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  @keyframes fadeInRight {
-    from {
-      opacity: 0;
-      transform: translateX(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-}
-*/
