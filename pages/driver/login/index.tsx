@@ -278,6 +278,20 @@ export default function DriverLogin() {
                                 </>
                             )}
                         </button>
+
+                        <div className="flex items-center my-6">
+  <div className="flex-grow border-t border-gray-300"></div>
+  <span className="mx-4 text-gray-500 text-sm">or</span>
+  <div className="flex-grow border-t border-gray-300"></div>
+</div>
+
+<Link
+  href="/admin" // Update to your actual admin login route
+  className="w-full block text-center py-3 px-4 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition duration-150"
+>
+  Login as Admin
+</Link>
+
                     </form>
 
                     {/* Sign Up Link */}
