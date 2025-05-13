@@ -28,6 +28,18 @@ export default function RateDriverPage() {
     // comments: '',
   });
 
+
+  useEffect(() => {
+    if (submitted) {
+      const timeout = setTimeout(() => {
+        window.location.href = '/';
+      }, 5000); // 5 seconds = 5000 milliseconds
+  
+      return () => clearTimeout(timeout); // Cleanup on unmount
+    }
+  }, [submitted]);
+  
+
   // Load user data and driverId from token
   useEffect(() => {
     // Extract token (driverId) from URL
@@ -437,13 +449,7 @@ export default function RateDriverPage() {
                 </div>
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h2>
                 <p className="text-gray-600 mb-6">Your feedback helps us improve our service</p>
-                <button
-                  type="button"
-                  onClick={resetForm}
-                  className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition duration-200"
-                >
-                  Rate Another Driver
-                </button>
+               
               </div>
             )}
           </form>
