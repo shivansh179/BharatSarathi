@@ -53,7 +53,7 @@ export default function RegistrationComplete() {
         }
 
         if (typeof window !== 'undefined') {
-          const storedQR = localStorage.getItem('driverRegistrationQR');
+          const storedQR = localStorage.getItem('qrCodePath');
           setQrCode(storedQR);
       }
 
