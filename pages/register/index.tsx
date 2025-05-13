@@ -1,7 +1,7 @@
 // src/app/register/page.tsx (or relevant path)
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
   UserIcon,
@@ -13,6 +13,7 @@ import {
   ArrowRightIcon,
   PaperAirplaneIcon,
   ExclamationTriangleIcon,
+  
 } from '@heroicons/react/24/outline';
 import toast, { Toaster } from 'react-hot-toast';
 // Ensure axios is installed (npm install axios or yarn add axios)
@@ -23,6 +24,7 @@ import QRCode from './components/QRCode';
 import DocumentUpload from './components/DocumentUpload';
 import SelfieCapture from './components/SelfieCapture';
 import AadhaarVerification from './components/AadhaarVerification';
+import Image from 'next/image';
 
 const stepsInfo = [
   { number: 1, title: 'Personal Info', icon: UserIcon },
@@ -43,6 +45,7 @@ if (!apiBaseUrl && process.env.NODE_ENV === 'development') {
     // but setting it in .env.local is the recommended practice.
     // apiBaseUrl = 'http://localhost:8080'; // Example fallback ONLY for local dev convenience
 }
+
 
 
 // Helper function (keep as is)
@@ -129,6 +132,8 @@ export default function Register() {
     });
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [qrCode, setQrCode] = useState<string | null>(null);
+
 
     const updateFormData = (data: Partial<Omit<typeof formData, 'phone'>>) => {
         const validData = Object.entries(data).reduce((acc, [key, value]) => {
@@ -141,6 +146,15 @@ export default function Register() {
         console.log("Form Data Updated: ", { ...formData, ...validData });
         setError(null);
     };
+
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedQR = localStorage.getItem('driverRegistrationQR');
+            setQrCode(storedQR);
+        }
+    }, []);
+
 
     const handleNext = () => {
         let isValid = true;
@@ -209,7 +223,7 @@ export default function Register() {
         apiFormData.append('email', formData.email);
         apiFormData.append('password', formData.password);
         apiFormData.append('aadhaarNumber', formData.aadhaarNumber);
-        apiFormData.append('role', 'USER');
+        apiFormData.append('role', 'DRIVER');
       
         if (formData.selfieImage) {
             const selfieFile = dataURLtoFile(formData.selfieImage, `selfie_${formData.aadhaarNumber}.jpg`);
@@ -238,9 +252,17 @@ export default function Register() {
             if (token) {
                 localStorage.setItem('authToken', token);
             }
-      
-            const qrData = generateQrData();
-            localStorage.setItem('driverRegistrationQR', qrData);
+       
+const qrData = response?.data?.user?.qrCodePath;
+if (qrData) {
+    if (typeof window !== 'undefined' && qrData) {
+        localStorage.setItem('driverRegistrationQR', qrData);
+        setQrCode(qrData); // <- Add this line
+
+    }        
+ } else {
+    console.warn("QR data not found in API response");
+}
                     
             updateFormData({ serverResponse: response.data });
             toast.success("Registration successful! You're now one step closer.");
@@ -375,7 +397,18 @@ export default function Register() {
                     {step === 4 && ( <StepWrapper title="Capture Selfie" icon={CameraIcon}> <SelfieCapture initialImage={formData.selfieImage} onCapture={(image) => updateFormData({ selfieImage: image })} /> </StepWrapper> )}
 
                     {/* Success Step */}
-                    {step === stepsInfo.length + 1 && ( <div className="text-center py-8"> <div className="flex justify-center mb-6"> <CheckCircleIcon className="w-16 h-16 text-green-500" /> </div> <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-green-600">Registration Submitted!</h2> <p className="text-gray-600 mb-8 max-w-md mx-auto"> Thank you! Your details are under review. We'll notify you upon approval (24-48 hours). </p> <div className="mb-10 bg-gray-50 p-6 rounded-lg inline-block border border-gray-200"> <h3 className="text-lg font-medium mb-4 text-indigo-700">Your Registration QR Code</h3> <div className="flex justify-center"> <QRCode data={generateQrData()} size={180} /> </div> <p className="text-gray-500 mt-4 text-sm max-w-xs mx-auto"> Save this QR code. It contains your registration summary. </p> </div> <div> <Link href="/" className="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" > Back to Homepage </Link> </div> </div> )}
+                    {step === stepsInfo.length + 1 && ( <div className="text-center py-8"> <div className="flex justify-center mb-6"> <CheckCircleIcon className="w-16 h-16 text-green-500" /> </div> <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-green-600">Registration Submitted!</h2> <p className="text-gray-600 mb-8 max-w-md mx-auto"> Thank you! Your details are under review. We'll notify you upon approval (24-48 hours). </p> <div className="mb-10 bg-gray-50 p-6 rounded-lg inline-block border border-gray-200"> <h3 className="text-lg font-medium mb-4 text-indigo-700">Your Registration QR Code</h3> <div className="flex justify-center"> {qrCode ? (
+  <Image
+    src={qrCode}
+    alt="Registration QR Code"
+    width={180}
+    height={180}
+    className="rounded shadow"
+  />
+) : (
+  <p className="text-gray-400 text-sm">QR Code not available.</p>
+)}
+ </div> <p className="text-gray-500 mt-4 text-sm max-w-xs mx-auto"> Save this QR code. It contains your registration summary. </p> </div> <div> <Link href="/" className="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" > Back to Homepage </Link> </div> </div> )}
 
                     {/* Navigation Buttons */}
                     {step <= stepsInfo.length && ( <div className={`flex mt-10 ${step > 1 ? 'justify-between' : 'justify-end'}`}> {step > 1 && ( <button onClick={handleBack} type="button" disabled={isLoading} className="inline-flex items-center bg-white border border-gray-300 text-gray-700 px-6 py-2 rounded-md text-sm font-medium hover:bg-gray-50 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50" > <ArrowLeftIcon className="w-5 h-5 mr-2" /> Back </button> )} {step < stepsInfo.length ? ( <button onClick={handleNext} type="button" className="inline-flex items-center bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md text-sm font-medium shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" > Next <ArrowRightIcon className="w-5 h-5 ml-2" /> </button> ) : ( <button type="button" onClick={handleSubmit} disabled={isLoading} className="inline-flex justify-center items-center bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-md text-sm font-medium shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-60 disabled:cursor-not-allowed min-w-[160px]" > {isLoading ? ( <> <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"> <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle> <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path> </svg> Submitting... </> ) : ( <> Submit Registration <PaperAirplaneIcon className="w-5 h-5 ml-2 -rotate-45" /> </> )} </button> )} </div> )}

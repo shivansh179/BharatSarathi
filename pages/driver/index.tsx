@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import QRCode from '@/pages/register/components/QRCode';
+import Image from 'next/image';
 import {
   CheckCircle,
   User,
@@ -37,6 +38,7 @@ export default function RegistrationComplete() {
   const [driverId, setDriverId] = useState('');
   const qrRef = useRef<HTMLDivElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
+  const [qrCode, setQrCode] = useState<string | null>(null);
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -49,6 +51,12 @@ export default function RegistrationComplete() {
         if (!parsedData.name || !parsedData.email) {
           throw new Error('Incomplete registration data');
         }
+
+        if (typeof window !== 'undefined') {
+          const storedQR = localStorage.getItem('driverRegistrationQR');
+          setQrCode(storedQR);
+      }
+
         setUserData(parsedData);
       } catch (err) {
         console.error('Registration data error:', err);
@@ -184,7 +192,16 @@ REGISTERED: ${formattedDate}`;
               <div className="p-6 md:flex items-center">
                 <div ref={qrRef} className="flex-shrink-0 flex justify-center mb-6 md:mb-0 md:mr-8">
                   <div className="bg-white p-3 border-2 border-indigo-100 rounded-lg shadow-sm">
-                    <QRCode data={formatQrData(userData)} size={180} />
+                  {qrCode && (
+  <Image
+    src={qrCode}
+    alt="Registration QR Code"
+    width={180}
+    height={180}
+    className="rounded shadow"
+  />
+)}
+
                   </div>
                 </div>
 
