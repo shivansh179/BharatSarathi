@@ -80,6 +80,8 @@ export default function DriverLogin() {
                 }
             );
 
+            localStorage.setItem("qrCodePath",response.data.user.qrCodePath);
+
             toast.dismiss(loadingToastId);
 
             // --- Handle Success ---
