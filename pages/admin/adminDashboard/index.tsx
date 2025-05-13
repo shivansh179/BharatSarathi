@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import dynamic from 'next/dynamic';
 
 // Define section interfaces (remains the same)
 interface Product {
@@ -89,14 +90,17 @@ const API_SECTIONS = [
   'legal-services',
   'job-references',
   'car-rental-services',
-  'insurances'
+  'insurances',
+  'users'  // ✅ CORRECT
 ] as const;
+
 
 // Define type for API sections
 type ApiSection = typeof API_SECTIONS[number];
 
 // Field templates for each section (remains the same)
 const fieldTemplates: Record<ApiSection, FieldTemplate[]> = {
+  'users': [],  // ✅ Fix for the error
   'products': [
     { name: 'name', placeholder: 'Product Name' },
     { name: 'description', placeholder: 'Description' },
@@ -152,6 +156,12 @@ const fieldTemplates: Record<ApiSection, FieldTemplate[]> = {
 
 // Color themes for each section - ADDED solidColor
 const sectionThemes: Record<ApiSection, {primary: string; solidColor: string; secondary: string; accent: string}> = {
+  'users': {
+    primary: 'bg-gradient-to-r from-gray-700 to-gray-900',
+    solidColor: 'gray-700',
+    secondary: 'bg-gray-100',
+    accent: 'text-gray-700'
+  },
   'products': {
     primary: 'bg-gradient-to-r from-purple-600 to-indigo-600',
     solidColor: 'purple-600',
@@ -211,6 +221,9 @@ export default function AdminDashboard() {
   const [mainCategory, setMainCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
 
+  const UserPage = dynamic(() => import('../users'), { ssr: false });
+
+
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const currentTheme = sectionThemes[activeSection];
 
@@ -219,6 +232,7 @@ export default function AdminDashboard() {
   }, [activeSection]);
 
   const fetchData = async (endpoint: ApiSection) => {
+    if (endpoint === 'users') return; // ⛔ Skip API call for users
     setIsLoading(true);
     try {
       const res = await axios.get(`https://ritiktest.site/admin/${endpoint}`, {
@@ -241,6 +255,7 @@ export default function AdminDashboard() {
       setIsLoading(false);
     }
   };
+  
 
   const categoryMap: Record<string, string[]> = {
     Vehicles: ['Cars', 'Bikes'],
@@ -334,10 +349,15 @@ export default function AdminDashboard() {
   };
 
   const renderDataTable = () => {
+    if (activeSection === 'users') {
+      return <UserPage />;
+    }
+    
+  
     if (!data || data.length === 0) {
       return (
         <div className={`flex flex-col items-center justify-center p-12 ${currentTheme.secondary} rounded-lg text-gray-600 transform transition-all duration-300`}>
-          <svg className="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg className="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
           </svg>
           <p className="text-lg font-medium">No data available</p>
@@ -405,7 +425,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-200">
+    <div className="flex h-screen overflow-hidden bg-white">
       <aside className={`w-72 ${currentTheme.primary} text-white shadow-xl flex flex-col h-full transition-all duration-300`}>
         <div className="flex items-center space-x-3 p-6 mb-4 border-b border-white border-opacity-20">
           <div className="p-2 bg-white rounded-lg">
@@ -437,7 +457,7 @@ export default function AdminDashboard() {
           ))}
         </nav>
 
-        <div className="p-6 mt-auto border-t border-white border-opacity-20">
+        <div className="p-6 mt-auto border-t text-black border-white border-opacity-20">
           <div className={`p-4 bg-white bg-opacity-10 rounded-lg text-sm backdrop-blur-sm`}>
             <p className="font-medium mb-1">Need help?</p>
             <p className="opacity-80">Check our documentation or contact support for assistance.</p>
@@ -555,7 +575,7 @@ export default function AdminDashboard() {
                         setMainCategory('');
                         setSubCategory('');
                       }}
-                      className="px-5 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-200"
+                      className="px-5 py-2 bg-white text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-200"
                     >
                       Cancel
                     </button>
@@ -581,16 +601,14 @@ export default function AdminDashboard() {
               </div>
             )}
 
-            <div className="bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300">
-              <div className="flex justify-between items-center p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">
-                  {activeSection.replace(/-/g, ' ')} List
-                </h2>
+            <div className=" rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300">
+              {/* <div className="flex justify-between items-center p-6 border-b border-gray-200">
+                
                 <div className="text-sm text-gray-500">
                   {data.length} {data.length === 1 ? 'item' : 'items'} found
                 </div>
               </div>
-              
+               */}
               {isLoading && data.length === 0 ? ( // Show loading only if data is empty, otherwise show stale data
                 <div className="flex justify-center items-center p-12">
                   <div className={`${currentTheme.accent} animate-pulse flex flex-col items-center`}>
