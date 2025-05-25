@@ -64,6 +64,13 @@ interface JobReference {
   phone: string;
 }
 
+interface ChallanSettlement { // New interface for Challan Settlement
+  id?: number;
+  type: string;
+  registrationOrChasis: string;
+  description: string;
+}
+
 interface LegalService {
   id?: number;
   serviceName: string;
@@ -72,8 +79,8 @@ interface LegalService {
   description: string;
 }
 
-// Union type for all possible data types
-type DataItem = Product | Service | ServiceProvider | CarRentalService | Loan | Insurance | JobReference | LegalService;
+// Union type for all possible data types, including ChallanSettlement
+type DataItem = Product | Service | ServiceProvider | CarRentalService | Loan | Insurance | JobReference | LegalService | ChallanSettlement;
 
 // Define field template interface
 interface FieldTemplate {
@@ -81,43 +88,35 @@ interface FieldTemplate {
   placeholder: string;
 }
 
-// Define the API sections
+// Define the API sections - ADDED 'challan-settlement'
 const API_SECTIONS = [
   'products',
-  'services',
-  'service-providers',
+  'car repair services',
   'loans',
-  'legal-services',
+  'challan-settlement', // ✅ ADDED
   'job-references',
   'car-rental-services',
   'insurances',
-  'users'  // ✅ CORRECT
+  'users'
 ] as const;
-
 
 // Define type for API sections
 type ApiSection = typeof API_SECTIONS[number];
 
-// Field templates for each section (remains the same)
+// Field templates for each section - ADDED 'challan-settlement'
 const fieldTemplates: Record<ApiSection, FieldTemplate[]> = {
-  'users': [],  // ✅ Fix for the error
+  'users': [],
   'products': [
     { name: 'name', placeholder: 'Product Name' },
     { name: 'description', placeholder: 'Description' },
     { name: 'price', placeholder: 'Price' },
     { name: 'category', placeholder: 'Category' },
   ],
-  'services': [
+  'car repair services': [
     { name: 'name', placeholder: 'Service Name' },
     { name: 'description', placeholder: 'Description' },
     { name: 'price', placeholder: 'Price' },
     { name: 'category', placeholder: 'Category' },
-  ],
-  'service-providers': [
-    { name: 'providerName', placeholder: 'Provider Name' },
-    { name: 'contactInfo', placeholder: 'Contact Info' },
-    { name: 'location', placeholder: 'Location' },
-    { name: 'description', placeholder: 'Description' },
   ],
   'car-rental-services': [
     { name: 'providerName', placeholder: 'Provider Name' },
@@ -146,15 +145,14 @@ const fieldTemplates: Record<ApiSection, FieldTemplate[]> = {
     { name: 'email', placeholder: 'Email' },
     { name: 'phone', placeholder: 'Phone' },
   ],
-  'legal-services': [
-    { name: 'serviceName', placeholder: 'Service Name' },
-    { name: 'provider', placeholder: 'Provider' },
-    { name: 'cost', placeholder: 'Cost' },
+  'challan-settlement': [ // ✅ ADDED new field template
+    { name: 'type', placeholder: 'Challan On (DL/Car)' },
+    { name: 'registrationOrChasis', placeholder: 'Registration or Chassis Number' },
     { name: 'description', placeholder: 'Description' },
   ],
 };
 
-// Color themes for each section - ADDED solidColor
+// Color themes for each section - ADDED 'challan-settlement'
 const sectionThemes: Record<ApiSection, {primary: string; solidColor: string; secondary: string; accent: string}> = {
   'users': {
     primary: 'bg-gradient-to-r from-gray-700 to-gray-900',
@@ -168,17 +166,11 @@ const sectionThemes: Record<ApiSection, {primary: string; solidColor: string; se
     secondary: 'bg-purple-100',
     accent: 'text-purple-600'
   },
-  'services': {
+  'car repair services': {
     primary: 'bg-gradient-to-r from-blue-600 to-cyan-600',
     solidColor: 'blue-600',
     secondary: 'bg-blue-100',
     accent: 'text-blue-600'
-  },
-  'service-providers': {
-    primary: 'bg-gradient-to-r from-green-600 to-emerald-600',
-    solidColor: 'green-600',
-    secondary: 'bg-green-100',
-    accent: 'text-green-600'
   },
   'car-rental-services': {
     primary: 'bg-gradient-to-r from-yellow-600 to-amber-600',
@@ -204,12 +196,21 @@ const sectionThemes: Record<ApiSection, {primary: string; solidColor: string; se
     secondary: 'bg-pink-100',
     accent: 'text-pink-600'
   },
-  'legal-services': {
+  'challan-settlement': { // ✅ ADDED new theme
     primary: 'bg-gradient-to-r from-teal-600 to-cyan-600',
     solidColor: 'teal-600',
     secondary: 'bg-teal-100',
     accent: 'text-teal-600'
   },
+};
+
+// Data for job categories and details - USED FOR JOB-REFERENCES SECTION
+const jobDetailsData = {
+  Uber: { salary: '₹25,000', days: '6', time: '8AM–8PM', incentive: '₹2,000', perks: 'Fuel Card' },
+  Rapido: { salary: '₹22,000', days: '6', time: '9AM–7PM', incentive: '₹1,500', perks: 'Mobile Support' },
+  Ola: { salary: '₹28,000', days: '6', time: '9AM–9PM', incentive: '₹2,500', perks: 'Performance Bonus' },
+  Lithium: { salary: '₹30,000', days: '5', time: '10AM–6PM', incentive: '₹3,000', perks: 'Health Insurance' },
+  'Everest Fleet': { salary: '₹27,000', days: '6', time: '8AM–7PM', incentive: '₹2,200', perks: 'Vehicle Maintenance' },
 };
 
 export default function AdminDashboard() {
@@ -223,7 +224,6 @@ export default function AdminDashboard() {
 
   const UserPage = dynamic(() => import('../users'), { ssr: false });
 
-
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
   const currentTheme = sectionThemes[activeSection];
 
@@ -232,7 +232,7 @@ export default function AdminDashboard() {
   }, [activeSection]);
 
   const fetchData = async (endpoint: ApiSection) => {
-    if (endpoint === 'users') return; // ⛔ Skip API call for users
+    if (endpoint === 'users') return; // Skip API call for users
     setIsLoading(true);
     try {
       const res = await axios.get(`https://ritiktest.site/admin/${endpoint}`, {
@@ -256,7 +256,6 @@ export default function AdminDashboard() {
     }
   };
   
-
   const categoryMap: Record<string, string[]> = {
     Vehicles: ['Cars', 'Bikes'],
     'Parts & Components': [
@@ -353,8 +352,23 @@ export default function AdminDashboard() {
       return <UserPage />;
     }
     
+    let displayData = data;
+    let explicitKeys: string[] = [];
+
+    // ✅ Logic for Job-References to include additional details
+    if (activeSection === 'job-references') {
+      displayData = data.map(item => {
+        const companyName = (item as JobReference).companyName;
+        const additionalDetails = companyName && jobDetailsData[companyName as keyof typeof jobDetailsData] 
+          ? jobDetailsData[companyName as keyof typeof jobDetailsData] 
+          : {};
+        return { ...item, ...additionalDetails };
+      });
+      // Define a preferred order for Job-References columns
+      explicitKeys = ['id', 'companyName', 'contactPerson', 'email', 'phone', 'salary', 'days', 'time', 'incentive', 'perks'];
+    }
   
-    if (!data || data.length === 0) {
+    if (!displayData || displayData.length === 0) {
       return (
         <div className={`flex flex-col items-center justify-center p-12 ${currentTheme.secondary} rounded-lg text-gray-600 transform transition-all duration-300`}>
           <svg className="w-16 h-16 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -366,17 +380,31 @@ export default function AdminDashboard() {
       );
     }
 
-    const allKeys = Array.from(
-      new Set(data.flatMap(item => Object.keys(item)))
+    // Get all unique keys from the (potentially transformed) data
+    const allUniqueKeys = Array.from(
+      new Set(displayData.flatMap(item => Object.keys(item)))
     ).filter(key => key !== 'id');
-    const keys = ['id', ...allKeys];
+
+    // Determine the final set and order of keys for the table header
+    let keysForTable: string[] = [];
+    if (activeSection === 'job-references') {
+        // Start with explicit keys, then add any remaining unique keys that weren't in explicitKeys
+        keysForTable = ['id', ...explicitKeys.filter(k => allUniqueKeys.includes(k) || k === 'id')];
+        allUniqueKeys.forEach(key => {
+            if (!keysForTable.includes(key)) {
+                keysForTable.push(key);
+            }
+        });
+    } else {
+        keysForTable = ['id', ...allUniqueKeys];
+    }
 
     return (
       <div className="overflow-x-auto rounded-lg shadow-lg">
         <table className="min-w-full bg-white">
           <thead className={`${currentTheme.primary} text-white`}>
             <tr>
-              {keys.map((key) => (
+              {keysForTable.map((key) => ( // Use keysForTable
                 <th key={key} className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                   {key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())} {/* Prettify column names */}
                 </th>
@@ -387,14 +415,14 @@ export default function AdminDashboard() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {data.map((item, index) => {
+            {displayData.map((item, index) => { // Use displayData
               const itemId = 'id' in item ? item.id : index;
               return (
                 <tr 
                   key={itemId} 
                   className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 transition-colors duration-150`}
                 >
-                  {keys.map((key) => {
+                  {keysForTable.map((key) => { // Use keysForTable
                     const value = (item as any)[key];
                     return (
                       <td key={`${itemId}-${key}`} className="px-6 py-4 text-sm text-gray-700 whitespace-normal break-words"> {/* Allow word break */}
@@ -445,7 +473,9 @@ export default function AdminDashboard() {
                 activeSection === section ? 'bg-white text-black bg-opacity-25 font-semibold' : 'hover:bg-opacity-10'
               }`}
             >
-              <span className="capitalize">{section.replace(/-/g, ' ')}</span>
+              <span className="capitalize">
+                {section === 'car repair services' ? 'Car Repair Services' : section.replace(/-/g, ' ')}
+              </span>
               {activeSection === section && (
                 <span className="ml-auto">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -470,10 +500,10 @@ export default function AdminDashboard() {
         <div className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-20">
             <div className="max-w-full mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
                 <div>
-                <h1 className={`text-3xl font-extrabold capitalize bg-clip-text text-transparent bg-gradient-to-r ${currentTheme.primary.replace('bg-', 'from-').replace(' to-', ' to-')}`}>
-                    {activeSection.replace(/-/g, ' ')}
-                </h1>
-                <p className="text-gray-600 mt-1 text-sm">Manage your {activeSection.replace(/-/g, ' ')} data</p>
+                  <h1 className="text-3xl font-extrabold capitalize text-gray-900">
+                    {activeSection === 'challan-settlement' ? 'Challan Settlement' : activeSection.replace(/-/g, ' ')}
+                  </h1>
+                  <p className="text-sm text-gray-500 mt-1">Manage your {activeSection === 'challan-settlement' ? 'Challan Settlement' : activeSection.replace(/-/g, ' ')} data</p>
                 </div>
                 
                 <button
@@ -497,8 +527,8 @@ export default function AdminDashboard() {
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
-                  Add New {activeSection.replace(/-/g, ' ').replace(/s$/, '')}
-                </h2>
+                  Add New {activeSection === 'car repair services' ? 'Car Repair Service' : activeSection.replace(/-/g, ' ').replace(/s$/, '')}
+                  </h2>
                 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1  text-black md:grid-cols-2 gap-6">
@@ -510,8 +540,7 @@ export default function AdminDashboard() {
                         </label>
                         {field.name === 'category' ? (
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div className='flex'>
-                              {/* <label htmlFor="mainCategory" className="block text-xs font-medium text-gray-600 mb-1">Main Category</label> */}
+                            <div>
                               <select
                                 id="mainCategory"
                                 value={mainCategory}
@@ -531,7 +560,6 @@ export default function AdminDashboard() {
                             </div>
                             {mainCategory && (
                               <div>
-                                {/* <label htmlFor="subCategory" className="block text-xs font-medium text-gray-600 mb-1">Subcategory</label> */}
                                 <select
                                   id="subCategory"
                                   value={subCategory}
@@ -550,17 +578,32 @@ export default function AdminDashboard() {
                               </div>
                             )}
                           </div>
-                        ) : (
-                          <input
-                            id={field.name}
-                            name={field.name}
-                            placeholder={field.placeholder}
-                            value={formData[field.name] || ''}
-                            onChange={handleFormChange}
-                            className={`w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-${currentTheme.accent.replace('text-', '')} focus:border-transparent bg-gray-50 transition-all duration-200`}
-                            required={(field.name !== 'description' && field.name !== 'terms')} // Example: make some fields optional
-                          />
-                        )}
+                      ) : activeSection === 'loans' && field.name === 'type' ? (
+                        <select
+                          name="type"
+                          value={formData.type || ''}
+                          onChange={handleFormChange}
+                          className={`w-full p-3 border-2 border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-${currentTheme.accent.replace('text-', '')} focus:border-transparent transition-all duration-200`}
+                          required
+                        >
+                          <option value="">Select Loan Type</option>
+                          <option value="Home Loan">Home Loan</option>
+                          <option value="Child/Education Loan">Child/Education Loan</option>
+                          <option value="Car Loan">Car Loan</option>
+                          <option value="Personal Loan">Loan for Shortage of Payment</option>
+                        </select>
+                      ) : (
+                        <input
+                          id={field.name}
+                          name={field.name}
+                          placeholder={field.placeholder}
+                          value={formData[field.name] || ''}
+                          onChange={handleFormChange}
+                          className={`w-full p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-${currentTheme.accent.replace('text-', '')} focus:border-transparent bg-gray-50 transition-all duration-200`}
+                          required={(field.name !== 'description' && field.name !== 'terms')}
+                        />
+                      )
+                    }
                         </div>
                       </div>
                     ))}
@@ -602,13 +645,6 @@ export default function AdminDashboard() {
             )}
 
             <div className=" rounded-xl shadow-2xl overflow-hidden transform transition-all duration-300">
-              {/* <div className="flex justify-between items-center p-6 border-b border-gray-200">
-                
-                <div className="text-sm text-gray-500">
-                  {data.length} {data.length === 1 ? 'item' : 'items'} found
-                </div>
-              </div>
-               */}
               {isLoading && data.length === 0 ? ( // Show loading only if data is empty, otherwise show stale data
                 <div className="flex justify-center items-center p-12">
                   <div className={`${currentTheme.accent} animate-pulse flex flex-col items-center`}>

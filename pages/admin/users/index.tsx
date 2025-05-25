@@ -1,6 +1,7 @@
 // pages/users.tsx
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import QRCode from '@/pages/register/components/QRCode';
 
 // Define User type
 interface Permission {
@@ -42,18 +43,26 @@ const UserPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [qrQRCode, setQRCode] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-  
+       
+
         const response = await fetch('https://ritiktest.site/user/get-all-users', {
+
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         });
+
+        console.log("datas is ", response);
+
+
+
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -61,8 +70,8 @@ const UserPage = () => {
   
         const data = await response.json();
         setUsers(data);
+        // setQRCode(users?.qrCodePath);
 
-        console.log("data is ", response);
         
       } catch (error) {
         setError('Failed to fetch users. Please try again later.');
@@ -233,15 +242,16 @@ const UserPage = () => {
                           <p className="text-gray-600">{selectedUser.email}</p>
                           
                           {selectedUser.qrCodePath && (
-                            <div className="mt-4">
-                              <p className="text-sm text-gray-500 mb-2 text-center">QR Code</p>
-                              <img 
-                                className="h-40 w-40 object-cover" 
-                                src="/api/placeholder/160/160"
-                                alt="QR Code" 
-                              />
-                            </div>
-                          )}
+  <div className="mt-4">
+    <p className="text-sm text-gray-500 mb-2 text-center">QR Code</p>
+    <img 
+      className="h-40 w-40 object-cover" 
+      src={formatImagePath(selectedUser.qrCodePath)} 
+      alt="QR Code" 
+    />
+  </div>
+)}
+
                         </div>
                       </div>
                       
