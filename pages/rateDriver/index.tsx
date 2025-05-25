@@ -33,7 +33,7 @@ interface PageFormData {
 
 export default function RateDriverPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [step, setStep] = useState<1 | 2>(1);
+  const [step, setStep] = useState<1 | 2>(2);
   const [userData, setUserData] = useState<{ // Not strictly used for form, but good for context
     name?: string;
     email?: string;
@@ -309,7 +309,7 @@ export default function RateDriverPage() {
           )}
 
           {step === 2 && (
-            <div className="p-6">
+            <div className="p-6 flex justify-center items-center text-center ">
               <ScratchableCoupon />
             </div>
           )}
