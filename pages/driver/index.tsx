@@ -22,6 +22,7 @@ import { motion } from 'framer-motion';
 import toast, { Toaster } from 'react-hot-toast';
 
 type UserRegistration = {
+  phoneNumber: any;
   name: string;
   email: string;
   aadhaarLast4: string;
@@ -39,6 +40,8 @@ export default function RegistrationComplete() {
   const qrRef = useRef<HTMLDivElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
+  const [allDocumentUploaded, setAllDocumentUpoaded] = useState(false);
+
 
   useEffect(() => {
     const loadUserData = async () => {
@@ -48,7 +51,7 @@ export default function RegistrationComplete() {
         const storedData = localStorage.getItem('userDetail');
         if (!storedData) throw new Error('No registration data found');
         const parsedData = JSON.parse(storedData);
-        if (!parsedData.name || !parsedData.email) {
+        if (!parsedData.name) {
           throw new Error('Incomplete registration data');
         }
 
@@ -64,14 +67,27 @@ export default function RegistrationComplete() {
       } finally {
         setLoading(false);
       }
-    };
+    };  
+
+
+
+  const uploadedDocs = JSON.parse(localStorage.getItem('userUploadedDocsStatus') || '{}');
+  const allUploaded = Object.values(uploadedDocs).every(v => v === true);
+
+  if(allUploaded){
+    setAllDocumentUpoaded(true);
+  }else{
+    setAllDocumentUpoaded(false);
+  }
 
     loadUserData();
   }, []);
 
+
+
   useEffect(() => {
     if (userData) {
-      const id = `BS-${userData.email.slice(0, 4).toUpperCase()}${userData.aadhaarLast4}`;
+      const id = `BS-${userData.name.slice(0, 4).toUpperCase()}${userData.aadhaarLast4}`;
       setDriverId(id);
     }
   }, [userData]);
@@ -85,7 +101,7 @@ export default function RegistrationComplete() {
     return `BHARAT SARTHI DRIVER
 ID: ${driverId}
 NAME: ${data.name}
-EMAIL: ${data.email}
+PhoneNumber: ${data.phoneNumber}
 AADHAAR: XXXX-XXXX-${data.aadhaarLast4}
 REGISTERED: ${formattedDate}`;
   };
@@ -182,11 +198,21 @@ REGISTERED: ${formattedDate}`;
           {/* Driver Card */}
           <div className="p-6 sm:p-8">
             <div className="border border-gray-200 rounded-xl overflow-hidden shadow-sm mb-8">
-              <div className="bg-gray-50 p-4 border-b border-gray-200">
+              <div className="flex  justify-between bg-gray-50 p-4 border-b border-gray-200">
                 <h2 className="text-lg font-semibold text-gray-800 flex items-center">
                   <QrCode className="h-5 w-5 mr-2 text-indigo-600" />
                   Driver Verification Card
                 </h2>
+
+                <div>
+                  {allDocumentUploaded ? (
+                    null
+                  ) : (
+                    <Link href="/driver/driverVehicleDetails">
+                      <button className='text-green-800 p-2 border-2 border-white bg-green-200 rounded-lg'>Complete Documentation</button>
+                    </Link>
+                  )}
+                </div>
               </div>
 
               <div className="p-6 md:flex items-center">
@@ -217,8 +243,8 @@ REGISTERED: ${formattedDate}`;
                     </div>
                     <div className="flex sm:grid-cols-2 gap-4">
                       <div>
-                        <h3 className="font-medium text-gray-500">Email</h3>
-                        <p className="text-black">{userData.email}</p>
+                        <h3 className="font-medium text-gray-500">Phone Number</h3>
+                        <p className="text-black">{userData.phoneNumber}</p>
                       </div>
                       <div>
                         <h3 className="font-medium text-gray-500">Aadhaar</h3>

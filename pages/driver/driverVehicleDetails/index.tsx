@@ -277,9 +277,19 @@ export default function UploadDocumentsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+
+      <Link href="/driver">
+           <div className='px-10 rounded-lg bg-green-400 text-green-900 py-2 border-2  w-fit'>
+            skip
+          </div>
+
+          </Link>
+
       <Toaster position="top-center" reverseOrder={false} />
+      
       <canvas ref={canvasRef} style={{ display: 'none' }} />
       <div className="max-w-5xl mx-auto">
+          
 
         <div className="mb-12 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-pink-400 to-orange-400 mb-3">
@@ -289,6 +299,8 @@ export default function UploadDocumentsPage() {
             Please upload the required documents to complete your driver profile. Select a document type below to begin.
           </p>
         </div>
+
+
 
         {/* HYDRATION FIX: Only render document grid after mount */}
         {mounted && !selectedDocType && (
@@ -313,6 +325,8 @@ export default function UploadDocumentsPage() {
             ))}
           </div>
         )}
+
+
 
         {selectedDocType && (
           <div className="bg-slate-800 p-6 sm:p-8 rounded-xl shadow-2xl mb-12 border border-slate-700 relative">
@@ -490,7 +504,7 @@ export default function UploadDocumentsPage() {
         )}
 
         <div className="mt-12 text-center">
-          <Link href="/driver/dashboard"
+          <Link href="/driver"
             className="inline-flex items-center text-sm text-indigo-400 hover:text-indigo-300 transition-colors group"
           >
             <ArrowLeftIcon className="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-1" />
