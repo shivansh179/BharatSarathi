@@ -578,7 +578,7 @@ export default function Register() {
                     Next, please upload your remaining documents.
                   </p>
                   <button
-                    onClick={() => router.push('/upload-documents')}
+                    onClick={() => router.push('/driver/driverVehicleDetails')}
                     className="mt-3 inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-md text-sm font-medium shadow-sm transition duration-150 ease-in-out"
                   >
                     Proceed to Upload Documents
