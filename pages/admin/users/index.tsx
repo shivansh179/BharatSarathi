@@ -1,24 +1,18 @@
-// pages/users.tsx
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import QRCode from '@/pages/register/components/QRCode';
 
 // Define User type
 interface Permission {
   id: number;
   name: string;
 }
-
 interface Role {
   id: number;
   name: string;
   permissions: Permission[];
 }
-
 interface Authority {
   authority: string;
 }
-
 interface User {
   id: number;
   name: string;
@@ -43,36 +37,20 @@ const UserPage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [qrQRCode, setQRCode] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-       
-
         const response = await fetch('https://ritiktest.site/user/get-all-users', {
-
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         });
-
-        console.log("datas is ", response);
-
-
-
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-  
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
         const data = await response.json();
         setUsers(data);
-        // setQRCode(users?.qrCodePath);
-
-        
       } catch (error) {
         setError('Failed to fetch users. Please try again later.');
         console.error('Error fetching users:', error);
@@ -80,10 +58,8 @@ const UserPage = () => {
         setLoading(false);
       }
     };
-  
     fetchUsers();
   }, []);
-  
 
   function formatDate(dateString: string | number | Date) {
     const date = new Date(dateString);
@@ -93,38 +69,25 @@ const UserPage = () => {
       timeZone: 'UTC'
     }).format(date);
   }
-  
 
-  const handleViewDetails = (user: User) => {
-    setSelectedUser(user);
-  };
+  const handleViewDetails = (user: User) => setSelectedUser(user);
+  const closeModal = () => setSelectedUser(null);
 
-  const closeModal = () => {
-    setSelectedUser(null);
-  };
-
-  const formatImagePath = (path: string | null) => {
-    if (!path) return null;
-  
-    // If path begins with s3://, convert to https://
+  // Always returns a string, never null!
+  const formatImagePath = (path: string | null): string => {
+    if (!path) return '/default-qr.png'; // Use a placeholder image in your public folder
     if (path.startsWith('s3://')) {
-      // Replace s3:// with https://
       return path.replace('s3://', 'https://');
     }
-  
-    // If the path doesn't have a protocol but isn't a full URL, assume it needs the base URL
     if (!path.startsWith('http') && !path.startsWith('/')) {
       return `https://ritiktest.site/${path}`;
     }
-  
     return path;
   };
 
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="container mx-auto px-4 py-8">
-        {/* <h1 className="text-3xl font-bold text-gray-800 mb-6">User Management</h1> */}
-        
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
@@ -140,13 +103,13 @@ const UserPage = () => {
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aadhaar Number</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aadhaar Number</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created At</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
@@ -156,17 +119,9 @@ const UserPage = () => {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="h-10 w-10 flex-shrink-0">
-                              {/* {user.selfiePath ? (
-                                <img 
-                                  className="h-10 w-10 rounded-full object-cover" 
-                                  src="/api/placeholder/40/40"
-                                  alt={`${user.name}'s profile`} 
-                                />
-                              ) : (  */}
-                                <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
-                                  <span className="text-gray-600">{user.name.charAt(0).toUpperCase()}</span>
-                                </div>
-                              {/* )} */}
+                              <div className="h-10 w-10 rounded-full bg-gray-300 flex items-center justify-center">
+                                <span className="text-gray-600">{user.name.charAt(0).toUpperCase()}</span>
+                              </div>
                             </div>
                             <div className="ml-4">
                               <div className="text-sm font-medium text-gray-900">{user.name}</div>
@@ -204,120 +159,100 @@ const UserPage = () => {
                   </tbody>
                 </table>
               </div>
-            </div>
 
-            {/* User detail modal */}
-            {selectedUser && (
-              <div className="fixed inset-0 bg-black text-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-                <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto">
-                  <div className="flex justify-between items-center p-6 border-b">
-                    <h2 className="text-xl font-semibold text-gray-800">User Details</h2>
-                    <button
-                      onClick={closeModal}
-                      className="text-gray-400 hover:text-gray-500 focus:outline-none"
-                    >
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  
-                  <div className="p-6">
-                    <div className="flex flex-col md:flex-row gap-6">
-                      <div className="md:w-1/3">
-                        <div className="flex flex-col items-center">
-                          {/* {selectedUser.selfiePath ? (
-                            <img 
-                              className="h-48 w-48 rounded-full object-cover mb-4" 
-                              src="/api/placeholder/200/200"
-                              alt={`${selectedUser.name}'s profile`} 
-                            />
-                          ) : ( */}
+              {/* User detail modal */}
+              {selectedUser && (
+                <div className="fixed inset-0 bg-black text-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+                  <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto">
+                    <div className="flex justify-between items-center p-6 border-b">
+                      <h2 className="text-xl font-semibold text-gray-800">User Details</h2>
+                      <button
+                        onClick={closeModal}
+                        className="text-gray-400 hover:text-gray-500 focus:outline-none"
+                      >
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    
+                    <div className="p-6">
+                      <div className="flex flex-col md:flex-row gap-6">
+                        <div className="md:w-1/3">
+                          <div className="flex flex-col items-center">
                             <div className="h-48 w-48 rounded-full bg-gray-300 flex items-center justify-center mb-4">
                               <span className="text-gray-600 text-5xl">{selectedUser.name.charAt(0).toUpperCase()}</span>
                             </div>
-                          {/* )} */}
-                          
-                          <h3 className="text-xl font-semibold text-gray-800">{selectedUser.name}</h3>
-                          <p className="text-gray-600">{selectedUser.email}</p>
-                          
-                          {selectedUser.qrCodePath && (
-  <div className="mt-4">
-    <p className="text-sm text-gray-500 mb-2 text-center">QR Code</p>
-    <img 
-      className="h-40 w-40 object-cover" 
-      src={formatImagePath(selectedUser.qrCodePath)} 
-      alt="QR Code" 
-    />
-  </div>
-)}
-
-                        </div>
-                      </div>
-                      
-                      <div className="md:w-2/3">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="bg-gray-50 p-4 rounded">
-                            <p className="text-sm text-gray-500">ID</p>
-                            <p className="font-medium">{selectedUser.id}</p>
-                          </div>
-                          
-                          <div className="bg-gray-50 p-4 rounded">
-                            <p className="text-sm text-gray-500">Aadhaar Number</p>
-                            <p className="font-medium">{selectedUser.aadhaarNumber.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3')}</p>
-                          </div>
-                          
-                          <div className="bg-gray-50 p-4 rounded">
-                            <p className="text-sm text-gray-500">Role</p>
-                            <p className="font-medium">{selectedUser.role.name}</p>
-                          </div>
-                          
-                          <div className="bg-gray-50 p-4 rounded">
-                            <p className="text-sm text-gray-500">Created At</p>
-                            <p className="font-medium"><p>{formatDate(selectedUser.createdAt)}</p>
-                            </p>
-                          </div>
-                          
-                          <div className="bg-gray-50 p-4 rounded">
-                            <p className="text-sm text-gray-500">Account Status</p>
-                            <p className="font-medium">
-                              {selectedUser.enabled ? (
-                                <span className="text-green-600">Active</span>
-                              ) : (
-                                <span className="text-red-600">Inactive</span>
-                              )}
-                            </p>
+                            <h3 className="text-xl font-semibold text-gray-800">{selectedUser.name}</h3>
+                            <p className="text-gray-600">{selectedUser.email}</p>
+                            <div className="mt-4">
+                              <p className="text-sm text-gray-500 mb-2 text-center">QR Code</p>
+                              <img 
+                                className="h-40 w-40 object-cover" 
+                                src={formatImagePath(selectedUser.qrCodePath)} 
+                                alt="QR Code" 
+                              />
+                            </div>
                           </div>
                         </div>
-                        
-                        <div className="mt-6">
-                          <h4 className="font-semibold text-gray-700 mb-2">Permissions</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedUser.authorities.map((auth, index) => (
-                              <span 
-                                key={index} 
-                                className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
-                              >
-                                {auth.authority}
-                              </span>
-                            ))}
+                        <div className="md:w-2/3">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-gray-50 p-4 rounded">
+                              <p className="text-sm text-gray-500">ID</p>
+                              <p className="font-medium">{selectedUser.id}</p>
+                            </div>
+                            <div className="bg-gray-50 p-4 rounded">
+                              <p className="text-sm text-gray-500">Aadhaar Number</p>
+                              <p className="font-medium">{selectedUser.aadhaarNumber.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3')}</p>
+                            </div>
+                            <div className="bg-gray-50 p-4 rounded">
+                              <p className="text-sm text-gray-500">Role</p>
+                              <p className="font-medium">{selectedUser.role.name}</p>
+                            </div>
+                            <div className="bg-gray-50 p-4 rounded">
+                              <p className="text-sm text-gray-500">Created At</p>
+                              <p className="font-medium">{formatDate(selectedUser.createdAt)}</p>
+                            </div>
+                            <div className="bg-gray-50 p-4 rounded">
+                              <p className="text-sm text-gray-500">Account Status</p>
+                              <p className="font-medium">
+                                {selectedUser.enabled ? (
+                                  <span className="text-green-600">Active</span>
+                                ) : (
+                                  <span className="text-red-600">Inactive</span>
+                                )}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="mt-6">
+                            <h4 className="font-semibold text-gray-700 mb-2">Permissions</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {selectedUser.authorities.map((auth, index) => (
+                                <span 
+                                  key={index} 
+                                  className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full"
+                                >
+                                  {auth.authority}
+                                </span>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex justify-end gap-2 p-6 border-t">
-                    <button
-                      onClick={closeModal}
-                      className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
-                    >
-                      Close
-                    </button>
+                    
+                    <div className="flex justify-end gap-2 p-6 border-t">
+                      <button
+                        onClick={closeModal}
+                        className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 focus:outline-none"
+                      >
+                        Close
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </>
         )}
       </div>
