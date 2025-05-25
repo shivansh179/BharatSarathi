@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/api/:path*",
-        "destination": "http://ritiktest.site/:path*"
+        "destination": "https://ritiktest.site/:path*"
       }
     ]
   }
