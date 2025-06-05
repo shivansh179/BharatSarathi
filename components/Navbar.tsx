@@ -16,8 +16,11 @@ export default function Navbar() {
   const [loading, setLoading] = useState<boolean>(true);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDriverDropdownOpen, setIsDriverDropdownOpen] = useState(false);
+  const [isSupportDropdownOpen, setIsSupportDropdownOpen] = useState(false);
+
   const dropdownRef = useRef<HTMLDivElement>(null);
   const driverDropdownRef = useRef<HTMLDivElement>(null);
+  const supportDropdownRef = useRef<HTMLDivElement>(null);
 
   // Hydration-safe check for login status
   useEffect(() => {
@@ -44,13 +47,16 @@ export default function Navbar() {
     window.addEventListener('loginSuccess', handleLogin);
     window.addEventListener('storage', handleLogin);
 
-    // Close dropdown on outside click
+    // Close dropdowns on outside click
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsDropdownOpen(false);
       }
       if (driverDropdownRef.current && !driverDropdownRef.current.contains(event.target as Node)) {
         setIsDriverDropdownOpen(false);
+      }
+      if (supportDropdownRef.current && !supportDropdownRef.current.contains(event.target as Node)) {
+        setIsSupportDropdownOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -89,20 +95,94 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Navigation Links - Hidden on mobile */}
+          {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link onClick={handleFeatureInDevelopment} href="#" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
+            <Link href="/howItWorks" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
               How It Works
             </Link>
-            <Link onClick={handleFeatureInDevelopment} href="#" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
+            <Link href="/benefits" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
               Benefits
             </Link>
-            <Link onClick={handleFeatureInDevelopment} href="#" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
+            <Link href="/faq" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
               FAQ
             </Link>
-            <Link onClick={handleFeatureInDevelopment} href="#" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
+            <Link href="/support" className="text-gray-600 hover:text-blue-600 font-medium transition duration-150">
               Support
             </Link>
+
+            
+
+            {/* Support Dropdown */}
+            <div className="relative" ref={supportDropdownRef}>
+              <button
+                onClick={() => setIsSupportDropdownOpen((prev) => !prev)}
+                className="flex items-center cursor-pointer text-gray-600 hover:text-blue-600 font-medium transition duration-150 focus:outline-none"
+              >
+                <ChevronDownIcon className={`h-5 w-5 ml-1 transition-transform ${isSupportDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isSupportDropdownOpen && (
+                <div className="absolute left-0 mt-3 w-[370px] bg-white rounded-xl shadow-lg border border-gray-200 z-20">
+                  <div className="flex flex-col divide-y divide-gray-100">
+                    {/* 1. Driver Welfare Schemes */}
+                    <div className="px-5 py-4">
+                      <h4 className="font-bold text-gray-900 text-lg mb-1">1. Driver Welfare Schemes</h4>
+                      <div className="text-sm text-gray-700 mb-2">
+                        Stay updated on government initiatives and schemes designed for driver welfare, including eligibility and application processes.
+                      </div>
+                      <Link
+                        href="/driver-welfare"
+                        className="inline-block text-blue-600 font-semibold hover:underline text-sm"
+                        onClick={() => setIsSupportDropdownOpen(false)}
+                      >
+                        Explore Welfare Schemes
+                      </Link>
+                    </div>
+                    {/* 2. Training & Certification */}
+                    <div className="px-5 py-4">
+                      <h4 className="font-bold text-gray-900 text-lg mb-1">2. Training & Certification</h4>
+                      <div className="text-sm text-gray-700 mb-2">
+                        Enhance your skills with certified training programs and workshops to boost your career prospects.
+                      </div>
+                      <Link
+                        href="/training-certification"
+                        className="inline-block text-blue-600 font-semibold hover:underline text-sm"
+                        onClick={() => setIsSupportDropdownOpen(false)}
+                      >
+                        View Training Programs
+                      </Link>
+                    </div>
+                    {/* 3. Community Forum */}
+                    <div className="px-5 py-4">
+                      <h4 className="font-bold text-gray-900 text-lg mb-1">3. Community Forum</h4>
+                      <div className="text-sm text-gray-700 mb-2">
+                        Engage with fellow drivers, share experiences, and seek advice in our dedicated community forum.
+                      </div>
+                      <Link
+                        href="/community-forum"
+                        className="inline-block text-blue-600 font-semibold hover:underline text-sm"
+                        onClick={() => setIsSupportDropdownOpen(false)}
+                      >
+                        Join the Conversation
+                      </Link>
+                    </div>
+                    {/* 4. News & Updates */}
+                    <div className="px-5 py-4">
+                      <h4 className="font-bold text-gray-900 text-lg mb-1">4. News & Updates</h4>
+                      <div className="text-sm text-gray-700 mb-2">
+                        Get the latest news on transportation laws, fuel prices, and other relevant updates affecting drivers.
+                      </div>
+                      <Link
+                        href="/news-updates"
+                        className="inline-block text-blue-600 font-semibold hover:underline text-sm"
+                        onClick={() => setIsSupportDropdownOpen(false)}
+                      >
+                        Read Latest News
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Right Section */}
@@ -120,7 +200,6 @@ export default function Navbar() {
                   </span>
                   <ChevronDownIcon className="h-4 w-4 text-gray-500" />
                 </button>
-
                 {/* Dropdown Menu */}
                 {isDropdownOpen && (
                   <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg py-1 z-10 border border-gray-200">
