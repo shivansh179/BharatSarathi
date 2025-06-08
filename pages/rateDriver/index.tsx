@@ -18,6 +18,9 @@ import {
   Tag,       // For ScratchableCoupon
 } from 'lucide-react';
 
+import { FaCar } from "react-icons/fa";
+
+
 // FormData interface (can be defined once if used by both)
 interface PageFormData {
   name: string;
@@ -28,12 +31,12 @@ interface PageFormData {
   driverRating: number;
   rideExperienceRating: number;
   safetyRating: number;
-  [key: string]: any; // For dynamic access
+  oftenCabNeed: string;
 }
 
 export default function RateDriverPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [step, setStep] = useState<1 | 2>(2);
+  const [step, setStep] = useState<1 | 2>(1);
   const [userData, setUserData] = useState<{ // Not strictly used for form, but good for context
     name?: string;
     email?: string;
@@ -48,14 +51,14 @@ export default function RateDriverPage() {
     driverRating: 3,
     rideExperienceRating: 3,
     safetyRating: 3,
+    oftenCabNeed: '',
   });
 
   // Load user data and driverId from URL/localStorage
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get('token'); // Assuming token is the driverId
-    // Ensure driverId is a number, default to 0 if not valid
-    const driverId = token && !isNaN(parseInt(token, 10)) ? parseInt(token, 10) : 0;
+     const driverId = token && !isNaN(parseInt(token, 10)) ? parseInt(token, 10) : 0;
 
     const storedUserDetails = localStorage.getItem('userDetail');
     let userName = '';
@@ -259,6 +262,31 @@ export default function RateDriverPage() {
                     required
                     className="pl-10 block w-full border-gray-300 rounded-lg shadow-sm py-2.5 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="you@example.com"
+                  />
+                </div>
+              </div>
+
+
+              <div>
+                <label
+                  htmlFor="emailId"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  How often you need cabs??
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FaCar size={16} className="text-gray-400" />
+                  </div>
+                  <input
+                    type="oftenCabNeed"
+                    id="oftenCabNeed"
+                    name="oftenCabNeed"
+                    value={formData.oftenCabNeed}
+                    onChange={handleChange}
+                    required
+                    className="pl-10 block w-full border-gray-300 rounded-lg shadow-sm py-2.5 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Please write your answer"
                   />
                 </div>
               </div>
