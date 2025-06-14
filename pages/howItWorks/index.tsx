@@ -8,28 +8,28 @@ const HowItWorksPage: React.FC = () => {
       number: "1",
       title: "Sign Up Easily",
       description: "Register with your basic details and get started in minutes.",
-      icon: <UserPlus className="w-8 h-8" />,
+      icon: <UserPlus className="w-8 h-8 text-blue-900" />,
       color: "from-blue-500 to-blue-600"
     },
     {
       number: "2", 
       title: "Explore Opportunities",
       description: "Access job listings, insurance options, loan facilities, and more—all in one place.",
-      icon: <Search className="w-8 h-8" />,
+      icon: <Search className="w-8 h-8 text-blue-900" />,
       color: "from-green-500 to-green-600"
     },
     {
       number: "3",
       title: "Connect & Grow",
       description: "Engage with a community that supports your professional and personal growth.",
-      icon: <Users className="w-8 h-8" />,
+      icon: <Users className="w-8 h-8 text-blue-900" />,
       color: "from-purple-500 to-purple-600"
     },
     {
       number: "4",
       title: "Stay Informed",
       description: "Receive updates on traffic rules, challan resolutions, and driver welfare schemes.",
-      icon: <Bell className="w-8 h-8" />,
+      icon: <Bell className="w-8 h-8 text-blue-900" />,
       color: "from-orange-500 to-orange-600"
     }
   ];
@@ -40,12 +40,12 @@ const HowItWorksPage: React.FC = () => {
       <header className="bg-white shadow-lg border-b border-blue-100">
         <div className="flex justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-3">
-            <Settings className="w-8 h-8 text-gray-700" />
-            <h1 className="text-3xl font-bold text-gray-900">How It Works</h1>
+            <Settings className="w-6 h-6 text-gray-700" />
+            <h1 className="text-s font-bold  text-gray-900">How It Works</h1>
           </div>
 
           <Link href="/">
-          <div className='font-bold text-blue-700'>
+          <div className='font-bold text-s text-blue-700'>
             Back to dashboard
           </div>
         </Link>
@@ -99,7 +99,7 @@ const HowItWorksPage: React.FC = () => {
                     <Play className="w-10 h-10 ml-1" />
                   </div>
                   <h3 className="text-2xl font-semibold mb-2">Watch How It Works</h3>
-                  <p className="text-blue-100">See our platform in action</p>
+                  <p className="text-blue-900">See our platform in action</p>
                 </div>
                 
                 <button className="w-full bg-white text-blue-600 hover:bg-blue-50 transition-colors duration-200 rounded-lg px-6 py-3 font-semibold flex items-center justify-center space-x-2 mb-4">
@@ -152,23 +152,23 @@ const HowItWorksPage: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
             <div>
-              <h3 className="text-lg font-semibold">• Comprehensive Job Listings</h3>
+              <h3 className="text-lg text-black font-semibold">• Comprehensive Job Listings</h3>
               <p className="text-gray-700 ml-4">Find driving jobs that match your skills and preferences.</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">• Affordable Insurance Plans</h3>
+              <h3 className="text-lg text-black font-semibold">• Affordable Insurance Plans</h3>
               <p className="text-gray-700 ml-4">Secure health and vehicle insurance tailored for drivers.</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">• Easy Loan Access</h3>
+              <h3 className="text-lg text-black font-semibold">• Easy Loan Access</h3>
               <p className="text-gray-700 ml-4">Apply for loans with minimal documentation and quick approvals.</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">• Challan Assistance</h3>
+              <h3 className="text-lg text-black font-semibold">• Challan Assistance</h3>
               <p className="text-gray-700 ml-4">Get expert help to resolve traffic challans efficiently.</p>
             </div>
             <div>
-              <h3 className="text-lg font-semibold">• Community Support</h3>
+              <h3 className="text-lg text-black font-semibold">• Community Support</h3>
               <p className="text-gray-700 ml-4">Join a network of drivers sharing experiences and advice.</p>
             </div>
           </div>

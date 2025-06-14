@@ -10,13 +10,13 @@ const SupportPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-between items-center space-x-3">
             <div className='flex space-x-3'>
-            <div className="bg-red-500 text-white px-3 py-1 rounded-md font-bold text-sm">
+            <div className="bg-red-500 text-white px-2 rounded-md font-bold text-sm">
               SOS
             </div>
-            <h1 className="text-2xl font-bold text-gray-900">Support</h1>
+            <h1 className="text-s font-bold text-gray-900">Support</h1>
             </div>
             <Link href="/">
-                <div className='text-blue-700 font-bold '>
+                <div className='text-blue-700 text-s font-bold '>
                     Back to dashboard
                 </div>
             </Link>

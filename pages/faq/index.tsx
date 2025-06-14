@@ -34,14 +34,14 @@ const FAQPage: React.FC = () => {
       <header className="bg-white shadow-lg border-b border-blue-100">
         <div className="flex justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center space-x-3">
-            <div className="bg-red-500 text-white px-3 py-2 rounded-md font-bold text-lg">
+            <div className="bg-red-500 text-white px-2 rounded-md font-bold text-lg">
               ?
             </div>
-            <h1 className="text-3xl font-bold text-gray-900">FAQ</h1>
+            <h1 className="text-s font-bold text-gray-900">FAQ</h1>
           </div>
 
           <Link href="/">
-          <div className='font-bold text-blue-700'>
+          <div className='font-bold text-s text-blue-700'>
             Back to dashboard
           </div>
         </Link>
