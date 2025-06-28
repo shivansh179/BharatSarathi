@@ -1,0 +1,31 @@
+{
+    "page_title": "Khaas Fayde",
+    "hero_title": "Bharat Sarathi Kyun Chunein?",
+    "hero_description": "Bharat Sarathi ko pure Bharat mein drivers ke liye ek perfect platform banane wale sabhi fayde jaanein. Naukri ke maukon se lekar financial services tak, hum aapke saath hain.",
+    "hero_tags": ["All-in-One Platform", "Driver-Focused", "Bharosemand Sevaayein"],
+    "card_title": "5+ Mukhya Fayde",
+    "card_description": "Sab kuch jo aapko chahiye, ek hi jagah par",
+    "card_items": ["Naukriyan", "Insurance", "Aasan Loan", "Community"],
+    "grid_title": "Hamare Mukhya Fayde",
+    "grid_description": "Khaas taur par drivers aur unki anokhi zarooraton ke liye design ki gayi services ki poori range dekhein.",
+    "benefits_list": [
+      { "title": "Sabhi Naukriyan Ek Jagah", "description": "Apne skills aur pasand ke anusaar driving jobs dhundein." },
+      { "title": "Saste Insurance Plans", "description": "Drivers ke liye khaas health aur gaadi ka insurance surakshit karein." },
+      { "title": "Aasan Loan Prapti", "description": "Kam se kam documents aur jaldi approval ke saath loan ke liye apply karein." },
+      { "title": "Challan Mein Sahayata", "description": "Traffic challans ko prabhavi dhang se hal karne ke liye expert sahayata prapt karein." },
+      { "title": "Community Sahyog", "description": "Anubhav aur salah share karne wale drivers ke network se judein." }
+    ],
+    "learn_more": "Aur Jaanein",
+    "stats_title": "Drivers Hum par Bharosa Kyun Karte Hain",
+    "stats_description": "Aankde jo driver community ke prati hamari pratibaddhta ko batate hain.",
+    "stats_list": [
+      { "value": "10H+", "label": "Active Drivers" },
+      { "value": "5H+", "label": "Job Placements" },
+      { "value": "500+", "label": "Insurance Claims" },
+      { "value": "2H+", "label": "Loans Approved" }
+    ],
+    "cta_title": "In Faydo ko Unlock Karne ke Liye Taiyar Hain?",
+    "cta_description": "Hazaron drivers ke saath judein jo pehle se hi Bharat Sarathi ke platform ke fayde anubhav kar rahe hain.",
+    "cta_button_discover": "Aur Fayde Dekhein",
+    "cta_button_start": "Aaj Hi Shuru Karein"
+  }

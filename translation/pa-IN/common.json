@@ -1,0 +1,47 @@
+{
+  "nav_home": "ਮੁੱਖ ਪੰਨਾ",
+  "nav_how_it_works": "ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",
+  "nav_benefits": "ਲਾਭ",
+  "nav_resources": "ਸਰੋਤ",
+  "nav_faq": "ਅਕਸਰ ਪੁੱਛੇ ਜਾਂਦੇ ਸਵਾਲ",
+  "nav_support": "ਸਹਾਇਤਾ",
+  "nav_sign_in": "ਸਾਈਨ ਇਨ ਕਰੋ",
+  "nav_get_started": "ਸ਼ੁਰੂ ਕਰੋ",
+  "resources_list": [
+    { "title": "ਡਰਾਈਵਰ ਭਲਾਈ ਸਕੀਮਾਂ", "description": "ਸਰਕਾਰੀ ਪਹਿਲਕਦਮੀਆਂ ਅਤੇ ਲਾਭ", "href": "/driver-welfare" },
+    { "title": "ਸਿਖਲਾਈ ਅਤੇ ਪ੍ਰਮਾਣੀਕਰਨ", "description": "ਆਪਣੇ ਪੇਸ਼ੇਵਰ ਹੁਨਰ ਨੂੰ ਵਧਾਓ", "href": "/training-certification" },
+    { "title": "ਕਮਿਊਨਿਟੀ ਫੋਰਮ", "description": "ਸਾਥੀ ਡਰਾਈਵਰਾਂ ਨਾਲ ਜੁੜੋ", "href": "/community-forum" },
+    { "title": "ਖ਼ਬਰਾਂ ਅਤੇ ਅਪਡੇਟਸ", "description": "ਟਰਾਂਸਪੋਰਟ ਉਦਯੋਗ ਦੀਆਂ ਤਾਜ਼ਾ ਖ਼ਬਰਾਂ", "href": "/news-updates" }
+  ],
+  "join_title": "ਭਾਰਤ ਸਾਰਥੀ ਨਾਲ ਜੁੜੋ",
+  "join_description": "ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਆਪਣਾ ਰਸਤਾ ਚੁਣੋ",
+  "register_driver": "ਡਰਾਈਵਰ ਵਜੋਂ ਰਜਿਸਟਰ ਕਰੋ",
+  "register_driver_desc": "ਅੱਜ ਹੀ ਸਾਡੇ ਨਾਲ ਆਪਣਾ ਸਫ਼ਰ ਸ਼ੁਰੂ ਕਰੋ।",
+  "register_user": "ਯੂਜ਼ਰ ਰਜਿਸਟ੍ਰੇਸ਼ਨ",
+  "register_user_desc": "ਜਲਦੀ ਆ ਰਿਹਾ ਹੈ।",
+  "my_profile": "ਮੇਰਾ ਪ੍ਰੋਫਾਈਲ",
+  "earnings": "ਕਮਾਈਆਂ",
+  "documents": "ਦਸਤਾਵੇਜ਼",
+  "settings": "ਸੈਟਿੰਗਾਂ",
+  "sign_out": "ਸਾਈਨ ਆਊਟ ਕਰੋ",
+  "feature_coming_soon": "ਇਹ ਫੀਚਰ ਜਲਦੀ ਆ ਰਿਹਾ ਹੈ!",
+  "logged_out_success": "ਸਫਲਤਾਪੂਰਵਕ ਲਾਗਆਉਟ ਕੀਤਾ ਗਿਆ",
+ 
+
+
+"footer_description": "ਪੇਸ਼ੇਵਰ ਡਰਾਈਵਰਾਂ ਨੂੰ ਯਾਤਰੀਆਂ ਨਾਲ ਜੋੜਨ ਵਾਲਾ ਭਾਰਤ ਦਾ ਪ੍ਰਮੁੱਖ ਪਲੇਟਫਾਰਮ। ਦੇਸ਼ ਭਰ ਵਿੱਚ ਸਾਡੇ ਵਧ ਰਹੇ ਡਰਾਈਵਰ ਭਾਈਵਾਲਾਂ ਦੇ ਭਾਈਚਾਰੇ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ।",
+  "footer_quick_links": "ਤੁਰੰਤ ਲਿੰਕ",
+  "footer_quick_links_list": ["ਸਾਡੇ ਬਾਰੇ", "ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ", "ਡਰਾਈਵਰ ਦੀਆਂ ਲੋੜਾਂ", "ਫਲੀਟ ਮਾਲਕ", "ਕਰੀਅਰ", "ਪ੍ਰੈਸ"],
+  "footer_support": "ਸਹਾਇਤਾ",
+  "footer_support_list": ["ਸਹਾਇਤਾ ਕੇਂਦਰ", "ਸੁਰੱਖਿਆ ਕੇਂਦਰ", "ਭਾਈਚਾਰਕ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼", "FAQs", "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ", "ਕਾਨੂੰਨੀ"],
+  "footer_contact_us": "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ",
+  "footer_address_value": "123 ਸਾਰਥੀ ਮਾਰਗ,\nਨਵੀਂ ਦਿੱਲੀ, 110001,\nਭਾਰਤ",
+  "footer_download_app": "ਸਾਡੀ ਐਪ ਡਾਊਨਲੋਡ ਕਰੋ",
+  "footer_download_on": "'ਤੇ ਡਾਊਨਲੋਡ ਕਰੋ",
+  "footer_app_store": "ਐਪ ਸਟੋਰ",
+  "footer_play_store": "ਪਲੇ ਸਟੋਰ",
+  "footer_copyright": "© {year} ਭਾਰਤ ਸਾਰਥੀ ਟੈਕਨੋਲੋਜੀਜ਼ ਪ੍ਰਾਈਵੇਟ ਲਿਮਟਿਡ। ਸਾਰੇ ਹੱਕ ਰਾਖਵੇਂ ਹਨ।",
+  "footer_terms": "ਸੇਵਾ ਦੀਆਂ ਸ਼ਰਤਾਂ",
+  "footer_privacy": "ਗੋਪਨੀਯਤਾ ਨੀਤੀ",
+  "footer_cookies": "ਕੂਕੀ ਨੀਤੀ"
+}

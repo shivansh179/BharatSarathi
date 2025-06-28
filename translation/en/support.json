@@ -1,0 +1,20 @@
+{
+    "page_title": "24/7 Support Available",
+    "hero_title": "We're Here to Help",
+    "hero_description": "Facing issues or have queries? Our dedicated support team is available 24/7 to assist you with any questions or concerns you may have.",
+    "hero_tags": ["24/7 Available", "Expert Team", "Secure Support"],
+    "card_title": "Quick Support Access",
+    "card_description": "Choose your preferred contact method",
+    "live_chat_button": "Start Live Chat",
+    "call_now_button": "Call Now",
+    "grid_title": "Contact Options",
+    "grid_description": "Choose the contact method that works best for you. We're here to help in whatever way is most convenient.",
+    "contact_options": [
+      { "title": "Email Support", "description": "Send us detailed queries and we'll respond within 24 hours.", "value": "support@bharatsarathi.com", "cta": "Send Email" },
+      { "title": "Phone Support", "description": "Speak directly with our support team for immediate assistance.", "value": "+91 1234 567 890", "cta": "Call Now" },
+      { "title": "Live Chat", "description": "Get instant help through our live chat available on our website.", "value": "Available Now", "cta": "Start Chat" }
+    ],
+    "cta_title": "Ready to Get Support?",
+    "cta_description": "Don't let issues hold you back. Our expert support team is standing by to help you succeed.",
+    "cta_button_contact": "Contact Support"
+  }

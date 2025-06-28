@@ -1,0 +1,31 @@
+{
+    "page_title": "Exclusive Benefits",
+    "hero_title": "Why Choose Bharat Sarathi?",
+    "hero_description": "Discover the comprehensive benefits that make Bharat Sarathi the perfect platform for drivers across India. From job opportunities to financial services, we've got you covered.",
+    "hero_tags": ["All-in-One Platform", "Driver-Focused", "Trusted Services"],
+    "card_title": "5+ Core Benefits",
+    "card_description": "Everything you need in one place",
+    "card_items": ["Job Listings", "Insurance", "Easy Loans", "Community"],
+    "grid_title": "Our Key Benefits",
+    "grid_description": "Explore the comprehensive range of services designed specifically for drivers and their unique needs.",
+    "benefits_list": [
+      { "title": "Comprehensive Job Listings", "description": "Find driving jobs that match your skills and preferences." },
+      { "title": "Affordable Insurance Plans", "description": "Secure health and vehicle insurance tailored for drivers." },
+      { "title": "Easy Loan Access", "description": "Apply for loans with minimal documentation and quick approvals." },
+      { "title": "Challan Assistance", "description": "Get expert help to resolve traffic challans efficiently." },
+      { "title": "Community Support", "description": "Join a network of drivers sharing experiences and advice." }
+    ],
+    "learn_more": "Learn More",
+    "stats_title": "Why Drivers Trust Us",
+    "stats_description": "Numbers that speak for our commitment to the driver community.",
+    "stats_list": [
+      { "value": "10K+", "label": "Active Drivers" },
+      { "value": "5K+", "label": "Job Placements" },
+      { "value": "500+", "label": "Insurance Claims" },
+      { "value": "2K+", "label": "Loans Approved" }
+    ],
+    "cta_title": "Ready to Unlock These Benefits?",
+    "cta_description": "Join thousands of drivers who are already experiencing the advantages of Bharat Sarathi's comprehensive platform.",
+    "cta_button_discover": "Discover More Benefits",
+    "cta_button_start": "Get Started Today"
+  }

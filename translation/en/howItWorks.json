@@ -1,0 +1,18 @@
+{
+    "page_title": "Simple Process",
+    "hero_title": "Simplifying Your Drive Towards Success",
+    "hero_description": "Our streamlined platform makes it easy for drivers to access all the services they need. From registration to getting results, every step is designed with you in mind.",
+    "hero_tags": ["Quick Setup", "Easy Navigation", "Instant Results"],
+    "video_card_title": "Watch How It Works",
+    "video_card_description": "See our platform in action",
+    "video_cta": "Watch Demo Video",
+    "video_subtext": "3 min overview • No signup required",
+    "grid_title": "How Our Platform Works",
+    "grid_description": "Follow these simple steps to unlock all the benefits Bharat Sarathi has to offer.",
+    "steps_list": [
+      { "title": "Sign Up Easily", "description": "Register with your basic details and get started in minutes." },
+      { "title": "Explore Opportunities", "description": "Access job listings, insurance options, loan facilities, and more—all in one place." },
+      { "title": "Connect & Grow", "description": "Engage with a community that supports your professional and personal growth." },
+      { "title": "Stay Informed", "description": "Receive updates on traffic rules, challan resolutions, and driver welfare schemes." }
+    ]
+  }

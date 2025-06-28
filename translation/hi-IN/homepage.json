@@ -1,0 +1,65 @@
+{
+    "hero_tagline": "Bharat ka Sabse Tezi Se Badhta Driver Platform",
+    "hero_title": "Apni Safalta Drive Karein",
+    "hero_description": "Bharat ke drivers ke liye all-in-one platform. Job referrals, health insurance, challan me sahayata, aur bahut kuch paayein.",
+    "hero_cta_main": "Aaj Hi Kamana Shuru Karein",
+    "hero_cta_secondary": "Dekhein Kaise Kaam Karta Hai",
+    "stats": [
+      { "number": "50K+", "label": "Active Drivers" },
+      { "number": "₹25K", "label": "Avg Mahine ki Kamai" },
+      { "number": "15+", "label": "Sheher" },
+      { "number": "4.8★", "label": "Driver Rating" }
+    ],
+    "services_title": "Ek Platform. Samadhan Anek.",
+    "services_description": "Hum driver ke jeevan ke har pehlu ko support karne ke liye services ka ek poora ecosystem pradaan karte hain.",
+    "services_list": [
+      { "title": "Driver Training", "description": "Apne skills aur suraksha ko behtar banane ke liye certified instructors se training lein." },
+      { "title": "Health Insurance", "description": "Apne aur apne parivaar ke liye saste health plans prapt karein." },
+      { "title": "Challan Settlement", "description": "Hum aapko Lok Adalat ke zariye traffic challan ko nipatane mein madad karte hain." },
+      { "title": "Car Services", "description": "Gaadi ki maintenance, servicing, aur spare parts par discount paayein." },
+      { "title": "Job Referrals", "description": "Ola, Uber, aur anya top platforms par naukri ke avsar paayein." }
+    ],
+    "and_much_more": "Aur Bahut Kuch!",
+    "join_today": "Aaj Hi Judein",
+    "testimonials_title": "Asli Kahaniyan, Asli Asar",
+    "testimonials_description": "Unn drivers se sunein jinhone Bharat Sarthi ke saath apne career ko badla hai.",
+    "testimonials_list": [
+      { "quote": "Bharat Sarthi ne mera ₹4,000 ka challan Lok Adalat se sirf 2 din mein hal karne mein madad ki. Pura process bahut aasan tha!", "name": "Rakesh Sharma", "location": "Delhi", "service": "Challan Sahayata", "image": "/p1.jpeg" },
+      { "quote": "Mujhe Bharat Sarthi ke zariye Uber mein refer kiya gaya aur ab main mahine mein ₹30,000 se zyada kama raha hoon. Is mauke ke liye dhanyavad!", "name": "Pritam Singh", "location": "Mumbai", "service": "Job Referral", "image": "/p2.jpeg" },
+      { "quote": "Mujhe yahan apne parivaar ke liye ek sasta health insurance plan mila. Ab main shanti se drive karta hoon.", "name": "Amit Kumar", "location": "Bangalore", "service": "Health Insurance", "image": "/p3.jpeg" },
+      { "quote": "Mujhe yahan apne parivaar ke liye ek car insurance plan mila.", "name": "Shivani Kumari", "location": "Delhi", "service": "Car Insurance", "image": "/p4.jpeg" }
+    ],
+    "faq_title": "Aksar Puche Gaye Sawal",
+    "faq_description": "Aapke sawal hain? Hamare paas jawab hain.",
+    "faq_list": [
+      { "question": "Challan settlement kaise kaam karta hai?", "answer": "Hum aapko legal experts se jodte hain jo Lok Adalat mein aapka pratinidhitv karte hain, jo jald vivaad samadhan ke liye ek sarkari pranali hai." },
+      { "question": "Insurance ke liye mujhe kaun se documents chahiye?", "answer": "Aam taur par aapko apna Aadhaar card, PAN card aur gaadi ke registration ki details chahiye." },
+      { "question": "Agar mere paas car nahi hai to kya main join kar sakta hoon?", "answer": "Haan, bilkul! Hum un drivers ko job referrals dete hain jinke paas gaadi nahi hai." },
+      { "question": "Job referral milne mein kitna time lagta hai?", "answer": "Aapka profile pura hone ke baad, hum aapko 3-5 dinon mein Ola aur Uber jaise partners ke paas refer karte hain." }
+    ],
+    "visit_faq": "FAQ Section Dekhein",
+    "why_us_section": {
+    "title": "Bharat Sarthi Kyun Chunein?",
+    "description": "Hum drivers ki samasyaon ko samajhte hain. Hamara platform unhe hal karne ke liye banaya gaya hai.",
+    "problems_title": "❌ Aam Driver Samasyaein",
+    "problems_list": [
+      "Asthir aay aur naukri ki suraksha ki kami.",
+      "Saste swasthya bima ya loan tak pahunch nahi.",
+      "Challan jaise jatil kanooni mamlon se nipatne mein kathinai.",
+      "Gaadi ki dekhbhal aur parts ki adhik lagat.",
+      "Ek sahayak samuday aur margdarshan ki kami."
+    ],
+    "solutions_title": "✅ Bharat Sarthi Samadhan",
+    "solutions_list": [
+      "Pramukh platforms par sthir naukri ke referrals.",
+      "Vishesh, kam lagat wale bima aur vitteey utpaad.",
+      "Challan ke jaldi niptare ke liye visheshagya sahayata.",
+      "Bharosemand, chhoot wale service centers ka network.",
+      "Ek peshewar samuday aur 24/7 sahayata."
+    ]
+  },
+  "ready_tag":"Kya Aap Driving Career mein control lene ke liye taiyar hain?",
+  "start_journey":"Aaj hi Apni Yatra Suru kare",
+  "learn_more":"Aur Adhik Seekhe"
+  
+  }

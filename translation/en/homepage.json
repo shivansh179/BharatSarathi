@@ -1,0 +1,71 @@
+{
+    "hero_tagline": "India's Fastest Growing Driver Platform",
+    "hero_title": "Drive Your Success",
+    "hero_description": "The all-in-one platform for India's drivers. Get job referrals, health insurance, challan help, and much more.",
+    "hero_cta_main": "Start Earning Today",
+    "hero_cta_secondary": "See How It Works",
+    "stats": [
+      { "number": "50K+", "label": "Active Drivers" },
+      { "number": "₹25K", "label": "Avg Monthly Earnings" },
+      { "number": "15+", "label": "Cities" },
+      { "number": "4.8★", "label": "Driver Rating" }
+    ],
+    "services_title": "One Platform. Many Solutions.",
+    "services_description": "We provide a complete ecosystem of services to support every aspect of a driver's life.",
+    "services_list": [
+      { "title": "Driver Training", "description": "Get trained by certified instructors to improve your skills and safety." },
+      { "title": "Health Insurance", "description": "Access affordable health plans tailored for you and your family." },
+      { "title": "Challan Settlement", "description": "We help you navigate and settle traffic challans efficiently via Lok Adalat." },
+      { "title": "Car Services", "description": "Get discounts on vehicle maintenance, servicing, and spare parts." },
+      { "title": "Job Referrals", "description": "Find job opportunities with top platforms like Ola, Uber, and more." }
+    ],
+    "and_much_more": "And Much More!",
+    "join_today": "Join Today",
+    "testimonials_title": "Real Stories, Real Impact",
+    "testimonials_description": "Hear from drivers who have transformed their careers with Bharat Sarthi.",
+    "testimonials_list": [
+      { "quote": "Bharat Sarthi helped me resolve my ₹4,000 challan with Lok Adalat in just 2 days. The process was so simple!", "name": "Rakesh Sharma", "location": "Delhi", "service": "Challan Help", "image": "/p1.jpeg" },
+      { "quote": "I got referred to Uber through Bharat Sarthi and now I am earning over ₹30,000 a month. Thank you for the opportunity!", "name": "Pritam Singh", "location": "Mumbai", "service": "Job Referral", "image": "/p2.jpeg" },
+      { "quote": "I found an affordable health insurance plan for my family here. It gives me peace of mind while driving.", "name": "Amit Kumar", "location": "Bangalore", "service": "Health Insurance", "image": "/p3.jpeg" },
+      { "quote": "I found a car insurance plan for my family here.", "name": "Shivani Kumari", "location": "Delhi", "service": "Car Insurance", "image": "/p4.jpeg" }
+    ],
+    "faq_title": "Frequently Asked Questions",
+    "faq_description": "Have questions? We have answers.",
+    "faq_list": [
+      { "question": "How does the challan settlement work?", "answer": "We connect you with legal experts who represent you at the Lok Adalat, a government-backed system for quick dispute resolution. This often results in reduced fines and a hassle-free settlement process." },
+      { "question": "What documents do I need for insurance?", "answer": "You typically need your Aadhaar card, PAN card, and vehicle registration details. Our team will guide you through the simple documentation process for the plan you choose." },
+      { "question": "Can I join if I don’t own a car?", "answer": "Yes, absolutely! We provide job referrals for drivers who do not own a vehicle. Our partners have various programs for drivers looking for opportunities." },
+      { "question": "How long does it take to get a job referral?", "answer": "After you complete your profile and verification, we typically refer you to our partners like Ola and Uber within 3-5 business days. The final onboarding depends on the partner platform's process." }
+    ],
+    "visit_faq": "Visit FAQ Section",
+    "why_us_section": {
+      "title": "Why Choose Bharat Sarthi?",
+      "description": "We understand the challenges drivers face. Our platform is built to solve them.",
+      "problems_title": "❌ Common Driver Problems",
+      "problems_list": [
+        "Unstable income and lack of job security.",
+        "No access to affordable health insurance or loans.",
+        "Difficulty handling complex legal issues like challans.",
+        "High costs for vehicle maintenance and parts.",
+        "Lack of a supportive community and guidance."
+      ],
+      "solutions_title": "✅ The Bharat Sarthi Solution",
+      "solutions_list": [
+        "Steady job referrals to leading platforms.",
+        "Exclusive, low-cost insurance and financial products.",
+        "Expert assistance for quick challan settlement.",
+        "A network of trusted, discounted service centers.",
+        "A professional community and 24/7 support."
+      ]
+    },
+    "ready_tag":"Ready to Take Control of Your Driving Career?",
+    "start_journey":"Start Your Journey Today",
+    "learn_more":"Learn More"
+
+
+      
+  }
+
+
+  
+  

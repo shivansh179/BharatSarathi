@@ -1,0 +1,20 @@
+{
+    "page_title": "24/7 Sahayata Uplabdh",
+    "hero_title": "Hum Sahayata Ke Liye Yahan Hain",
+    "hero_description": "Samasyaon ka samna kar rahe hain ya koi sawal hai? Hamari samarpit support team aapke kisi bhi sawal ya chinta mein sahayata ke liye 24/7 uplabdh hai.",
+    "hero_tags": ["24/7 Uplabdh", "Expert Team", "Surakshit Support"],
+    "card_title": "Jaldi Support Prapti",
+    "card_description": "Apna pasandeeda sampark vidhi chunein",
+    "live_chat_button": "Live Chat Shuru Karein",
+    "call_now_button": "Abhi Call Karein",
+    "grid_title": "Sampark Vikalp",
+    "grid_description": "Aapke liye sabse achha kaam karne wala sampark vidhi chunein. Hum kisi bhi tarah se sahayata ke liye yahan hain jo sabse suvidhajanak ho.",
+    "contact_options": [
+      { "title": "Email Sahayata", "description": "Humein vistrit sawal bhejein aur hum 24 ghante ke andar jawab denge.", "value": "support@bharatsarathi.com", "cta": "Email Bhejein" },
+      { "title": "Phone Sahayata", "description": "Turant sahayata ke liye hamari support team se seedhe baat karein.", "value": "+91 1234 567 890", "cta": "Abhi Call Karein" },
+      { "title": "Live Chat", "description": "Hamari website par uplabdh hamare live chat ke madhyam se turant sahayata prapt karein.", "value": "Abhi Uplabdh", "cta": "Chat Shuru Karein" }
+    ],
+    "cta_title": "Sahayata Prapt Karne Ke Liye Taiyar Hain?",
+    "cta_description": "Samasyaon ko aapko piche na karne dein. Hamari expert support team aapko safal hone mein madad ke liye taiyar hai.",
+    "cta_button_contact": "Support se Sampark Karein"
+  }

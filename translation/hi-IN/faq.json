@@ -1,0 +1,18 @@
+{
+    "page_title": "Aksar Puche Gaye Sawal",
+    "hero_title": "Sawal Hain? Hamare Paas Jawab Hain",
+    "hero_description": "Bharat Sarathi ke bare mein aam sawalon ke jaldi jawab paayein. Jo aap dhoondh rahe hain, woh nahi mil raha? Hamari support team sahayata ke liye yahan hai.",
+    "search_placeholder": "Jawabon ke liye search karein...",
+    "grid_title": "Kuch Sawal",
+    "grid_description": "Yahan kuch sabse aam sawal hain jo hamare users puchte hain.",
+    "faq_list": [
+      { "question": "Main Bharat Sarathi par register kaise karun?", "answer": "'Join' button par click karein aur shuru karne ke liye apni details bharein." },
+      { "question": "Kya job listings verified hain?", "answer": "Haan, hum yeh sunishchit karte hain ki sabhi listings pratishthit niyoktaon se hain." },
+      { "question": "Kya main ek saath kai services ke liye apply kar sakta hoon?", "answer": "Bilkul! Hamara platform aapki sabhi zarooraton ko ek hi jagah pura karne ke liye design kiya gaya hai." },
+      { "question": "Kya Bharat Sarathi ka upyog karne ke liye koi shulk hai?", "answer": "Nahi, hamari बुनियादी services sabhi users ke liye muft hain." }
+    ],
+    "cta_title": "Abhi Bhi Sawal Hain?",
+    "cta_description": "Hamare FAQ section mein aapko Bharat Sarathi ke saath shuru karne ke liye sabhi jawab milenge.",
+    "cta_button_all_faqs": "Sabhi FAQs Dekhein",
+    "cta_button_contact": "Support se Sampark Karein"
+  }

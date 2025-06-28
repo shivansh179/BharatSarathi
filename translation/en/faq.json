@@ -1,0 +1,18 @@
+{
+    "page_title": "Frequently Asked Questions",
+    "hero_title": "Have Questions? We've Got Answers",
+    "hero_description": "Find quick answers to common questions about Bharat Sarathi. Can't find what you're looking for? Our support team is here to help.",
+    "search_placeholder": "Search for answers...",
+    "grid_title": "Sample Questions",
+    "grid_description": "Here are some of the most common questions our users ask.",
+    "faq_list": [
+      { "question": "How do I register on Bharat Sarathi?", "answer": "Simply click on the 'Join' button and fill in your details to get started." },
+      { "question": "Are the job listings verified?", "answer": "Yes, we ensure all listings are from reputable employers." },
+      { "question": "Can I apply for multiple services simultaneously?", "answer": "Absolutely! Our platform is designed to cater to all your needs in one place." },
+      { "question": "Is there a fee to use Bharat Sarathi?", "answer": "No, our basic services are free for all users." }
+    ],
+    "cta_title": "Still Have Questions?",
+    "cta_description": "Our comprehensive FAQ section has all the answers you need to get started with Bharat Sarathi.",
+    "cta_button_all_faqs": "View All FAQs",
+    "cta_button_contact": "Contact Support"
+  }
