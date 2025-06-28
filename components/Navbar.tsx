@@ -107,7 +107,7 @@ export default function Navbar() {
 
   const languageOptions = [
     { code: 'en', name: 'English' },
-    { code: 'hi-IN', name: 'हिन्दी (Hindilish)' },
+    { code: 'hi-IN', name: 'हिन्दी (Hinglish)' },
     { code: 'pa-IN', name: 'ਪੰਜਾਬੀ (Punjabi)' },
   ];
 
