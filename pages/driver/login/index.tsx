@@ -90,7 +90,9 @@ export default function DriverPhoneLogin() {
             const response = await axios.post(`${apiBaseUrl}/auth/verify-otp`, { phoneNumber, otp });
             toast.dismiss(loadingToastId);
             const { token, user: apiUser } = response.data;
-
+            
+            console.log("data is",response.data);
+            
             if (apiUser?.qrCodePath) localStorage.setItem("qrCodePath", apiUser.qrCodePath);
             
             const userData = {

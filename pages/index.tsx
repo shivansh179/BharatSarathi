@@ -114,7 +114,7 @@ export default function Homepage() {
                     <Image src="/cab2.jpg" alt="Happy driver" width={500} height={400} className="rounded-2xl object-cover w-full" priority />
                   </div>
                   <div className="absolute -top-6 -right-6 bg-green-500 text-white p-4 rounded-2xl shadow-lg"><div className="flex items-center gap-2"><CurrencyDollarIcon className="w-6 h-6" /><div><div className="text-sm font-medium">Today's Earnings</div><div className="text-lg font-bold">₹2,450</div></div></div></div>
-                  <div className="absolute -bottom-6 -left-6 bg-blue-500 text-white p-4 rounded-2xl shadow-lg"><div className="flex items-center gap-2"><StarSolid className="w-6 h-6 text-yellow-400" /><div><div className="text-sm font-medium">Rating</div><div className="text-lg font-bold">4.9/5.0</div></div></div></div>
+                  <div className="absolute -bottom-6 -left-6 bg-blue-500 text-white p-4 rounded-2xl shadow-lg"><div className="flex items-center gap-2"><StarSolid className="w-6 h-6 text-yellow-400" /><div><div className="text-sm font-medium">{t.driver_insured}</div><div className="text-lg font-bold">9 000</div></div></div></div>
                 </div>
                 <div className="absolute top-10 right-10 w-20 h-20 bg-blue-400/20 rounded-full blur-xl"></div>
                 <div className="absolute bottom-10 left-10 w-32 h-32 bg-indigo-400/20 rounded-full blur-xl"></div>
@@ -126,7 +126,7 @@ export default function Homepage() {
         <section className="bg-slate-800 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <StatItem number={1500} suffix="+" label="Drivers Trained" />
+              <StatItem number={1500} suffix="+" label="Driver trained - change number to 2x" />
               <StatItem number={900} suffix="+" label="Insured via Platform" />
               <StatItem number={2000} suffix="+" label="Challans Settled" />
               <StatItem number={800} suffix="+" label="Platform Referrals" />

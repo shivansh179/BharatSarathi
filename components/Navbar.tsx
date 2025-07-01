@@ -7,11 +7,15 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useTranslation } from '@/hooks/useTranslation';
 
 import {
-  ChevronDownIcon, UserCircleIcon, ArrowRightOnRectangleIcon,
+  ChevronDownIcon, UserCircleIcon,
   Bars3Icon, XMarkIcon, ShieldCheckIcon, AcademicCapIcon, UsersIcon,
   NewspaperIcon, HomeIcon, QuestionMarkCircleIcon, LifebuoyIcon,
   CogIcon, DocumentTextIcon, BanknotesIcon, UserPlusIcon, GlobeAltIcon,
 } from '@heroicons/react/24/outline';
+
+import { HiArrowRightStartOnRectangle } from "react-icons/hi2";
+ 
+import { FaChevronDown } from 'react-icons/fa';
 
 type UserDetail = { email?: string; name?: string; phoneNumber?: string; };
 
@@ -71,6 +75,10 @@ export default function Navbar() {
     };
   }, []);
 
+
+  
+  
+
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'unset';
     return () => { document.body.style.overflow = 'unset'; };
@@ -111,6 +119,20 @@ export default function Navbar() {
     { code: 'pa-IN', name: 'ਪੰਜਾਬੀ (Punjabi)' },
   ];
 
+
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+   useEffect(() => {
+    const handleClickOutside = (event: { target: any; }) => {
+      if (dropdownRef.current && !dropdownRef.current?.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <>
       <Toaster position="top-right" toastOptions={{ className: 'font-sans', style: { border: '1px solid #E5E7EB', padding: '16px', color: '#1F2937' } }} />
@@ -125,45 +147,64 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center space-x-2">
               <Link href="/" className="px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_home}</Link>
               <Link href="/howItWorks" className="px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_how_it_works}</Link>
-              <Link href="/benefits" className="px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_benefits}</Link>
-              <div className="relative" ref={resourcesDropdownRef}>
-                <button onClick={() => setIsResourcesDropdownOpen(p => !p)} className="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_resources} <ChevronDownIcon className={`h-4 w-4 ml-1 transition-transform duration-200 ${isResourcesDropdownOpen ? 'rotate-180' : ''}`} /></button>
-                <div className={`absolute left-1/2 -translate-x-1/2 mt-4 w-96 origin-top-right bg-white rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out ${isResourcesDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}>
-                  <div className="p-2">
-                    {t.resources_list.map((item, index) => {
-                      const Icon = resourceIcons[index]?.icon || ShieldCheckIcon;
-                      const color = resourceIcons[index]?.color || 'text-gray-600';
-                      return (
-                        <Link key={item.title} href={item.href} onClick={() => setIsResourcesDropdownOpen(false)} className="group flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                          <div className="flex items-center justify-center h-10 w-10 flex-shrink-0 bg-gray-100 rounded-lg group-hover:bg-blue-50"><Icon className={`h-6 w-6 ${color} transition-transform group-hover:scale-110`} /></div>
-                          <div className="ml-4"><p className="text-sm font-semibold text-gray-900 group-hover:text-blue-700">{item.title}</p><p className="text-xs text-gray-500">{item.description}</p></div>
-                        </Link>
-                      )
-                    })}
-                  </div>
+              <Link href="/forBusiness" className="px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_business}</Link>
+              {!userDetail ?  (
+                <>
+              <div className="relative" ref={dropdownRef}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors"
+      >
+        {t.nav_apply}
+        <FaChevronDown
+          className={`ml-2 transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+        />
+      </button>
+
+      {isOpen && (
+        <div className="absolute z-50 mt-2 w-72 bg-white rounded-md shadow-lg ring-1 ring-gray-200">
+          <div className="p-2">
+            {t.nav_apply_content.map((item, index) => (
+              <Link
+                key={index}
+                href="/benefits"
+                onClick={() => setIsOpen(false)}
+                className="group flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center justify-center h-10 w-10 flex-shrink-0 bg-gray-100 rounded-lg group-hover:bg-blue-50">
+                  <img
+                    src={item.icon}
+                    alt={item.title}
+                    className="h-6 w-6 object-contain transition-transform group-hover:scale-110"
+                  />
                 </div>
-              </div>
+                <div className="ml-4">
+                  <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-700">
+                    {item.title}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+    </>
+              ):(<></>)};
+
               <Link href="/faq" className="px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_faq}</Link>
               <Link href="/support" className="px-3 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_support}</Link>
             </div>
             <div className="flex items-center">
               <div className="hidden lg:flex items-center space-x-4">
                 <div className="relative" ref={languageDropdownRef}><button onClick={() => setIsLanguageDropdownOpen(p => !p)} className="p-2 text-gray-600 hover:text-blue-600 rounded-md transition-colors"><GlobeAltIcon className="h-6 w-6" /></button><div className={`absolute right-0 mt-4 w-48 origin-top-right bg-white rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out ${isLanguageDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}><div className="p-2">{languageOptions.map((lang) => (<button key={lang.code} onClick={() => { setLocale(lang.code); setIsLanguageDropdownOpen(false); }} className={`w-full text-left flex items-center px-3 py-2 text-sm rounded-md transition-colors ${locale === lang.code ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-gray-700 hover:bg-gray-100'}`}>{lang.name}</button>))}</div></div></div>
-                {loading ? ( <><div className="w-24 h-9 bg-gray-200 rounded-md animate-pulse"></div><div className="w-32 h-11 bg-gray-200 rounded-lg animate-pulse"></div></> ) : userDetail ? ( <div className="relative" ref={profileDropdownRef}><button onClick={() => setIsProfileDropdownOpen(p => !p)} className="flex items-center space-x-2 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"><div className="h-8 w-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">{(userDetail.name || 'U')[0].toUpperCase()}</div><span className="text-sm font-medium text-gray-800 pr-2">{userDetail.name?.split(' ')[0] || 'Profile'}</span><ChevronDownIcon className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} /></button><div className={`absolute right-0 mt-4 w-64 origin-top-right bg-white rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out ${isProfileDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}><div className="px-4 py-3 border-b border-gray-200/80"><p className="text-sm font-semibold text-gray-800 truncate">{userDetail.name || 'User'}</p><p className="text-xs text-gray-500 truncate">{userDetail.email}</p></div><div className="py-2">{profileMenuItems.map((item) => (item.href ? (<Link key={item.text} href={item.href} onClick={() => setIsProfileDropdownOpen(false)} className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"><item.icon className="h-5 w-5 mr-3 text-gray-500" /> {item.text}</Link>) : (<button key={item.text} onClick={item.onClick} className="w-full text-left flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"><item.icon className="h-5 w-5 mr-3 text-gray-500" /> {item.text}</button>)))}</div><div className="border-t border-gray-200/80 py-2"><button onClick={handleLogout} className="w-full text-left flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"><ArrowRightOnRectangleIcon className="h-5 w-5 mr-3" /> {t.sign_out}</button></div></div></div>) : ( <><Link href="/driver/login" className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_sign_in}</Link><div className="relative" ref={getStartedDropdownRef}><button onClick={() => setIsGetStartedDropdownOpen(p => !p)} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center">{t.nav_get_started}</button><div className={`absolute right-0 mt-4 w-64 origin-top-right bg-white rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out ${isGetStartedDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}><div className="p-2"><div className="p-3"><h3 className="font-semibold text-gray-900">{t.join_title}</h3><p className="text-sm text-gray-500 mt-1">{t.join_description}</p></div><Link href="/register" onClick={() => setIsGetStartedDropdownOpen(false)} className="group flex items-center w-full p-3 text-sm rounded-lg hover:bg-blue-50 transition-colors"><UserPlusIcon className="h-6 w-6 mr-3 text-blue-600"/><div><p className="font-semibold text-blue-700">{t.register_driver}</p><p className="text-xs text-gray-500">{t.register_driver_desc}</p></div></Link><div className="group flex items-center w-full p-3 text-sm rounded-lg bg-gray-50 cursor-not-allowed"><UserCircleIcon className="h-6 w-6 mr-3 text-gray-400"/><div><p className="font-semibold text-gray-500">{t.register_user}</p><p className="text-xs text-gray-400">{t.register_user_desc}</p></div></div></div></div></div></> )}
+                {loading ? ( <><div className="w-24 h-9 bg-gray-200 rounded-md animate-pulse"></div><div className="w-32 h-11 bg-gray-200 rounded-lg animate-pulse"></div></> ) : userDetail ? ( <div className="relative" ref={profileDropdownRef}><button onClick={() => setIsProfileDropdownOpen(p => !p)} className="flex items-center space-x-2 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"><div className="h-8 w-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">{(userDetail.name || 'U')[0].toUpperCase()}</div><span className="text-sm font-medium text-gray-800 pr-2">{userDetail.name?.split(' ')[0] || 'Profile'}</span><ChevronDownIcon className={`h-4 w-4 text-gray-500 transition-transform duration-200 ${isProfileDropdownOpen ? 'rotate-180' : ''}`} /></button><div className={`absolute right-0 mt-4 w-64 origin-top-right bg-white rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out ${isProfileDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}><div className="px-4 py-3 border-b border-gray-200/80"><p className="text-sm font-semibold text-gray-800 truncate">{userDetail.name || 'User'}</p><p className="text-xs text-gray-500 truncate">{userDetail.email}</p></div><div className="py-2">{profileMenuItems.map((item) => (item.href ? (<Link key={item.text} href={item.href} onClick={() => setIsProfileDropdownOpen(false)} className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"><item.icon className="h-5 w-5 mr-3 text-gray-500" /> {item.text}</Link>) : (<button key={item.text} onClick={item.onClick} className="w-full text-left flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-blue-600 transition-colors"><item.icon className="h-5 w-5 mr-3 text-gray-500" /> {item.text}</button>)))}</div><div className="border-t border-gray-200/80 py-2"><button onClick={handleLogout} className="w-full text-left flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"><HiArrowRightStartOnRectangle className="h-5 w-5 mr-3" /> {t.sign_out}</button></div></div></div>) : ( <><Link href="/driver/login" className="px-4 py-2 text-gray-700 hover:text-blue-600 font-medium rounded-md transition-colors">{t.nav_sign_in}</Link><div className="relative" ref={getStartedDropdownRef}><button onClick={() => setIsGetStartedDropdownOpen(p => !p)} className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-semibold transition-all duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center">{t.nav_get_started}</button><div className={`absolute right-0 mt-4 w-64 origin-top-right bg-white rounded-xl shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none transition-all duration-200 ease-out ${isGetStartedDropdownOpen ? 'opacity-100 scale-100 visible' : 'opacity-0 scale-95 invisible'}`}><div className="p-2"><div className="p-3"><h3 className="font-semibold text-gray-900">{t.join_title}</h3><p className="text-sm text-gray-500 mt-1">{t.join_description}</p></div><Link href="/register" onClick={() => setIsGetStartedDropdownOpen(false)} className="group flex items-center w-full p-3 text-sm rounded-lg hover:bg-blue-50 transition-colors"><UserPlusIcon className="h-6 w-6 mr-3 text-blue-600"/><div><p className="font-semibold text-blue-700">{t.register_driver}</p><p className="text-xs text-gray-500">{t.register_driver_desc}</p></div></Link><div className="group flex items-center w-full p-3 text-sm rounded-lg bg-gray-50 cursor-not-allowed"><UserCircleIcon className="h-6 w-6 mr-3 text-gray-400"/><div><p className="font-semibold text-gray-500">{t.register_user}</p><p className="text-xs text-gray-400">{t.register_user_desc}</p></div></div></div></div></div></> )}
               </div>
               <button onClick={() => setIsMobileMenuOpen(p => !p)} className="lg:hidden ml-4 p-2 rounded-md text-gray-600 hover:text-blue-600 hover:bg-gray-100 transition-colors">{isMobileMenuOpen ? <XMarkIcon className="h-7 w-7" /> : <Bars3Icon className="h-7 w-7" />}</button>
             </div>
           </div>
         </div>
-        {isMobileMenuOpen && ( <div className="lg:hidden absolute top-full left-0 w-full h-[calc(100vh-5rem)] bg-white overflow-y-auto"><div className="px-4 pt-4 pb-8 space-y-2">{userDetail ? ( <div className="bg-gray-50 rounded-lg"><button onClick={() => setIsMobileProfileOpen(p => !p)} className="w-full flex justify-between items-center p-4"><div className="flex items-center space-x-3"><div className="h-10 w-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold">{(userDetail.name || 'U')[0].toUpperCase()}</div><div><p className="font-semibold text-gray-800 text-left">{userDetail.name}</p><p className="text-sm text-gray-500 text-left">{userDetail.email}</p></div></div><ChevronDownIcon className={`h-5 w-5 text-gray-500 transition-transform ${isMobileProfileOpen ? 'rotate-180' : ''}`} /></button>{isMobileProfileOpen && (<div className="px-2 pb-2 space-y-1 border-t border-gray-200">{profileMenuItems.map((item) => (item.href ? (<Link key={item.text} href={item.href} onClick={closeAllDropdowns} className="flex items-center px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"><item.icon className="h-5 w-5 mr-4 text-gray-500" /> {item.text}</Link>) : (<button key={item.text} onClick={item.onClick} className="w-full text-left flex items-center px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"><item.icon className="h-5 w-5 mr-4 text-gray-500" /> {item.text}</button>)))}<button onClick={handleLogout} className="w-full text-left flex items-center px-3 py-3 text-base text-red-600 rounded-md hover:bg-red-50 transition-colors"><ArrowRightOnRectangleIcon className="h-5 w-5 mr-4" /> {t.sign_out}</button></div>)}</div>) : (<div className="grid grid-cols-2 gap-3"><Link href="/driver/login" onClick={closeAllDropdowns} className="w-full text-center px-4 py-3 bg-gray-100 text-blue-600 font-semibold rounded-lg hover:bg-gray-200 transition-colors">{t.nav_sign_in}</Link><Link href="/register" onClick={closeAllDropdowns} className="w-full text-center px-4 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">{t.nav_get_started}</Link></div>)}
-              <div className="py-4 space-y-2 border-t border-gray-200/80 mt-4"><Link href="/" onClick={closeAllDropdowns} className="flex items-center px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"><HomeIcon className="h-5 w-5 mr-4 text-gray-500" />{t.nav_home}</Link><Link href="/howItWorks" onClick={closeAllDropdowns} className="block px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors">{t.nav_how_it_works}</Link><Link href="/benefits" onClick={closeAllDropdowns} className="block px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors">{t.nav_benefits}</Link><p className="px-3 pt-4 pb-1 text-sm font-semibold text-gray-400">{t.nav_resources}</p>
-              {t.resources_list.map((item, index) => {
-                  const Icon = resourceIcons[index]?.icon || ShieldCheckIcon;
-                  const color = resourceIcons[index]?.color || 'text-gray-600';
-                  return (<Link key={item.title} href={item.href} onClick={closeAllDropdowns} className="flex items-center px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"><Icon className={`h-5 w-5 mr-4 ${color}`} /> {item.title}</Link>);
-              })}
-              <p className="px-3 pt-4 pb-1 text-sm font-semibold text-gray-400">Help</p><Link href="/faq" onClick={closeAllDropdowns} className="flex items-center px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"><QuestionMarkCircleIcon className="h-5 w-5 mr-4 text-gray-500" />{t.nav_faq}</Link><Link href="/support" onClick={closeAllDropdowns} className="flex items-center px-3 py-3 text-base text-gray-700 rounded-md hover:bg-blue-50 hover:text-blue-600 transition-colors"><LifebuoyIcon className="h-5 w-5 mr-4 text-gray-500" />{t.nav_support}</Link></div>
-            </div></div>)}
+      
       </nav>
     </>
   );

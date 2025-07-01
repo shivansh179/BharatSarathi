@@ -1,15 +1,23 @@
 {
   "nav_home": "Home",
   "nav_how_it_works": "How It Works",
-  "nav_benefits": "Benefits",
-  "nav_resources": "Resources",
+  "nav_business": "For business",
+  "nav_apply": "For business",
+  "nav_apply_content":[
+                      {"title":"Join as driver","icon":"https://cdn-icons-png.flaticon.com/128/4900/4900915.png"},
+                      {"title":"Join for dto (drive to own)","icon":"https://cdn-icons-png.flaticon.com/128/3410/3410350.png"},
+                      {"title":"Join as Doc (Driver cum owner)","icon":"https://cdn-icons-png.flaticon.com/128/3967/3967122.png"}
+                    ],
+
+                    
+  "nav_resources": "Quick Resources",
   "nav_faq": "FAQ",
   "nav_support": "Support",
   "nav_sign_in": "Sign In",
   "nav_get_started": "Get Started",
   "resources_list": [
     { "title": "Driver Welfare Schemes", "description": "Govt. initiatives and benefits", "href": "/driver-welfare" },
-    { "title": "Training & Certification", "description": "Enhance your professional skills", "href": "/training-certification" },
+    { "title": "Get PF / ESI ", "description": "Secure your & Family", "href": "/training-certification" },
     { "title": "Community Forum", "description": "Connect with fellow drivers", "href": "/community-forum" },
     { "title": "News & Updates", "description": "Latest transport industry news", "href": "/news-updates" }
   ],
@@ -26,12 +34,15 @@
   "sign_out": "Sign Out",
   "feature_coming_soon": "Feature coming soon!",
   "logged_out_success": "Logged out successfully",
+  
 
   "footer_description": "India's premier platform connecting professional drivers with passengers. Join our growing community of driver partners across the nation.",
   "footer_quick_links": "Quick Links",
-  "footer_quick_links_list": ["About Us", "How It Works", "Driver Requirements", "Fleet Owners", "Careers", "Press"],
+  "footer_quick_links_list": ["About Us", "How It Works", "Driver Requirements", "Fleet Owners", "Careers", "Press", "Resources" ,"Benefits"],
   "footer_support": "Support",
   "footer_support_list": ["Help Center", "Safety Center", "Community Guidelines", "FAQs", "Contact Us", "Legal"],
+  "footer_resources": "Resources",
+  "footer_resources_list": ["Resources"],
   "footer_contact_us": "Contact Us",
   "footer_address_value": "123 Sarthi Marg,\nNew Delhi, 110001,\nIndia",
   "footer_download_app": "Download Our App",

@@ -1,16 +1,22 @@
 import Link from 'next/link';
+import { useState } from 'react';
 import { useTranslation } from "@/hooks/useTranslation";
-import { PhoneIcon, EnvelopeIcon, MapPinIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+import { PhoneIcon, EnvelopeIcon, MapPinIcon, ChevronRightIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline';
 
 export default function Footer() {
   const { t } = useTranslation('common');
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const currentYear = new Date().getFullYear();
   const copyrightText = t.footer_copyright.replace('{year}', currentYear.toString());
+
+  const toggleResources = () => {
+    setIsResourcesOpen(!isResourcesOpen);
+  };
 
   return (
     <footer className="bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Bharat Sarthi</h3>
             <p className="text-gray-600 mb-6 text-sm leading-relaxed">{t.footer_description}</p>
@@ -38,7 +44,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t.footer_quick_links}</h3>
             <ul className="space-y-3">
-              {t.footer_quick_links_list.map((item: string) => (
+              {t.footer_quick_links_list.map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="group flex items-center text-gray-600 hover:text-blue-600 transition duration-150">
                     <ChevronRightIcon className="h-4 w-4 mr-2 text-gray-400 group-hover:text-blue-500" /><span>{item}</span>
@@ -51,7 +57,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{t.footer_support}</h3>
             <ul className="space-y-3">
-              {t.footer_support_list.map((item: string) => (
+              {t.footer_support_list.map((item) => (
                 <li key={item}>
                   <Link href={`/${item.toLowerCase().replace(/\s+/g, '-')}`} className="group flex items-center text-gray-600 hover:text-blue-600 transition duration-150">
                     <ChevronRightIcon className="h-4 w-4 mr-2 text-gray-400 group-hover:text-blue-500" /><span>{item}</span>
@@ -59,6 +65,51 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div>
+            <div 
+              onClick={toggleResources}
+              className="flex flex-col left-0  justify-between cursor-pointer group mb-4"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition duration-150">
+                {t.footer_resources}
+              </h3>
+
+              <div className="flex items-center">
+  <ChevronRightIcon
+    className={`h-4 w-4 mr-2 text-gray-400 group-hover:text-blue-500 transition-transform duration-200 ${
+      isResourcesOpen ? 'rotate-90' : ''
+    }`}
+  />
+  <span className="text-gray-600">{t.nav_resources}</span>
+</div>
+</div>
+
+            
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${
+              isResourcesOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            }`}>
+              <ul className="space-y-4">
+                {t.resources_list.map((resource) => (
+                  <li key={resource.title} className="border-l-2 border-blue-100 pl-4 hover:border-blue-300 transition duration-150">
+                    <Link href={resource.href} className="block group">
+                      <div className="flex items-start">
+                        <ChevronRightIcon className="h-4 w-4 mr-2 mt-0.5 text-gray-400 group-hover:text-blue-500 flex-shrink-0" />
+                        <div>
+                          <h4 className="text-sm font-medium text-gray-800 group-hover:text-blue-600 transition duration-150">
+                            {resource.title}
+                          </h4>
+                          <p className="text-xs text-gray-500 mt-1 group-hover:text-gray-600 transition duration-150">
+                            {resource.description}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           
           <div>
