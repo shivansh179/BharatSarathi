@@ -42,5 +42,61 @@
   "footer_copyright": "© {year} Bharat Sarthi Technologies Pvt. Ltd. Sabhi adhikar surakshit hain.",
   "footer_terms": "Seva ki Shartein",
   "footer_privacy": "Gopniyata Niti",
-  "footer_cookies": "Cookie Niti"
+  "footer_cookies": "Cookie Niti",
+
+
+
+
+
+
+
+  "brand": "DriveHire Pro",
+    "badge": "Business ke liye",
+    "coming_soon": "Jaldi aa raha hai",
+    "hero_title": "Bas",
+    "hero_title_highlight": "1 Ghante",
+    "hero_description": "Hamare verified process ke saath turant qualified driver hire karein",
+    "verified_banner": "Sabhi profiles verify ki gayi hain, kaam ke liye ready hain",
+    "features": [
+      {
+        "title": "Koi Accident Record Nahi",
+        "description": "Sabhi drivers ka record saf hai"
+      },
+      {
+        "title": "Background Verification Done",
+        "description": "Poora background check kiya gaya hai"
+      },
+      {
+        "title": "Police Verification Hua",
+        "description": "Sabhi drivers ka police se verification hua hai"
+      },
+      {
+        "title": "Driving Test Pass",
+        "description": "Driving skills test kiya gaya hai"
+      }
+    ],
+    "why_title": "Hamare Verified Drivers Kyon?",
+    "why_points": [
+      {
+        "title": "100% Verified",
+        "description": "Background aur police verification complete hai"
+      },
+      {
+        "title": "Tez Hiring",
+        "description": "Sirf 1 ghante mein driver mil jaega"
+      },
+      {
+        "title": "Skilled Drivers",
+        "description": "Certified aur trained driver"
+      }
+    ],
+    "query_title": "Apni Query Submit karein",
+    "query_description": "Jab hum launch karein to sabse pehle aapko bataaya jaayega",
+    "query_placeholder": "Apni business query ya requirement likhein...",
+    "query_button": "Query Submit Karein",
+    "query_submitted": "Submit ho gaya!",
+    "thank_you": "Shukriya! Hum jald contact karenge.",
+    "footer_text": "Driver hiring ab simple aur secure ho gaya hai"
+
+    
 }

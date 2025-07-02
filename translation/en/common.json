@@ -52,6 +52,62 @@
   "footer_copyright": "© {year} Bharat Sarthi Technologies Pvt. Ltd. All rights reserved.",
   "footer_terms": "Terms of Service",
   "footer_privacy": "Privacy Policy",
-  "footer_cookies": "Cookie Policy"
+  "footer_cookies": "Cookie Policy",
+
+
+
+
+
+
+
+
+
+  "brand": "DriveHire Pro",
+  "badge": "For Businesses",
+  "coming_soon": "Coming Soon",
+  "hero_title": "Hire Drivers in Just",
+  "hero_title_highlight": "1 Hour",
+  "hero_description": "Get qualified drivers on the job quickly with our comprehensive verification system",
+  "verified_banner": "All profiles are verified and ready to work",
+  "features": [
+    {
+      "title": "Zero Accidental Record",
+      "description": "All drivers have clean driving records"
+    },
+    {
+      "title": "Background Verification Done",
+      "description": "Comprehensive background checks completed"
+    },
+    {
+      "title": "Police Verification Completed",
+      "description": "Police clearance verified for all drivers"
+    },
+    {
+      "title": "Driving Assessment Done",
+      "description": "Skills tested and certified"
+    }
+  ],
+  "why_title": "Why Choose Our Verified Drivers?",
+  "why_points": [
+    {
+      "title": "100% Verified",
+      "description": "Complete background and police verification"
+    },
+    {
+      "title": "Quick Hiring",
+      "description": "Get drivers on job within 1 hour"
+    },
+    {
+      "title": "Skilled Drivers",
+      "description": "Driving assessment completed and certified"
+    }
+  ],
+  "query_title": "Submit Your Query",
+  "query_description": "Get notified when we launch and be among the first to hire verified drivers",
+  "query_placeholder": "Enter your business query or requirements...",
+  "query_button": "Submit Query",
+  "query_submitted": "Submitted!",
+  "thank_you": "Thank you! We'll get back to you soon.",
+  "footer_text": "Professional driver hiring made simple and secure"
   
 }
