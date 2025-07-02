@@ -2,14 +2,13 @@
   "nav_home": "Home",
   "nav_how_it_works": "How It Works",
   "nav_business": "For business",
+  "nav_benefits": "Benefits",
   "nav_apply": "For business",
-  "nav_apply_content":[
-                      {"title":"Join as driver","icon":"https://cdn-icons-png.flaticon.com/128/4900/4900915.png"},
-                      {"title":"Join for dto (drive to own)","icon":"https://cdn-icons-png.flaticon.com/128/3410/3410350.png"},
-                      {"title":"Join as Doc (Driver cum owner)","icon":"https://cdn-icons-png.flaticon.com/128/3967/3967122.png"}
-                    ],
-
-                    
+  "nav_apply_content": [
+    { "title": "Join as driver", "icon": "https://cdn-icons-png.flaticon.com/128/4900/4900915.png" },
+    { "title": "Join for dto (drive to own)", "icon": "https://cdn-icons-png.flaticon.com/128/3410/3410350.png" },
+    { "title": "Join as Doc (Driver cum owner)", "icon": "https://cdn-icons-png.flaticon.com/128/3967/3967122.png" }
+  ],
   "nav_resources": "Quick Resources",
   "nav_faq": "FAQ",
   "nav_support": "Support",
@@ -34,11 +33,9 @@
   "sign_out": "Sign Out",
   "feature_coming_soon": "Feature coming soon!",
   "logged_out_success": "Logged out successfully",
-  
-
   "footer_description": "India's premier platform connecting professional drivers with passengers. Join our growing community of driver partners across the nation.",
   "footer_quick_links": "Quick Links",
-  "footer_quick_links_list": ["About Us", "How It Works", "Driver Requirements", "Fleet Owners", "Careers", "Press", "Resources" ,"Benefits"],
+  "footer_quick_links_list": ["About Us", "How It Works", "Driver Requirements", "Fleet Owners", "Careers", "Press", "Resources", "Benefits"],
   "footer_support": "Support",
   "footer_support_list": ["Help Center", "Safety Center", "Community Guidelines", "FAQs", "Contact Us", "Legal"],
   "footer_resources": "Resources",
@@ -53,15 +50,6 @@
   "footer_terms": "Terms of Service",
   "footer_privacy": "Privacy Policy",
   "footer_cookies": "Cookie Policy",
-
-
-
-
-
-
-
-
-
   "brand": "DriveHire Pro",
   "badge": "For Businesses",
   "coming_soon": "Coming Soon",
@@ -70,37 +58,16 @@
   "hero_description": "Get qualified drivers on the job quickly with our comprehensive verification system",
   "verified_banner": "All profiles are verified and ready to work",
   "features": [
-    {
-      "title": "Zero Accidental Record",
-      "description": "All drivers have clean driving records"
-    },
-    {
-      "title": "Background Verification Done",
-      "description": "Comprehensive background checks completed"
-    },
-    {
-      "title": "Police Verification Completed",
-      "description": "Police clearance verified for all drivers"
-    },
-    {
-      "title": "Driving Assessment Done",
-      "description": "Skills tested and certified"
-    }
+    { "title": "Zero Accidental Record", "description": "All drivers have clean driving records" },
+    { "title": "Background Verification Done", "description": "Comprehensive background checks completed" },
+    { "title": "Police Verification Completed", "description": "Police clearance verified for all drivers" },
+    { "title": "Driving Assessment Done", "description": "Skills tested and certified" }
   ],
   "why_title": "Why Choose Our Verified Drivers?",
   "why_points": [
-    {
-      "title": "100% Verified",
-      "description": "Complete background and police verification"
-    },
-    {
-      "title": "Quick Hiring",
-      "description": "Get drivers on job within 1 hour"
-    },
-    {
-      "title": "Skilled Drivers",
-      "description": "Driving assessment completed and certified"
-    }
+    { "title": "100% Verified", "description": "Complete background and police verification" },
+    { "title": "Quick Hiring", "description": "Get drivers on job within 1 hour" },
+    { "title": "Skilled Drivers", "description": "Driving assessment completed and certified" }
   ],
   "query_title": "Submit Your Query",
   "query_description": "Get notified when we launch and be among the first to hire verified drivers",
@@ -109,5 +76,4 @@
   "query_submitted": "Submitted!",
   "thank_you": "Thank you! We'll get back to you soon.",
   "footer_text": "Professional driver hiring made simple and secure"
-  
 }

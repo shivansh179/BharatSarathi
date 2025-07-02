@@ -1,3 +1,5 @@
+// FILE: types/translations.ts
+
 import enCommon from '@/translation/en/common.json';
 import enHomepage from '@/translation/en/homepage.json';
 import enBenefits from '@/translation/en/benefits.json';
@@ -31,5 +33,4 @@ export type TranslationKeys = {
   login : typeof enLogin;
   documentUpload : typeof enDocumentUpload;
   register: typeof enRegister;
-
 };

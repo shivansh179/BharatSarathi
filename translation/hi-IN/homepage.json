@@ -1,65 +1,67 @@
 {
-    "hero_tagline": "Bharat ka Sabse Tezi Se Badhta Driver Platform",
-    "hero_title": "Apni Safalta Drive Karein",
-    "hero_description": "Bharat ke drivers ke liye all-in-one platform. Job referrals, health insurance, challan me sahayata, aur bahut kuch paayein.",
-    "hero_cta_main": "Aaj Hi Kamana Shuru Karein",
-    "hero_cta_secondary": "Dekhein Kaise Kaam Karta Hai",
-    "stats": [
-      { "number": "50K+", "label": "Active Drivers" },
-      { "number": "₹25K", "label": "Avg Mahine ki Kamai" },
-      { "number": "15+", "label": "Sheher" },
-      { "number": "4.8★", "label": "Driver Rating" }
-    ],
-    "services_title": "Ek Platform. Samadhan Anek.",
-    "services_description": "Hum driver ke jeevan ke har pehlu ko support karne ke liye services ka ek poora ecosystem pradaan karte hain.",
-    "services_list": [
-      { "title": "Driver Training", "description": "Apne skills aur suraksha ko behtar banane ke liye certified instructors se training lein." },
-      { "title": "Health Insurance", "description": "Apne aur apne parivaar ke liye saste health plans prapt karein." },
-      { "title": "Challan Settlement", "description": "Hum aapko Lok Adalat ke zariye traffic challan ko nipatane mein madad karte hain." },
-      { "title": "Car Services", "description": "Gaadi ki maintenance, servicing, aur spare parts par discount paayein." },
-      { "title": "Job Referrals", "description": "Ola, Uber, aur anya top platforms par naukri ke avsar paayein." }
-    ],
-    "and_much_more": "Aur Bahut Kuch!",
-    "join_today": "Aaj Hi Judein",
-    "testimonials_title": "Asli Kahaniyan, Asli Asar",
-    "testimonials_description": "Unn drivers se sunein jinhone Bharat Sarthi ke saath apne career ko badla hai.",
-    "testimonials_list": [
-      { "quote": "Bharat Sarthi ne mera ₹4,000 ka challan Lok Adalat se sirf 2 din mein hal karne mein madad ki. Pura process bahut aasan tha!", "name": "Rakesh Sharma", "location": "Delhi", "service": "Challan Sahayata", "image": "/p1.jpeg" },
-      { "quote": "Mujhe Bharat Sarthi ke zariye Uber mein refer kiya gaya aur ab main mahine mein ₹30,000 se zyada kama raha hoon. Is mauke ke liye dhanyavad!", "name": "Pritam Singh", "location": "Mumbai", "service": "Job Referral", "image": "/p2.jpeg" },
-      { "quote": "Mujhe yahan apne parivaar ke liye ek sasta health insurance plan mila. Ab main shanti se drive karta hoon.", "name": "Amit Kumar", "location": "Bangalore", "service": "Health Insurance", "image": "/p3.jpeg" },
-      { "quote": "Mujhe yahan apne parivaar ke liye ek car insurance plan mila.", "name": "Shivani Kumari", "location": "Delhi", "service": "Car Insurance", "image": "/p4.jpeg" }
-    ],
-    "faq_title": "Aksar Puche Gaye Sawal",
-    "faq_description": "Aapke sawal hain? Hamare paas jawab hain.",
-    "faq_list": [
-      { "question": "Challan settlement kaise kaam karta hai?", "answer": "Hum aapko legal experts se jodte hain jo Lok Adalat mein aapka pratinidhitv karte hain, jo jald vivaad samadhan ke liye ek sarkari pranali hai." },
-      { "question": "Insurance ke liye mujhe kaun se documents chahiye?", "answer": "Aam taur par aapko apna Aadhaar card, PAN card aur gaadi ke registration ki details chahiye." },
-      { "question": "Agar mere paas car nahi hai to kya main join kar sakta hoon?", "answer": "Haan, bilkul! Hum un drivers ko job referrals dete hain jinke paas gaadi nahi hai." },
-      { "question": "Job referral milne mein kitna time lagta hai?", "answer": "Aapka profile pura hone ke baad, hum aapko 3-5 dinon mein Ola aur Uber jaise partners ke paas refer karte hain." }
-    ],
-    "visit_faq": "FAQ Section Dekhein",
-    "why_us_section": {
-    "title": "Bharat Sarthi Kyun Chunein?",
-    "description": "Hum drivers ki samasyaon ko samajhte hain. Hamara platform unhe hal karne ke liye banaya gaya hai.",
-    "problems_title": "❌ Aam Driver Samasyaein",
+  "hero_tagline": "ड्राइवर द्वारा, ड्राइवर के लिए भारत का एकमात्र प्लेटफॉर्म",
+  "hero_title": "अपनी सफलता ड्राइव करें",
+  "hero_description": "भारत के ड्राइवरों के लिए ऑल-इन-वन प्लेटफॉर्म। जॉब रेफरल, स्वास्थ्य बीमा, चालान में सहायता, और बहुत कुछ पाएं।",
+  "hero_cta_main": "आज ही कमाना शुरू करें",
+  "hero_cta_secondary": "देखें कैसे काम करता है",
+  "stats": [
+    { "number": "50K+", "label": "सक्रिय ड्राइवर" },
+    { "number": "₹25K", "label": "औसत महीने की कमाई" },
+    { "number": "15+", "label": "शहर" },
+    { "number": "4.8★", "label": "ड्राइवर रेटिंग" }
+  ],
+  "trust":"Top platforms ke refer kiye gaye drivers ka trusted choice",
+  "services_title": "एक प्लेटफॉर्म। समाधान अनेक।",
+  "services_description": "हम ड्राइवर के जीवन के हर पहलू को सपोर्ट करने के लिए सेवाओं का एक पूरा इकोसिस्टम प्रदान करते हैं।",
+  "services_list": [
+    { "title": "पीऍफ़ / ईएसआई पाएं", "description": "सभी भारत सारथी सदस्यों को हम 100% पीऍफ़ / ईएसआई दिलाते हैं" },
+    { "title": "स्वास्थ्य बीमा", "description": "अपने और अपने परिवार के लिए सस्ते स्वास्थ्य प्लान्स प्राप्त करें।" },
+    { "title": "चालान निपटारा", "description": "हम आपको लोक अदालत के ज़रिये ट्रैफिक चालान को निपटाने में मदद करते हैं।" },
+    { "title": "कार सेवाएं", "description": "गाड़ी की मेंटेनेंस, सर्विसिंग, और स्पेयर पार्ट्स पर डिस्काउंट पाएं।" },
+    { "title": "जॉब रेफरल्स", "description": "ओला, उबर, और अन्य टॉप प्लेटफॉर्म्स पर नौकरी के अवसर पाएं।" }
+  ],
+  "and_much_more": "और भी बहुत कुछ!",
+  "join_today": "आज ही जुड़ें",
+  "testimonials_title": "असली कहानियाँ, असली असर",
+  "testimonials_description": "उन ड्राइवरों से सुनें जिन्होंने भारत सारथी के साथ अपने करियर को बदला है।",
+  "testimonials_list": [
+    { "quote": "भारत सारथी ने मेरा ₹4,000 का चालान लोक अदालत से सिर्फ 2 दिन में हल करने में मदद की। पूरा प्रोसेस बहुत आसान था!", "name": "राकेश शर्मा", "location": "दिल्ली", "service": "चालान सहायता", "image": "/p1.jpeg" },
+    { "quote": "मुझे भारत सारथी के ज़रिये उबर में रेफर किया गया और अब मैं महीने में ₹30,000 से ज़्यादा कमा रहा हूँ। इस मौके के लिए धन्यवाद!", "name": "प्रीतम सिंह", "location": "मुंबई", "service": "जॉब रेफरल", "image": "/p2.jpeg" },
+    { "quote": "मुझे यहाँ अपने परिवार के लिए एक सस्ता स्वास्थ्य बीमा प्लान मिला। अब मैं शांति से ड्राइव करता हूँ।", "name": "अमित कुमार", "location": "बैंगलोर", "service": "स्वास्थ्य बीमा", "image": "/p3.jpeg" },
+    { "quote": "मुझे यहाँ अपने परिवार के लिए एक कार बीमा प्लान मिला।", "name": "शिवानी कुमारी", "location": "दिल्ली", "service": "कार बीमा", "image": "/p4.jpeg" }
+  ],
+  "faq_title": "अक्सर पूछे गए सवाल",
+  "faq_description": "आपके सवाल हैं? हमारे पास जवाब हैं।",
+  "faq_list": [
+    { "question": "चालान निपटारा कैसे काम करता है?", "answer": "हम आपको कानूनी विशेषज्ञों से जोड़ते हैं जो लोक अदालत में आपका प्रतिनिधित्व करते हैं, जो जल्द विवाद समाधान के लिए एक सरकारी प्रणाली है।" },
+    { "question": "बीमा के लिए मुझे कौन से दस्तावेज़ चाहिए?", "answer": "आमतौर पर आपको अपना आधार कार्ड, पैन कार्ड और गाड़ी के रजिस्ट्रेशन की डिटेल्स चाहिए।" },
+    { "question": "अगर मेरे पास कार नहीं है तो क्या मैं जुड़ सकता हूँ?", "answer": "हाँ, बिल्कुल! हम उन ड्राइवरों को जॉब रेफरल देते हैं जिनके पास गाड़ी नहीं है।" },
+    { "question": "जॉब रेफरल मिलने में कितना समय लगता है?", "answer": "आपका प्रोफाइल पूरा होने के बाद, हम आपको 3-5 दिनों में ओला और उबर जैसे पार्टनर्स के पास रेफर करते हैं।" }
+  ],
+  "visit_faq": "FAQ सेक्शन देखें",
+  "why_us_section": {
+    "title": "भारत सारथी क्यों चुनें?",
+    "description": "हम ड्राइवरों की समस्याओं को समझते हैं। हमारा प्लेटफॉर्म उन्हें हल करने के लिए बनाया गया है।",
+    "problems_title": "❌ आम ड्राइवर समस्याएं",
     "problems_list": [
-      "Asthir aay aur naukri ki suraksha ki kami.",
-      "Saste swasthya bima ya loan tak pahunch nahi.",
-      "Challan jaise jatil kanooni mamlon se nipatne mein kathinai.",
-      "Gaadi ki dekhbhal aur parts ki adhik lagat.",
-      "Ek sahayak samuday aur margdarshan ki kami."
+      "अस्थिर आय और नौकरी की सुरक्षा की कमी।",
+      "सस्ते स्वास्थ्य बीमा या लोन तक पहुँच नहीं।",
+      "चालान जैसे जटिल कानूनी मामलों से निपटने में कठिनाई।",
+      "गाड़ी की देखभाल और पार्ट्स की अधिक लागत।",
+      "एक सहायक समुदाय और मार्गदर्शन की कमी।"
     ],
-    "solutions_title": "✅ Bharat Sarthi Samadhan",
+    "solutions_title": "✅ भारत सारथी समाधान",
     "solutions_list": [
-      "Pramukh platforms par sthir naukri ke referrals.",
-      "Vishesh, kam lagat wale bima aur vitteey utpaad.",
-      "Challan ke jaldi niptare ke liye visheshagya sahayata.",
-      "Bharosemand, chhoot wale service centers ka network.",
-      "Ek peshewar samuday aur 24/7 sahayata."
+      "प्रमुख प्लेटफॉर्म्स पर स्थिर नौकरी के रेफरल।",
+      "विशेष, कम लागत वाले बीमा और वित्तीय उत्पाद।",
+      "चालान के जल्दी निपटारे के लिए विशेषज्ञ सहायता।",
+      "भरोसेमंद, छूट वाले सर्विस सेंटरों का नेटवर्क।",
+      "एक पेशेवर समुदाय और 24/7 सहायता।"
     ]
   },
-  "ready_tag":"Kya Aap Driving Career mein control lene ke liye taiyar hain?",
-  "start_journey":"Aaj hi Apni Yatra Suru kare",
-  "learn_more":"Aur Adhik Seekhe"
-  
-  }
+  "ready_tag": "क्या आप अपने ड्राइविंग करियर पर नियंत्रण करने के लिए तैयार हैं?",
+  "start_journey": "आज ही अपनी यात्रा शुरू करें",
+  "learn_more": "और अधिक जानें",
+  "driver_insured": "ड्राइवर बीमित",
+  "driver_insured_number": "33"
+}

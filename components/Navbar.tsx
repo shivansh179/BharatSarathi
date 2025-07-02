@@ -167,7 +167,7 @@ export default function Navbar() {
             {t.nav_apply_content.map((item, index) => (
               <Link
                 key={index}
-                href="/benefits"
+                href="/forBusiness"
                 onClick={() => setIsOpen(false)}
                 className="group flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors"
               >

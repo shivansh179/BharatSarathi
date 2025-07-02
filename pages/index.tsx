@@ -224,7 +224,7 @@ export default function Homepage() {
         
         <section className="py-16 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h3 className="text-center text-xl font-semibold text-gray-500 mb-8">Trusted by drivers referred to top platforms</h3>
+                <h3 className="text-center text-xl font-semibold text-gray-500 mb-8">{t.trust}</h3>
                 <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6">
                     <Image src="https://cdn.iconscout.com/icon/free/png-512/free-ola-icon-download-in-svg-png-gif-file-formats--cabs-logo-brand-world-logos-vol-1-pack-icons-282225.png?f=webp&w=512" alt="Ola" width={100} height={40} />
                     <Image src="https://cdn.iconscout.com/icon/free/png-512/free-uber-icon-download-in-svg-png-gif-file-formats--brand-company-logo-world-logos-vol-3-pack-icons-282340.png?f=webp&w=512" alt="Uber" width={100} height={40} />

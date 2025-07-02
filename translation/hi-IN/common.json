@@ -1,102 +1,79 @@
 {
   "nav_home": "Home",
-  "nav_how_it_works": "How it Works",
-  "nav_benefits": "Fayde",
-  "nav_resources": "Sansadhan",
-  "nav_faq": "Aksar Puche Gaye Sawal",
-  "nav_support": "Madad ",
-  "nav_sign_in": "Sign In Karein",
-  "nav_get_started": "Shuru Karein",
-  "resources_list": [
-    { "title": "Driver Kalyan Yojnayein", "description": "Sarkari pehal aur labh", "href": "/driver-welfare" },
-    { "title": "Prashikshan aur Pramanan", "description": "Apne peshewar kaushal ko badhayein", "href": "/training-certification" },
-    { "title": "Community Manch", "description": "Sathi drivers se judein", "href": "/community-forum" },
-    { "title": "Samachar aur Updates", "description": "Parivahan udyog ki taza khabrein", "href": "/news-updates" }
+  "nav_how_it_works": "कैसे काम करता है",
+  "nav_business": "बिजनेस के लिए",
+  "nav_benefits": "फायदे",
+  "nav_apply": "बिजनेस के लिए",
+  "nav_apply_content": [
+    { "title": "ड्राइवर के रूप में जुड़ें", "icon": "https://cdn-icons-png.flaticon.com/128/4900/4900915.png" },
+    { "title": "डीटीओ (ड्राइव टू ओन) के लिए जुड़ें", "icon": "https://cdn-icons-png.flaticon.com/128/3410/3410350.png" },
+    { "title": "डीओसी (ड्राइवर-कम-मालिक) के रूप में जुड़ें", "icon": "https://cdn-icons-png.flaticon.com/128/3967/3967122.png" }
   ],
-  "join_title": "Bharat Sarthi se Judein",
-  "join_description": "Shuru karne ke liye apna raasta chunein",
-  "register_driver": "Driver ke roop mein register karein",
-  "register_driver_desc": "Aaj hi hamare saath apni yatra shuru karein.",
-  "register_user": "User Registration",
-  "register_user_desc": "Jald aa raha hai.",
-  "my_profile": "Mera Profile",
-  "earnings": "Kamai",
-  "documents": "Dastavez",
-  "settings": "Settings",
-  "sign_out": "Sign Out Karein",
-  "feature_coming_soon": "Feature jald aa raha hai!",
-  "logged_out_success": "Safaltapoorvak logout kiya gaya",
-
-  
-  "footer_description": "Professional drivers ko yatriyon se jodne wala Bharat ka pramukh platform. Desh bhar mein hamare badhte driver partners ke samuday se judein.",
-  "footer_quick_links": "Quick Links",
-  "footer_quick_links_list": ["Hamare Bare Mein", "Kaise Kaam Karta Hai", "Driver ki Aavashyaktaein", "Fleet Maalik", "Careers", "Press"],
-  "footer_support": "Sahayata",
-  "footer_support_list": ["Sahayata Kendra", "Suraksha Kendra", "Samudayik Disha Nirdesh", "FAQs", "Humse Sampark Karein", "Kanooni"],
-  "footer_contact_us": "Humse Sampark Karein",
-  "footer_address_value": "123 ਸਾਰਥੀ ਮਾਰਗ,\nਨਵੀਂ ਦਿੱਲੀ, 110001,\nਭਾਰਤ",
-  "footer_download_app": "Hamara App Download Karein",
-  "footer_download_on": "Is par download karein",
-  "footer_app_store": "App Store",
-  "footer_play_store": "Play Store",
-  "footer_copyright": "© {year} Bharat Sarthi Technologies Pvt. Ltd. Sabhi adhikar surakshit hain.",
-  "footer_terms": "Seva ki Shartein",
-  "footer_privacy": "Gopniyata Niti",
-  "footer_cookies": "Cookie Niti",
-
-
-
-
-
-
-
-  "brand": "DriveHire Pro",
-    "badge": "Business ke liye",
-    "coming_soon": "Jaldi aa raha hai",
-    "hero_title": "Bas",
-    "hero_title_highlight": "1 Ghante",
-    "hero_description": "Hamare verified process ke saath turant qualified driver hire karein",
-    "verified_banner": "Sabhi profiles verify ki gayi hain, kaam ke liye ready hain",
-    "features": [
-      {
-        "title": "Koi Accident Record Nahi",
-        "description": "Sabhi drivers ka record saf hai"
-      },
-      {
-        "title": "Background Verification Done",
-        "description": "Poora background check kiya gaya hai"
-      },
-      {
-        "title": "Police Verification Hua",
-        "description": "Sabhi drivers ka police se verification hua hai"
-      },
-      {
-        "title": "Driving Test Pass",
-        "description": "Driving skills test kiya gaya hai"
-      }
-    ],
-    "why_title": "Hamare Verified Drivers Kyon?",
-    "why_points": [
-      {
-        "title": "100% Verified",
-        "description": "Background aur police verification complete hai"
-      },
-      {
-        "title": "Tez Hiring",
-        "description": "Sirf 1 ghante mein driver mil jaega"
-      },
-      {
-        "title": "Skilled Drivers",
-        "description": "Certified aur trained driver"
-      }
-    ],
-    "query_title": "Apni Query Submit karein",
-    "query_description": "Jab hum launch karein to sabse pehle aapko bataaya jaayega",
-    "query_placeholder": "Apni business query ya requirement likhein...",
-    "query_button": "Query Submit Karein",
-    "query_submitted": "Submit ho gaya!",
-    "thank_you": "Shukriya! Hum jald contact karenge.",
-    "footer_text": "Driver hiring ab simple aur secure ho gaya hai"
-
-    
+  "nav_resources": "संसाधन",
+  "nav_faq": "अक्सर पूछे गए सवाल",
+  "nav_support": "मदद",
+  "nav_sign_in": "Sign In करें",
+  "nav_get_started": "शुरू करें",
+  "resources_list": [
+    { "title": "ड्राइवर कल्याण योजनाएं", "description": "सरकारी पहल और लाभ", "href": "/driver-welfare" },
+    { "title": "प्रशिक्षण और प्रमाणन", "description": "अपने पेशेवर कौशल को बढ़ाएं", "href": "/training-certification" },
+    { "title": "कम्युनिटी मंच", "description": "साथि ड्राइवरों से जुड़ें", "href": "/community-forum" },
+    { "title": "समाचार और अपडेट", "description": "परिवहन उद्योग की ताज़ा खबरें", "href": "/news-updates" }
+  ],
+  "join_title": "भारत सारथी से जुड़ें",
+  "join_description": "शुरू करने के लिए अपना रास्ता चुनें",
+  "register_driver": "ड्राइवर के रूप में रजिस्टर करें",
+  "register_driver_desc": "आज ही हमारे साथ अपनी यात्रा शुरू करें।",
+  "register_user": "यूजर रजिस्ट्रेशन",
+  "register_user_desc": "जल्द आ रहा है।",
+  "my_profile": "मेरा प्रोफाइल",
+  "earnings": "कमाई",
+  "documents": "दस्तावेज़",
+  "settings": "सेटिंग्स",
+  "sign_out": "साइन आउट करें",
+  "feature_coming_soon": "फीचर जल्द आ रहा है!",
+  "logged_out_success": "सफलतापूर्वक लॉगआउट किया गया",
+  "footer_description": "प्रोफेशनल ड्राइवरों को यात्रियों से जोड़ने वाला भारत का प्रमुख प्लेटफॉर्म। देश भर में हमारे बढ़ते ड्राइवर पार्टनर्स के समुदाय से जुड़ें।",
+  "footer_quick_links": "क्विक लिंक्स",
+  "footer_quick_links_list": ["हमारे बारे में", "कैसे काम करता है", "ड्राइवर की आवश्यकताएं", "फ्लीट मालिक", "करियर", "प्रेस", "संसाधन", "फायदे"],
+  "footer_support": "सहायता",
+  "footer_support_list": ["सहायता केंद्र", "सुरक्षा केंद्र", "सामुदायिक दिशा-निर्देश", "अक्सर पूछे गए सवाल", "हमसे संपर्क करें", "कानूनी"],
+  "footer_resources": "संसाधन",
+  "footer_resources_list": ["संसाधन"],
+  "footer_contact_us": "हमसे संपर्क करें",
+  "footer_address_value": "१२३ सारथी मार्ग,\nनई दिल्ली, ११०००१,\nभारत",
+  "footer_download_app": "हमारा ऐप डाउनलोड करें",
+  "footer_download_on": "इस पर डाउनलोड करें",
+  "footer_app_store": "ऐप स्टोर",
+  "footer_play_store": "प्ले स्टोर",
+  "footer_copyright": "© {year} भारत सारथी टेक्नोलॉजीज प्राइवेट लिमिटेड। सभी अधिकार सुरक्षित हैं।",
+  "footer_terms": "सेवा की शर्तें",
+  "footer_privacy": "गोपनीयता नीति",
+  "footer_cookies": "कुकी नीति",
+  "brand": "ड्राइवहायर प्रो",
+  "badge": "बिजनेस के लिए",
+  "coming_soon": "जल्द आ रहा है",
+  "hero_title": "ड्राइवर हायर करें बस",
+  "hero_title_highlight": "1 घंटे में",
+  "hero_description": "हमारे वेरिफाइड प्रोसेस के साथ तुरंत क्वालिफाइड ड्राइवर हायर करें",
+  "verified_banner": "सभी प्रोफाइल वेरिफाई की गई हैं और काम के लिए तैयार हैं",
+  "features": [
+    { "title": "कोई एक्सीडेंट रिकॉर्ड नहीं", "description": "सभी ड्राइवरों का रिकॉर्ड साफ है" },
+    { "title": "बैकग्राउंड वेरिफिकेशन हो गया", "description": "पूरा बैकग्राउंड चेक किया गया है" },
+    { "title": "पुलिस वेरिफिकेशन हुआ", "description": "सभी ड्राइवरों का पुलिस से वेरिफिकेशन हुआ है" },
+    { "title": "ड्राइविंग टेस्ट पास", "description": "ड्राइविंग स्किल्स टेस्ट किया गया है" }
+  ],
+  "why_title": "हमारे वेरिफाइड ड्राइवर क्यों चुनें?",
+  "why_points": [
+    { "title": "100% वेरिफाइड", "description": "बैकग्राउंड और पुलिस वेरिफिकेशन पूरा है" },
+    { "title": "तेज हायरिंग", "description": "सिर्फ 1 घंटे में ड्राइवर मिल जाएगा" },
+    { "title": "स्किल्ड ड्राइवर्स", "description": "सर्टिफाइड और ट्रेन्ड ड्राइवर" }
+  ],
+  "query_title": "अपनी क्वेरी सबमिट करें",
+  "query_description": "जब हम लॉन्च करें तो सबसे पहले आपको बताया जाएगा",
+  "query_placeholder": "अपनी बिजनेस क्वेरी या रिक्वायरमेंट लिखें...",
+  "query_button": "क्वेरी सबमिट करें",
+  "query_submitted": "सबमिट हो गया!",
+  "thank_you": "शुक्रिया! हम जल्द संपर्क करेंगे।",
+  "footer_text": "ड्राइवर हायरिंग अब सिंपल और सुरक्षित हो गया है"
 }

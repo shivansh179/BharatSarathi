@@ -1,47 +1,42 @@
+// FILE: translations.ts (or your equivalent index/config file)
+
 import { TranslationKeys } from '@/types/translations';
 
+// English
 import enCommon from './en/common.json';
 import enHomepage from './en/homepage.json';
 import enBenefits from './en/benefits.json';
 import enFaq from './en/faq.json';
 import enHowItWorks from './en/howItWorks.json';
 import enSupport from './en/support.json';
+import enRegistrationComplete from './en/registrationComplete.json';
+import enLogin from './en/login.json';
+import enDocumentUpload from './en/uploadDocuments.json';
+import enRegister from './en/register.json';
 
+// Hindi
 import hiCommon from './hi-IN/common.json';
 import hiHomepage from './hi-IN/homepage.json';
 import hiBenefits from './hi-IN/benefits.json';
 import hiFaq from './hi-IN/faq.json';
 import hiHowItWorks from './hi-IN/howItWorks.json';
 import hiSupport from './hi-IN/support.json';
+import hiRegistrationComplete from './hi-IN/registrationComplete.json';
+import hiLogin from './hi-IN/login.json';
+import hiDocumentUpload from './hi-IN/uploadDocuments.json';
+import hiRegister from './hi-IN/register.json';
 
+// Punjabi
 import paCommon from './pa-IN/common.json';
 import paHomepage from './pa-IN/homepage.json';
 import paBenefits from './pa-IN/benefits.json';
 import paFaq from './pa-IN/faq.json';
 import paHowItWorks from './pa-IN/howItWorks.json';
 import paSupport from './pa-IN/support.json';
-
-import enRegistrationComplete from './en/registrationComplete.json';
-import hiRegistrationComplete from './hi-IN/registrationComplete.json';
 import paRegistrationComplete from './pa-IN/registrationComplete.json';
-
-
-
-import enLogin from './en/login.json';
-import hiLogin from './hi-IN/login.json';
 import paLogin from './pa-IN/login.json';
-
-import enDocumentUpload from './en/uploadDocuments.json';
-import hiDocumentUpload from './hi-IN/uploadDocuments.json';
 import paDocumentUpload from './pa-IN/uploadDocuments.json';
-
-
-
-import enRegister from './en/register.json';
-import hiRegister from './hi-IN/register.json';
 import paRegister from './pa-IN/register.json';
-
-
 
 
 type AllTranslations = {
@@ -57,8 +52,8 @@ export const translations: AllTranslations = {
     howItWorks: enHowItWorks,
     support: enSupport,
     registrationComplete: enRegistrationComplete,
-    login : enLogin,
-    documentUpload : enDocumentUpload,
+    login: enLogin,
+    documentUpload: enDocumentUpload,
     register: enRegister,
   },
   'hi-IN': {
@@ -69,10 +64,9 @@ export const translations: AllTranslations = {
     howItWorks: hiHowItWorks,
     support: hiSupport,
     registrationComplete: hiRegistrationComplete,
-    login : hiLogin,
-    documentUpload : hiDocumentUpload,
+    login: hiLogin,
+    documentUpload: hiDocumentUpload,
     register: hiRegister,
-
   },
   'pa-IN': {
     common: paCommon,
@@ -83,8 +77,7 @@ export const translations: AllTranslations = {
     support: paSupport,
     registrationComplete: paRegistrationComplete,
     login: paLogin,
-    documentUpload : paDocumentUpload,
+    documentUpload: paDocumentUpload,
     register: paRegister,
-
   },
 };
