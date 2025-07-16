@@ -72,12 +72,13 @@ export default function Homepage() {
                   <span className="text-blue-300 text-sm font-medium">{t.hero_tagline}</span>
                 </div>
                 
-                <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                <h3 className="text-2xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   {t.hero_title.split(' ').slice(0, 2).join(' ')}
+                
                   <span className="block bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
                     {t.hero_title.split(' ').slice(2).join(' ')}
                   </span>
-                </h1>
+                </h3>
                 
                 <p className="text-xl lg:text-2xl text-blue-100 mb-10 leading-relaxed">
                   {t.hero_description}
