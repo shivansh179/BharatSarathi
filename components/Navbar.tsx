@@ -109,6 +109,7 @@ export default function Navbar() {
     { code: 'en', name: 'English' },
     { code: 'hi-IN', name: 'हिन्दी (Hinglish)' },
     { code: 'pa-IN', name: 'ਪੰਜਾਬੀ (Punjabi)' },
+    { code: 'kan', name: 'ಕನ್ನಡ (Kannada)' },
   ];
 
   const mainNavLinks = [

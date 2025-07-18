@@ -39,6 +39,19 @@ import paDocumentUpload from './pa-IN/uploadDocuments.json';
 import paRegister from './pa-IN/register.json';
 
 
+// Kannada
+import kaCommon from './kan/common.json';
+import kaHomepage from './kan/homepage.json';
+import kaBenefits from './kan/benefits.json';
+import kaFaq from './kan/faq.json';
+import kaHowItWorks from './kan/howItWorks.json';
+import kaSupport from './kan/support.json';
+import kaRegistrationComplete from './kan/registrationComplete.json';
+import kaLogin from './kan/login.json';
+import kaDocumentUpload from './kan/uploadDocuments.json';
+import kaRegister from './kan/register.json';
+
+
 type AllTranslations = {
   [locale: string]: TranslationKeys;
 };
@@ -79,5 +92,17 @@ export const translations: AllTranslations = {
     login: paLogin,
     documentUpload: paDocumentUpload,
     register: paRegister,
+  },
+  'kan': {
+    common: kaCommon,
+    homepage: kaHomepage,
+    benefits: kaBenefits,
+    faq: kaFaq,
+    howItWorks: kaHowItWorks,
+    support: kaSupport,
+    registrationComplete: kaRegistrationComplete,
+    login: kaLogin,
+    documentUpload: kaDocumentUpload,
+    register: kaRegister,
   },
 };
