@@ -1,7 +1,7 @@
 {
-  "name": "My App",
-  "short_name": "App",
-  "description": "A Progressive Web App built with Next.js",
+  "name": "Bharat Sarathi",
+  "short_name": "Sarathi",
+  "description": "Bharat Sarathi is your trusted platform for seamless cab booking, fleet management, and driver registration across India. Experience convenience, safety, and reliability with our modern mobility solutions.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,17 +9,17 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/icons/icon-192x192.png",
+      "src": "/bharat sarathi logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512x512.png",
+      "src": "/bharat sarathi logo.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icons/maskable-icon.png",
+      "src": "/bharat sarathi logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
