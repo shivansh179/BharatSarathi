@@ -10,7 +10,7 @@ export default function AdminLogin() {
   const handleLogin = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://ritiktest.site/auth/login', {
+      const response = await axios.post('https://bharatsarathi.in/auth/login', {
         email,
         password,
       });

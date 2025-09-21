@@ -42,7 +42,7 @@ const UserPage = () => {
     const fetchUsers = async () => {
       try {
         const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-        const response = await fetch('https://ritiktest.site/user/get-all-users', {
+        const response = await fetch('https://bharatsarathi.in/user/get-all-users', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const UserPage = () => {
       return path.replace('s3://', 'https://');
     }
     if (!path.startsWith('http') && !path.startsWith('/')) {
-      return `https://ritiktest.site/${path}`;
+      return `https://bharatsarathi.in/${path}`;
     }
     return path;
   };

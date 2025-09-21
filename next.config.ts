@@ -1,11 +1,24 @@
-import type { NextConfig } from "next";
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
 
-const nextConfig: NextConfig = {
-  images: {
-    domains: ['bharatsarthi.s3.ap-south-1.amazonaws.com',"cdn.iconscout.com"],
-  },
-  /* config options here */
+const nextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "bharatsarthi.s3.ap-south-1.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.iconscout.com",
+      },
+    ],
+  },
 };
 
-export default nextConfig;
+module.exports = withPWA(nextConfig);

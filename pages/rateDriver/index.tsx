@@ -99,7 +99,7 @@ export default function RateDriverPage() {
 
     try {
       await axios.post(
-        'https://ritiktest.site/api/ratings/rate-driver', // Your API endpoint
+        'https://bharatsarathi.in/api/ratings/rate-driver', // Your API endpoint
         formData,
         { headers: { 'Content-Type': 'application/json' } }
       );

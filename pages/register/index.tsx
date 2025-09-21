@@ -14,7 +14,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import { DOCUMENT_TYPES } from '../../documentConfig';
 
 const UPLOADED_DOCS_STORAGE_KEY = 'userUploadedDocsStatus';
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://ritiktest.site";
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://bharatsarathi.in";
 
 function InputField({ label, id, type = 'text', value, onChange, placeholder, required = true, disabled = false, ...props }: { label: string; id: string; type?: string; value: string; onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; placeholder?: string; required?: boolean; disabled?: boolean; [key: string]: any; className?: string; }) {
   return ( <div className="mb-4"><label htmlFor={id} className="block text-sm font-medium text-gray-700 mb-1">{label} {required && <span className="text-red-500">*</span>}</label><input type={type} id={id} name={id} value={value} onChange={onChange} placeholder={placeholder} className={props.className || `block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm transition duration-150 ease-in-out shadow-sm text-black ${disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`} required={required} disabled={disabled} {...props} /></div>);

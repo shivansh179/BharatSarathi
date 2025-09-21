@@ -235,7 +235,7 @@ export default function AdminDashboard() {
     if (endpoint === 'users') return; // Skip API call for users
     setIsLoading(true);
     try {
-      const res = await axios.get(`https://ritiktest.site/admin/${endpoint}`, {
+      const res = await axios.get(`https://bharatsarathi.in/admin/${endpoint}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -318,7 +318,7 @@ export default function AdminDashboard() {
     setIsLoading(true);
     try {
       await axios.post(
-        `https://ritiktest.site/admin/${activeSection}`,
+        `https://bharatsarathi.in/admin/${activeSection}`,
         formData,
         {
           headers: {

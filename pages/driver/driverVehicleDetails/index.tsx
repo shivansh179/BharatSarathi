@@ -14,7 +14,7 @@ import { DocumentTypeKey, DocumentUploadConfig, DOCUMENT_TYPES } from '../../../
 import { useTranslation } from '@/hooks/useTranslation';
 
 const UPLOADED_DOCS_STORAGE_KEY = 'userUploadedDocsStatus';
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://ritiktest.site';
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://bharatsarathi.in';
 
 const getDefaultUploadedStatus = () =>
   DOCUMENT_TYPES.reduce((acc, doc) => ({ ...acc, [doc.key]: false }), {} as Record<DocumentTypeKey, boolean>);

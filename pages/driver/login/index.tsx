@@ -11,7 +11,7 @@ import {
     ExclamationTriangleIcon, PaperAirplaneIcon,
 } from '@heroicons/react/24/outline';
 
-const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://ritiktest.site';
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://bharatsarathi.in';
 
 interface InputFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
     id: string;
