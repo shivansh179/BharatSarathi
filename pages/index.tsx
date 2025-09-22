@@ -16,6 +16,7 @@
   import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
   import { CurrencyDollarIcon } from '@heroicons/react/24/outline';
 import InstallButton from '@/components/InstallButton';
+import HeroInstallButton from '@/components/HeroInstallButton';
 
 
   const StatItem = ({ number, suffix, label }: { number: number; suffix: string; label: string }) => {
@@ -85,7 +86,7 @@ import InstallButton from '@/components/InstallButton';
                     {t.hero_description}
                   </p>
                   
-                  <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                  <div className="flex flex-col sm:flex-row gap-4 mb-8">
                     <button onClick={handleGetStarted} className="group bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg shadow-2xl transition-all duration-300 hover:shadow-blue-500/25 hover:scale-105 flex items-center justify-center">
                       {isRegistered ? "Go to Dashboard" : t.hero_cta_main}
                       <ArrowRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -99,10 +100,11 @@ import InstallButton from '@/components/InstallButton';
                       {t.hero_cta_secondary}
                     </Link>
                   </div>
-                 
-                 <div className="mt-4 flex justify-center sm:justify-start">
-  <InstallButton />
-</div>
+
+                  {/* Install App Button */}
+                  <div className="flex justify-center sm:justify-start mb-12">
+                    <HeroInstallButton />
+                  </div>
 
 
                   

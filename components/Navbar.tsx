@@ -15,6 +15,7 @@ import {
 
 import { HiArrowRightStartOnRectangle } from "react-icons/hi2";
 import { FaChevronDown } from 'react-icons/fa';
+import NavbarInstallButton from './NavbarInstallButton';
 
 type UserDetail = { email?: string; name?: string; phoneNumber?: string; };
 
@@ -169,6 +170,9 @@ export default function Navbar() {
             {/* Right-side Actions & Mobile Toggle */}
             <div className="flex items-center">
               <div className="hidden lg:flex items-center space-x-4">
+                {/* Install App Button */}
+                <NavbarInstallButton />
+                
                 {/* Language Dropdown */}
                 <div className="relative" ref={languageDropdownRef}>
                   <button onClick={() => setIsLanguageDropdownOpen(p => !p)} className="p-2 text-gray-600 hover:text-blue-600 rounded-md transition-colors"><GlobeAltIcon className="h-6 w-6" /></button>
@@ -304,6 +308,11 @@ export default function Navbar() {
                       </Link>
                     );
                   })}
+                  
+                  {/* Mobile Install Button */}
+                  <div className="px-3 py-2">
+                    <NavbarInstallButton />
+                  </div>
                   {/* Apply Section for Logged-out Mobile Users */}
                   {!userDetail && (
                     <div>
