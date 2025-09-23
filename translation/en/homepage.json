@@ -63,5 +63,65 @@
   "start_journey": "Start Your Journey Today",
   "learn_more": "Learn More",
   "driver_insured": "Driver Insured",
-  "driver_insured_number": "33"
+  "driver_insured_number": "33",
+  "categories_title": "Our Services & Categories",
+  "categories_description": "Everything you need as a driver, all in one place",
+  "categories_list": [
+    {
+      "id": "car-parts",
+      "title": "Car Parts",
+      "description": "Quality spare parts and accessories at discounted prices for all vehicle types",
+      "stats": "Up to 30% Off",
+      "features": ["Genuine Parts", "Fast Delivery", "Warranty Included"]
+    },
+    {
+      "id": "car-services",
+      "title": "Car Services", 
+      "description": "Professional vehicle maintenance, servicing, and repair services",
+      "stats": "Expert Technicians",
+      "features": ["Regular Maintenance", "Emergency Repair", "Quality Service"]
+    },
+    {
+      "id": "health-insurance",
+      "title": "Health Insurance",
+      "description": "Affordable health insurance plans tailored for drivers and their families",
+      "stats": "Savings up to 40%",
+      "features": ["Family Coverage", "Cashless Treatment", "Quick Claims"]
+    },
+    {
+      "id": "car-insurance",
+      "title": "Car Insurance",
+      "description": "Comprehensive vehicle insurance with best-in-class coverage",
+      "stats": "Best Rates",
+      "features": ["Zero Depreciation", "Roadside Assistance", "Quick Settlement"]
+    },
+    {
+      "id": "job-referrals",
+      "title": "Job Referrals",
+      "description": "Find driving opportunities with top platforms like Ola, Uber, and more",
+      "stats": "10K+ Jobs",
+      "features": ["Top Platforms", "Verified Partners", "Quick Placement"]
+    },
+    {
+      "id": "challan-settlement",
+      "title": "Challan Settlement",
+      "description": "Expert assistance to resolve traffic challans through Lok Adalat",
+      "stats": "Quick Resolution",
+      "features": ["Legal Experts", "Reduced Fines", "Hassle-free Process"]
+    },
+    {
+      "id": "pf-esi",
+      "title": "PF / ESI Benefits",
+      "description": "Complete PF and ESI benefits for all Bharat Sarathi members",
+      "stats": "100% Coverage",
+      "features": ["Full Compliance", "Easy Documentation", "Regular Updates"]
+    },
+    {
+      "id": "easy-loans",
+      "title": "Easy Loans",
+      "description": "Quick loan approvals with minimal documentation for drivers",
+      "stats": "Quick Approval",
+      "features": ["Low Interest", "Minimal Docs", "Flexible Terms"]
+    }
+  ]
 }

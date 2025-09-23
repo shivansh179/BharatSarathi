@@ -17,6 +17,7 @@
   import { CurrencyDollarIcon } from '@heroicons/react/24/outline';
 import InstallButton from '@/components/InstallButton';
 import HeroInstallButton from '@/components/HeroInstallButton';
+import Categories from './categories';
 
 
   const StatItem = ({ number, suffix, label }: { number: number; suffix: string; label: string }) => {
@@ -143,6 +144,9 @@ import HeroInstallButton from '@/components/HeroInstallButton';
               </div>
             </div>
           </section>
+
+          {/* Categories Section */}
+          <Categories />
 
           <section id="services" className="py-20 md:py-28 bg-gray-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
