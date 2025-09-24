@@ -12,7 +12,7 @@ const pwaConfig = {
 const nextConfig = {
   reactStrictMode: true,
   eslint: {
-    ignoreDuringBuilds: true
+    ignoreDuringBuilds: false
   },
   images: {
     remotePatterns: [
