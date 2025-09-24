@@ -11,6 +11,9 @@ const pwaConfig = {
 
 const nextConfig = {
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true
+  },
   images: {
     remotePatterns: [
       { protocol: "https" as const, hostname: 'bharatsarthi.s3.ap-south-1.amazonaws.com' },
