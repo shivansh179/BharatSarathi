@@ -117,7 +117,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li>
                 <a href="tel:+911234567890" className="flex items-start text-gray-600 hover:text-blue-600 transition duration-150">
-                  <PhoneIcon className="h-5 w-5 mr-3 text-blue-500 flex-shrink-0" /><span>+91 1234 567 890</span>
+                  <PhoneIcon className="h-5 w-5 mr-3 text-blue-500 flex-shrink-0" /><span>+91 9953033803</span>
                 </a>
               </li>
               <li>

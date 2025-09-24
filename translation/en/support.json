@@ -11,7 +11,7 @@
     "grid_description": "Choose the contact method that works best for you. We're here to help in whatever way is most convenient.",
     "contact_options": [
       { "title": "Email Support", "description": "Send us detailed queries and we'll respond within 24 hours.", "value": "support@bharatsarathi.com", "cta": "Send Email" },
-      { "title": "Phone Support", "description": "Speak directly with our support team for immediate assistance.", "value": "+91 1234 567 890", "cta": "Call Now" },
+      { "title": "Phone Support", "description": "Speak directly with our support team for immediate assistance.", "value": "+91 9953033803", "cta": "Call Now" },
       { "title": "Live Chat", "description": "Get instant help through our live chat available on our website.", "value": "Available Now", "cta": "Start Chat" }
     ],
     "cta_title": "Ready to Get Support?",
